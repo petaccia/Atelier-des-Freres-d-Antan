@@ -4,7 +4,7 @@ import Link from 'next/link';
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 import Image from 'next/image';
-import logo from '../../../../public/logo-blue.svg'
+import logo from '../../../../public/logo/logo-blue.svg'
 
 
 export default function Header() {
