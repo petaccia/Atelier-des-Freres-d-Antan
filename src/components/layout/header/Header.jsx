@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="bg-primary shadow-md text-white">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className=" mx-auto  py-4 flex justify-around items-center">
         <Image src={logo} alt="Logo" width={100} height={100} />
         <Link href="/">
           <h1 className="text-xl font-bold font-josefin">
