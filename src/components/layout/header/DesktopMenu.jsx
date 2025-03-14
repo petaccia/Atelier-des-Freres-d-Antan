@@ -39,7 +39,7 @@ export default function DesktopMenu() {
             />
           </button>
           {activeMenu === "cordonnerie" && (
-            <div className="w-72 absolute bg-white text-gray-800 shadow-md mt-2 p-4 space-y-2 rounded-2xl transition-opacity duration-300">
+            <div className="w-72 absolute bg-white text-gray-800 shadow-md mt-2 p-4 space-y-2 rounded-2xl z-10">
               <Link
                 href="/la-cordonnerie-traditionnelle"
                 className={`w-full block px-2 py-1 hover:rounded-md hover:bg-accent/60 hover:text-primary ${
@@ -81,7 +81,7 @@ export default function DesktopMenu() {
             />
           </button>
           {activeMenu === "serrurerie" && (
-            <div className="w-60 absolute bg-white text-gray-800 shadow-md mt-2 p-4 space-y-2 rounded-2xl">
+            <div className="w-60 absolute bg-white text-gray-800 shadow-md mt-2 p-4 space-y-2 rounded-2xl z-10">
               <Link
                 href="/la-serrurerie-traditionnelle"
                 className={`w-full block px-2 py-1 hover:rounded-md hover:bg-accent/60 hover:text-primary ${
@@ -131,7 +131,7 @@ export default function DesktopMenu() {
             />
           </button>
           {activeMenu === "À propos" && (
-            <div className="w-60 absolute bg-white text-gray-800 shadow-md mt-2 p-4 space-y-2 rounded-2xl">
+            <div className="w-60 absolute bg-white text-gray-800 shadow-md mt-2 p-4 space-y-2 rounded-2xl z-10">
               <Link
                 href="/nos-savoir-faire"
                 className={`w-full block px-2 py-1 hover:rounded-md hover:bg-accent/60 hover:text-primary ${
