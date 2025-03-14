@@ -14,12 +14,12 @@ export default function CarouselCard({ slide }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
 
       {/* Lignes horizontales en haut */}
-      <div className="absolute top-1/3 left-1/3  bg-gray-900/70 w-[40%] h-[40%] rounded-lg z-20 5 p-6 text-center" >
+      <div className="absolute top-1/3 left-1/3  bg-gray-900/70 w-[40%] h-[40%] rounded-2xl z-20 5 p-6 text-center" >
         <div className="max-w-xl mx-auto mt-8">
 
 
           {/* Titre, texte et citation */}
-          <h3 className="text-white text-2xl md:text-3xl font-semibold mb-4">{slide.title}</h3>
+          <h2 className="text-accent  text-2xl md:text-3xl font-semibold mb-4">{slide.title}</h2>
           <p className="text-white text-base md:text-lg max-w-2xl mb-6">{slide.text}</p>
           <blockquote className="text-white italic text-lg md:text-xl mb-12">{slide.quote}</blockquote>
 
