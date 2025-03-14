@@ -1,9 +1,9 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
 export default function CarouselCard({ slide }) {
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
-      {/* Image qui prend toute la largeur et hauteur */}
+    <div className="relative h-screen overflow-hidden">
+      {/* Image principale */}
       <Image
         src={slide.href} // Chemin de l'image
         alt={slide.title}
@@ -14,8 +14,8 @@ export default function CarouselCard({ slide }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
 
       {/* Lignes horizontales en haut */}
-      <div className="absolute top-1/4 left-1/4  dark:bg-gray-900/50 w-1/2 h-1/2 rounded-lg z-20 5 p-6 text-center" >
-        <div className="max-w-4xl mx-auto mt-8">
+      <div className="absolute top-1/3 left-1/3  bg-gray-900/70 w-[40%] h-[40%] rounded-lg z-20 5 p-6 text-center" >
+        <div className="max-w-xl mx-auto mt-8">
 
 
           {/* Titre, texte et citation */}
