@@ -1,0 +1,35 @@
+import Image from 'next/image'
+
+export default function CarouselCard({ slide }) {
+  return (
+    <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+      {/* Image qui prend toute la largeur et hauteur */}
+      <Image
+        src={slide.href} // Chemin de l'image
+        alt={slide.title}
+        fill // Remplir le conteneur parent
+        className="object-cover" // Ajuste l'image pour couvrir tout le conteneur
+      />
+      {/* Overlay semi-transparent */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+
+      {/* Lignes horizontales en haut */}
+      <div className="absolute top-1/4 left-1/4  dark:bg-gray-900/50 w-1/2 h-1/2 rounded-lg z-20 5 p-6 text-center" >
+        <div className="max-w-4xl mx-auto mt-8">
+
+
+          {/* Titre, texte et citation */}
+          <h3 className="text-white text-2xl md:text-3xl font-semibold mb-4">{slide.title}</h3>
+          <p className="text-white text-base md:text-lg max-w-2xl mb-6">{slide.text}</p>
+          <blockquote className="text-white italic text-lg md:text-xl mb-12">{slide.quote}</blockquote>
+
+          <div className="flex justify-center gap-2  ">
+            <div className="w-1/3 h-1 bg-blue-500"></div>
+            <div className="w-1/3 h-1 bg-white"></div>
+            <div className="w-1/3 h-1 bg-red-500"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
