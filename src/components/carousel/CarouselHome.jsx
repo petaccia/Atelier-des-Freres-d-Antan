@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { carouselSlides } from "./data/carouselSlides";
 import CarouselCard from "./components/CarouselCard";
+import MapButton from "../ui/buttons/MapButton";
 
 export default function CarouselHome() {
 
@@ -28,6 +29,7 @@ export default function CarouselHome() {
       {carouselSlides.map((slide, index) => (
         <SwiperSlide key={index}>
           <CarouselCard slide={slide} />
+          <MapButton />
         </SwiperSlide>
   ))
 }
