@@ -1,9 +1,9 @@
-import Image from "next/image";
+import CarouselHome from "@/components/carousel/CarouselHome";
 
 export default function Home() {
   return (
-    <div> 
-      <h1>je suis dans la page home</h1>
+    <div className="w-full"> 
+      <CarouselHome />
     </div>
   );
 }
