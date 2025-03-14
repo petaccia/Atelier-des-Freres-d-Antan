@@ -1,3 +1,4 @@
+import ContactButton from '@/components/ui/buttons/ContactButton';
 import Image from 'next/image';
 
 export default function CarouselCard({ slide }) {
@@ -20,7 +21,7 @@ export default function CarouselCard({ slide }) {
 
           {/* Titre, texte et citation */}
           <h2 className="text-accent  text-2xl md:text-3xl font-semibold mb-4">{slide.title}</h2>
-          <p className="text-white text-base md:text-lg max-w-2xl mb-6">{slide.text}</p>
+          <p className="h-12 text-white text-base md:text-lg max-w-2xl mb-6">{slide.text}</p>
           <blockquote className="text-white italic text-lg md:text-xl mb-12">{slide.quote}</blockquote>
 
           <div className="flex justify-center gap-2  ">
@@ -29,6 +30,8 @@ export default function CarouselCard({ slide }) {
             <div className="w-1/3 h-1 bg-red-500"></div>
           </div>
         </div>
+        <ContactButton
+          className="absolute bg-accent/30 hover:bg-primary/30 bottom-8 left-1/2 transform -translate-x-1/2" />
       </div>
     </div>
   )
