@@ -1,6 +1,7 @@
 import CarouselHome from "@/components/carousel/CarouselHome";
-import CardValue from "@/components/sections/home/cards/CardValue";
+import CardValue from "@/components/sections/home/ValueSection/CardValue";
 import EssentialsSection from "@/components/sections/home/essentialsSection/EssentialsSection";
+import Testimonials from "@/components/sections/home/testimonial/Testimonial";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <CarouselHome />
       <EssentialsSection />
       <CardValue />
+      <Testimonials />
     </div>
   );
 }

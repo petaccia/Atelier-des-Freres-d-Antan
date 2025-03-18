@@ -1,5 +1,5 @@
 "use client";
-import  {valuesData}  from "../../data/valuesData";
+import  {valuesData}  from "./valuesData";
 export default function CardValue() {
   return (
     <section className="py-20 bg-gradient-to-b from-whiteAmber to-stone-50">
