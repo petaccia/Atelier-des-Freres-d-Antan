@@ -9,7 +9,7 @@ bg-white ${value.color}`}
 <div className="flex items-center justify-center mb-6">
   <div className="relative">
     <div className={`absolute inset-0 rounded-full ${value.color === 'accent' ? 'bg-accent/10' : 'bg-primary/10'}`} />
-    <div className="relative z-10 p-4 rounded-full bg-white shadow-md">
+    <div className="relative z-5 p-4 rounded-full bg-white shadow-md">
       {value.icon}
     </div>
   </div>
