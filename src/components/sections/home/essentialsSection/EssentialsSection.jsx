@@ -1,6 +1,6 @@
 "use client";
 import EssentialsCard from "@/components/sections/components/EssentialsCard";
-import { cobblerData, serrurierData } from "../../data/data"
+import { cobblerData, serrurierData } from "../../data/cobblerData"
 
 export default function EssentialsSection() {
 

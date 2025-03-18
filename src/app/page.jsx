@@ -1,5 +1,5 @@
 import CarouselHome from "@/components/carousel/CarouselHome";
-import CarouselValue from "@/components/carousel/CarouselValue";
+import CardValue from "@/components/sections/home/cards/CardValue";
 import EssentialsSection from "@/components/sections/home/essentialsSection/EssentialsSection";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     <div className="h-screen ">
       <CarouselHome />
       <EssentialsSection />
-      <CarouselValue />
+      <CardValue />
     </div>
   );
 }
