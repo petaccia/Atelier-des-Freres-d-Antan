@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import historyImage from "../../../../../public/img/sections/history/freres.webp";
+import GenericButton from "@/components/ui/buttons/GenericButton";
 
 export default function HistorySection() {
   // Calculer le ratio d'aspect de l'image
@@ -44,6 +45,15 @@ export default function HistorySection() {
               <p>
                 Un lieu à notre image : authentique, convivial et valorisant nos savoir-faire.
               </p>
+            </div>
+            {/* Bouton centré sous le texte */}
+            <div className="mt-8 flex justify-center lg:justify-start">
+              <GenericButton
+                className="bg-black/30 text-white font-bold px-8 py-3 rounded-full hover:text-black hover:bg-accent transition-colors duration-300"
+                href="/contact"
+              >
+                Notre histoire
+              </GenericButton>
             </div>
           </div>
         </div>
