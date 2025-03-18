@@ -1,21 +1,25 @@
-export default function CardValue({ value, idx }) {
-return (
-<div 
-key={idx} 
-className={`rounded-2xl p-6 border shadow-lg transition-shadow hover:shadow-xl 
-bg-white ${value.color}`}
->
-{/* Icône avec effet de profondeur */}
-<div className="flex items-center justify-center mb-6">
-  <div className="relative">
-    <div className={`absolute inset-0 rounded-full ${value.color === 'accent' ? 'bg-accent/10' : 'bg-primary/10'}`} />
-    <div className="relative z-5 p-4 rounded-full bg-white shadow-md">
-      {value.icon}
+export default function CardValue({ value }) {
+  return (
+    <div className="group h-full flex flex-col items-center text-center p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500">
+      {/* Icône grande avec effet de lumière */}
+      <div className="mb-8 p-6 rounded-full bg-gradient-to-br from-white to-stone-50 shadow-inner">
+        <div className="text-8xl text-primary group-hover:text-accent transition-colors duration-500">
+          {value.icon()}
+        </div>
+      </div>
+      
+      {/* Titre plus petit avec couleur secondaire */}
+      <h3 className="text-2xl font-semibold text-stone-600 mb-6 group-hover:text-primary transition-colors duration-300">
+        {value.title}
+      </h3>
+      
+      {/* Description avec espacement généreux */}
+      <p className="h-10text-lg text-stone-500 leading-relaxed mb-8 flex-1">
+        {value.description}
+      </p>
+      
+      {/* Ligne décorative animée */}
+      <div className="w-1/3 h-1 bg-primary/20 group-hover:w-full group-hover:bg-primary transition-all duration-500" />
     </div>
-  </div>
-</div>
-<h3 className="text-2xl font-bold text-stone-800 mb-4">{value.title}</h3>
-<p className="text-lg text-stone-600 leading-relaxed">{value.description}</p>
-</div>
-);
+  );
 } 
