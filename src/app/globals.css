@@ -14,6 +14,7 @@
   --color-blueLight: #edfcfe; /* Bleu clair */
   --color-whiteAmber: #fff8e1; /* Jaune clair */
   --color-whiteStone: #f8fafc; /* bg-stone-50 */
+  --color-whiteStoneDark: #f1f5f9; /* bg-stone-200 */
 
   /* screen sizes */
   --screen-xs: 480px;

@@ -4,6 +4,7 @@ import EssentialsSection from "@/components/sections/home/essentialsSection/Esse
 import HistorySection from "@/components/sections/home/historySection/HistorySection";
 import Testimonials from "@/components/sections/home/testimonial/Testimonial";
 import ServicesSection from "@/components/sections/home/servicesSection/ServicesSection";
+import PartnerSection from "@/components/sections/home/PartnersSection/PartnersSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HistorySection />
       <ServicesSection />
       <Testimonials />
+      <PartnerSection />
     </div>
   );
 }
