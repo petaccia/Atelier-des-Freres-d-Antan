@@ -1,11 +1,10 @@
 'use client'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation, Pagination, EffectCoverflow } from 'swiper/modules' // Ajout de EffectCoverflow [[8]]
+import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 import Image from 'next/image'
+
 const realizations = [
   {
     id: 1,
@@ -47,71 +46,66 @@ const realizations = [
 
 export default function RealizationsSection() {
   return (
-    <section className="py-24">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <section className="relative py-12 md:py-16 lg:py-24 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 md:mb-12 lg:mb-16">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blueLight">
             Nos Réalisations
-          </h2>
-          <p className="text-gray-600 text-lg">
-            L'excellence artisanale en image
-          </p>
-        </div>
+          </span>
+        </h2>
 
-        <div className="relative bg-white">
-        <Swiper
-          modules={[Autoplay, Navigation, Pagination]} // Ajout du module
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          loop={true}
-          navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          }}
-          pagination={{
-            clickable: true,
-            el: '.swiper-pagination',
-            type: 'bullets',
-            currentClass: 'swiper-pagination-current',
-          }}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            1024: { 
-              slidesPerView: 5, 
-              spaceBetween: 40 
-            }
-          }}
-          centeredSlides={true}
-          className="!overflow-visible"
-        >
+        <div className="relative">
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            grabCursor={true}
+            spaceBetween={16}
+            slidesPerView={1}
+            breakpoints={{
+              480: {
+                slidesPerView: 1,
+                spaceBetween: 16,
+              },
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 32,
+              },
+            }}
+            className="w-full"
+          >
             {realizations.map((realization) => (
               <SwiperSlide key={realization.id}>
-                <div className="relative aspect-square ">
+                <div className="relative aspect-square rounded-lg md:rounded-xl overflow-hidden border border-white/10">
                   <Image
                     src={realization.image}
                     alt={realization.title}
                     fill
-                    className="object-cover shadow-2xl rounded-2xl"
-                    quality={90}
-                    sizes="(max-width: 768px) 100vw, 80vw"
-                    priority={realization.id === 1}
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0  p-6 flex flex-col justify-end">
-                    <div className="max-w-2xl mx-auto text-center">
-                     
-                    </div>
-                  </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Navigation */}
-          <div className="swiper-button-next !scale-75 !text-primary hover:!text-primary-dark !transition-colors" />
-          <div className="swiper-button-prev !scale-75 !text-primary hover:!text-primary-dark !transition-colors" />
-
-          {/* Pagination */}
-          <div className="swiper-pagination !bottom-0 [--swiper-pagination-bullet-size:12px] [--swiper-pagination-bullet-inactive-color:theme(colors.gray.300)] [--swiper-pagination-color:theme(colors.primary)]" />
         </div>
+         
       </div>
     </section>
   )
