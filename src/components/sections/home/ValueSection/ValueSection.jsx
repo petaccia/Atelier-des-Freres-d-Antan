@@ -8,7 +8,7 @@ import { valuesData } from "./valuesData";
 
 export default function ValueSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-whiteAmber to-stone-50">
+    <section className="py-20 bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-4xl font-bold mb-16 text-stone-800">
           Nos Valeurs

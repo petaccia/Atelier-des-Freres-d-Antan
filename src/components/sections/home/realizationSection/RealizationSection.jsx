@@ -46,10 +46,10 @@ const realizations = [
 
 export default function RealizationsSection() {
   return (
-    <section className="relative py-12 md:py-16 lg:py-24 bg-white">
+    <section className="relative py-12 md:py-16 lg:py-24 bg-primary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 md:mb-12 lg:mb-16">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blueLight">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-whiteAmber to-blueLight">
             Nos Réalisations
           </span>
         </h2>
