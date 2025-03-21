@@ -7,6 +7,7 @@ import ServicesSection from "@/components/sections/home/servicesSection/Services
 import PartnerSection from "@/components/sections/home/PartnersSection/PartnersSection";
 import PhilosophySection from "@/components/sections/home/philosophySection/PholosophySection";
 import RealizationsSection from "@/components/sections/home/realizationSection/RealizationSection";
+import NewsletterSignup from "@/components/sections/home/newLetter/NewLetter";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Testimonials />
       <PhilosophySection />
       <PartnerSection />
+      <NewsletterSignup />
     </div>
   );
 }
