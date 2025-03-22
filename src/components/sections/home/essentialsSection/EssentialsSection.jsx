@@ -7,7 +7,7 @@ export default function EssentialsSection() {
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-white mb-16 ">
+        <h2 className="text-center text-white  ">
           LES ESSENTIELS
         </h2>
         

@@ -8,7 +8,7 @@ export default function ServicesSection() {
   return (
     <section className="py-16 bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
       <div className="container mx-auto px-4">
-        <h2 className="text-center mb-12 text-gray-800">
+        <h2 className="text-center text-gray-800">
           Nos Prestations Artisanales
         </h2>
         
