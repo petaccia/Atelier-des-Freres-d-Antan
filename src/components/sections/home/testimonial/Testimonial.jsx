@@ -13,12 +13,12 @@ import TestimonialCard from "./TestimonialCard";
 export default function Testimonials() {
   return (
     <section className="py-20 bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl font-semibold text-black mb-4">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center">
+          <h2 className=" text-black">
             Témoignages
           </h2>
-          <p className="text-lg text-whiteAmber max-w-2xl mx-auto">
+          <p className="text-lg text-primary mb-16 max-w-2xl mx-auto">
             Découvrez l'expérience de nos clients et partenaires
           </p>
         </div>

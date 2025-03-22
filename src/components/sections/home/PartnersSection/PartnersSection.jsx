@@ -12,7 +12,7 @@ export default function PartnersSection() {
 return(
    <section className="py-16 bg-primary">
     <div className="container mx-auto px-40">
-      <h2 className="text-center text-3xl font-bold mb-10">
+      <h2 className="text-center">
         Nos Partenaires
         </h2>
 
