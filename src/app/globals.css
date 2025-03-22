@@ -24,3 +24,8 @@
   --screen-xl: 1280px;
 }
 
+@layer base {
+  h2 {
+    @apply text-4xl md:text-5xl tracking-widest uppercase font-thin;
+  }
+}

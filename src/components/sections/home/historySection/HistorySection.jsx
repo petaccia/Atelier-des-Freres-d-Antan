@@ -30,7 +30,7 @@ export default function HistorySection() {
 
           {/* Contenu */}
           <div className="text-white">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">
+            <h2 className="mb-6 sm:mb-8">
               L'aventure Atelier des Frères d'Antan
             </h2>
             <div className="space-y-4 sm:space-y-6 text-base sm:text-lg leading-relaxed">
