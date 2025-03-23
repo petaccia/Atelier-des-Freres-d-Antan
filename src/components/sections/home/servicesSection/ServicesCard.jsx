@@ -1,4 +1,5 @@
 "use client";
+import GenericButton from '@/components/ui/buttons/GenericButton';
 // components/PrestationCard.jsx
 import Image from 'next/image';
 
@@ -33,9 +34,9 @@ export default function ServicesCard({ service }) {
         <p className="text-center text-white/90 text-lg mb-8">
           {service.description}
         </p>
-        <button className="px-8 py-3 bg-white text-primary rounded-full font-semibold hover:bg-white/90 transition-colors">
+        <GenericButton className="px-8 py-3 bg-primary text-white rounded-full border-2 border-white font-semibold hover:bg-accent  transition-colors">
           En savoir plus
-        </button>
+        </GenericButton>
       </div>
     </div>
   );
