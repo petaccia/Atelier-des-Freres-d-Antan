@@ -1,5 +1,5 @@
-export default function GenericButton({children, className}){
+export default function GenericButton({children, className, icon}){
   return (
-    <button className={className}>{children}</button>
+    <button className={className}>{children} {icon}</button>
   );
 }
