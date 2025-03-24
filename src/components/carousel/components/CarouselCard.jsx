@@ -20,7 +20,7 @@ export default function CarouselCard({ slide }) {
 
 
           {/* Titre, texte et citation */}
-          <h2 className="text-accent  text-2xl md:text-3xl font-semibold mb-4">{slide.title}</h2>
+          <h3 className="text-accent mb-4">{slide.title}</h3>
           <p className="h-12 text-white text-base md:text-lg max-w-2xl mb-6">{slide.text}</p>
           <blockquote className="text-white italic text-lg md:text-xl mb-12">{slide.quote}</blockquote>
 
