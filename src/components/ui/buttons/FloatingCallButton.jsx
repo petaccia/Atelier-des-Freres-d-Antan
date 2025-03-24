@@ -16,6 +16,8 @@ export default function  FloatingCallButton({
         return "top-1/4 left-4";
       case "top-right":
         return "top-1/3 right-4";
+        case "middle-top":
+        return "top-46 right-1/4 mr-3";
         case"middle-right":
         return "top-1/2 right-4";
         case "middle-left":
@@ -38,7 +40,7 @@ export default function  FloatingCallButton({
     >
       <Link
         href={`tel:${phoneNumber}`}
-        className="flex items-center justify-center bg-accent hover:bg-primary  text-white rounded py-2 px-4 shadow-lg hover:bg-accent-dark transition-colors duration-200 ml-3"
+        className=" flex items-center justify-center bg-accent hover:bg-primary  text-white rounded py-2 px-4 shadow-lg hover:bg-accent-dark transition-colors duration-200 ml-3"
       >
 
       <FaPhoneAlt className="w-4 h-4 mr-3" />

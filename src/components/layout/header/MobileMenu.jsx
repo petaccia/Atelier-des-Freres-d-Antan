@@ -4,11 +4,13 @@ import Link from "next/link";
 import { BiHome, BiHistory, BiEnvelope } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock   } from "react-icons/gi";
 import { useState } from "react";
+import FloatingCallButton from "@/components/ui/buttons/FloatingCallButton";
 
 export default function MobileMenu() {
   const [activeTab, setActiveTab] = useState("accueil");
 
   return (
+    <>
     <nav className="fixed inset-x-0 bottom-0 bg-white shadow-md md:hidden">
       <div className="flex justify-around py-4">
         {/* Accueil */}
@@ -109,5 +111,7 @@ export default function MobileMenu() {
         </Link>
       </div>
     </nav>
+    <FloatingCallButton phoneNumber="07 88 41 63 91" position="middle-top" />
+    </>
   );
 }
