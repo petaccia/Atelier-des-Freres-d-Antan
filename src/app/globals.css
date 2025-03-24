@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -25,8 +26,13 @@
 }
 
 @layer base {
+  h1 {
+    font-family: var(--font-primary);
+    @apply text-xl md:text-xl tracking-widest capitalize font-thin;
+  }
   h2 {
     font-family: var(--font-primary);
     @apply text-4xl md:text-5xl tracking-widest uppercase font-thin mb-16;
   }
+
 }

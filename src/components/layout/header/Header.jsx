@@ -14,7 +14,7 @@ export default function Header() {
       <div className=" mx-auto  py-4 flex justify-around items-center">
         <Image src={logo} alt="Logo" width={100} height={100} />
         <Link href="/">
-          <h1 className="text-xl font-bold font-josefin">
+          <h1 className="">
             Atelier des Frères d'Antan
           </h1>
         </Link>
