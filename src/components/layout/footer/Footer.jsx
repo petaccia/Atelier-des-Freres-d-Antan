@@ -16,20 +16,21 @@ export default function Footer() {
         <div className="w-full flex items-center justify-center mb-12">
           <div className="space-y-4">
             <Image src={logo} alt="Logo" width={200} height={200} className="mx-auto" />
-
           </div>
         </div>
-        <div className="container grid grid-cols-1 md:grid-cols-5 justify-items-center gap-2 ml-10 mb-16">
+
+        {/* Contenu principal */}
+        <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 px-4 mb-16">
           {/* Section Adresse et Horaires */}
           <div className="space-y-4">
-            <h3 className="font-Josefin-Sans text-xl font-medium mb-6 ">L'Atelier</h3>
+            <h3 className="font-Josefin-Sans text-xl font-medium mb-6">L'Atelier</h3>
             <Link
               href={getMapsUrl(ShopAddress())}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-3">
               <FiMapPin className="w-5 h-5 text-accent mt-1" />
-              <p className="text-white/80  hover:text-accent transition-colors">
+              <p className="text-white/80 hover:text-accent transition-colors">
                 1 rue de Sancé, 78490 Montfort l'Amaury
               </p>
             </Link>
@@ -80,6 +81,8 @@ export default function Footer() {
               Bref, une grande partie des Yvelines !
             </p>
           </div>
+
+          {/* Section Une Question ? */}
           <div>
             <h3 className="font-Josefin-Sans text-xl font-medium mb-6">UNE QUESTION ?</h3>
             <div className="flex items-start gap-3 mb-4">
@@ -96,9 +99,6 @@ export default function Footer() {
 
         {/* Section Contact et Réseaux Sociaux */}
         <div className="w-full flex flex-col items-center justify-center mb-8">
-          {/* Section Une Question ? */}
-
-
           {/* Section Réseaux Sociaux */}
           <div className="flex flex-col items-center justify-center">
             <h3 className="text-xl font-bold mb-6">Suivez-nous</h3>
