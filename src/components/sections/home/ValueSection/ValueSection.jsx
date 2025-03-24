@@ -40,10 +40,10 @@ export default function ValueSection() {
           </Swiper>
 
           {/* Contrôles de navigation */}
-          <div className="value-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white p-4 rounded-full shadow-lg hover:bg-stone-50 transition-colors -translate-x-1/2 hidden">
+          <div className="value-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white p-4 rounded-full shadow-lg hover:bg-stone-50 transition-colors -translate-x-1/2 hidden md:block">
            <MdOutlineKeyboardArrowLeft className="w-6 h-6  text-stone-700" />
           </div>
-          <div className="value-next absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white p-4 rounded-full shadow-lg hover:bg-stone-50 transition-colors translate-x-1/2 hidden">
+          <div className="value-next absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer bg-white p-4 rounded-full shadow-lg hover:bg-stone-50 transition-colors translate-x-1/2 hidden md:block">
             <MdOutlineKeyboardArrowRight className="w-6 h-6 text-stone-700" />
           </div>
         </div>
