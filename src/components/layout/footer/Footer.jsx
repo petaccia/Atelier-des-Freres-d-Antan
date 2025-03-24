@@ -4,6 +4,9 @@ import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 import Image from 'next/image';
 import logo from "../../../../public/logo/logo-blue.svg"
+import Link from "next/link";
+import { getMapsUrl } from "@/utils/getMapsUrl";
+import ShopAddress from "@/components/ui/shopAddress/ShopAddress";
 
 export default function Footer() {
   return (
@@ -20,12 +23,16 @@ export default function Footer() {
           {/* Section Adresse et Horaires */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold">L'Atelier</h3>
-            <div className="flex items-start gap-3">
+            <Link
+              href={getMapsUrl(ShopAddress())}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3">
               <FiMapPin className="w-5 h-5 text-accent mt-1" />
-              <p className="text-white/80">
+              <p className="text-white/80  hover:text-accent transition-colors">
                 1 rue de Sancé, 78490 Montfort l'Amaury
               </p>
-            </div>
+            </Link>
             <div className="flex items-start gap-3">
               <FiClock className="w-5 h-5 text-accent mt-1" />
               <div>
