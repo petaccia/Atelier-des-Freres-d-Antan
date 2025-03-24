@@ -44,4 +44,9 @@
     @apply text-2xl md:text-3xl font-medium tracking-widest uppercase;
   }
 
+  p {
+    font-family: var(--font-secondary);
+    @apply text-sm md:text-base tracking-wider;
+  }
+
 }
