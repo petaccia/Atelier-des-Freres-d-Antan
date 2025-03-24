@@ -1,23 +1,16 @@
 "use client";
 import Link from "next/link";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { getMapsUrl } from "@/utils/getMapsUrl";
 
 export default function MapButton({ destination, origin = "" }) {
-  const getMapsUrl = () => {
-    const baseUrl = "https://www.google.com/maps/dir/";
-    const params = new URLSearchParams({
-      api: "1",
-      destination: destination,
-      ...(origin && { origin: origin })
-    });
-    return `${baseUrl}?${params.toString()}`;
-  };
+ 
 
   return (
     <div className="absolute bottom-16 left-6 z-10 ">
     {/* Map button */}
     <Link
-      href={getMapsUrl()}
+      href={getMapsUrl(destination, origin)}
       target="_blank"
       rel="noopener noreferrer"
       className="group flex items-center space-x-4 px-6 py-3 
