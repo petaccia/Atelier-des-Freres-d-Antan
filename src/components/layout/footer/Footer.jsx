@@ -16,13 +16,13 @@ export default function Footer() {
         <div className="w-full flex items-center justify-center mb-12">
           <div className="space-y-4">
             <Image src={logo} alt="Logo" width={200} height={200} className="mx-auto" />
-           
+
           </div>
-          </div>
-        <div className="w-full  grid grid-cols-1 md:grid-cols-5 justify-items-center gap-8 mb-16">
+        </div>
+        <div className="container grid grid-cols-1 md:grid-cols-5 justify-items-center gap-2 ml-10 mb-16">
           {/* Section Adresse et Horaires */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">L'Atelier</h3>
+            <h3 className="font-Josefin-Sans text-xl font-medium mb-6 ">L'Atelier</h3>
             <Link
               href={getMapsUrl(ShopAddress())}
               target="_blank"
@@ -52,7 +52,7 @@ export default function Footer() {
 
           {/* Section Nos Services */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Nos Services</h3>
+            <h3 className="font-Josefin-Sans text-xl font-medium mb-6">Nos Services</h3>
             <ul className="space-y-3">
               <li><a href="/serrurerie" className="text-white/80 hover:text-accent transition-colors">Serrurerie dépannage</a></li>
               <li><a href="/cordonnerie" className="text-white/80 hover:text-accent transition-colors">Cordonnerie</a></li>
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Section Nos Garanties */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Nos Garanties</h3>
+            <h3 className="font-Josefin-Sans text-xl font-medium mb-6">Nos Garanties</h3>
             <ul className="space-y-3">
               <li><a href="/engagements" className="text-white/80 hover:text-accent transition-colors">Nos engagements</a></li>
               <li><a href="/savoir-faire" className="text-white/80 hover:text-accent transition-colors">Nos savoir-faire</a></li>
@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Section Zone d'Intervention */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Notre Zone d'Intervention</h3>
+            <h3 className="font-Josefin-Sans text-xl font-medium mb-6">Notre Zone d'Intervention</h3>
             <p className="text-white/80 mb-4">
               Montfort l'Amaury, Garancières, Houdan, La Queue-les-Yvelines, Galluis, les Mesnuls, Gambais, les Essarts, Elancourt, Jouars-Pontchartrain, Neauphle, Villiers-Saint-Frédéric, Beynes, Maule, Maulette, Thoiry, Chevreuse et tous les villages environnants.
             </p>
@@ -81,7 +81,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h3 className="text-xl font-bold mb-6">UNE QUESTION ?</h3>
+            <h3 className="font-Josefin-Sans text-xl font-medium mb-6">UNE QUESTION ?</h3>
             <div className="flex items-start gap-3 mb-4">
               <FiPhone className="w-5 h-5 text-accent mt-1" />
               <p className="text-white/80">Téléphone : 07 88 41 63 91</p>
@@ -97,7 +97,7 @@ export default function Footer() {
         {/* Section Contact et Réseaux Sociaux */}
         <div className="w-full flex flex-col items-center justify-center mb-8">
           {/* Section Une Question ? */}
-         
+
 
           {/* Section Réseaux Sociaux */}
           <div className="flex flex-col items-center justify-center">
