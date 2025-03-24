@@ -19,7 +19,7 @@ export default function ServicesCard({ service }) {
 
         {/* Content */}
         <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
-          <h3 className="text-3xl font-bold text-center mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+          <h3 className=" text-center mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
             {service.title}
           </h3>
           <div className="w-16 h-1 bg-white mx-auto mb-6 rounded-full" />
@@ -28,7 +28,7 @@ export default function ServicesCard({ service }) {
 
       {/* Back side */}
       <div className="absolute inset-0 transform rotate-y-180 backface-hidden transition-transform duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:rotate-y-0 bg-primary p-8 flex flex-col justify-center items-center text-white">
-        <h3 className="text-3xl font-bold text-center mb-6">
+        <h3 className=" text-center mb-6">
           {service.title}
         </h3>
         <p className="text-center text-white/90 text-lg mb-8">
