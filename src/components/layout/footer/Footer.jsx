@@ -96,16 +96,16 @@ export default function Footer() {
           <div className="flex flex-col items-center justify-center">
             <h3 className="text-xl font-bold mb-6">Suivez-nous</h3>
             <div className="flex gap-6">
-              <a href="#" className="text-white/80 hover:text-primary transition-colors">
+              <a href="#" className="text-[#1877F2] hover:text-[#1877F2]/80 transition-colors">
                 <FaFacebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-white/80 hover:text-primary transition-colors">
+              <a href="#" className="text-[#E4405F] hover:text-[#E4405F]/80 transition-colors">
                 <FaInstagram className="w-6 h-6" />
               </a>
-              <a href="#" className="text-white/80 hover:text-primary transition-colors">
+              <a href="#" className="text-[#FF0000] hover:text-[#FF0000]/80 transition-colors">
                 <FaYoutube className="w-6 h-6" />
               </a>
-              <a href="#" className="text-white/80 hover:text-primary transition-colors">
+              <a href="#" className="text-[#0A66C2] hover:text-[#0A66C2]/80 transition-colors">
                 <FaLinkedin className="w-6 h-6" />
               </a>
             </div>
