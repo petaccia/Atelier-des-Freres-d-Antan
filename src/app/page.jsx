@@ -11,7 +11,7 @@ import NewsletterSignup from "@/components/sections/home/newLetter/NewLetter";
 
 export default function Home() {
   return (
-    <div className="h-screen ">
+    <>
       <CarouselHome />
       <EssentialsSection />
       <ValueSection />
@@ -22,6 +22,6 @@ export default function Home() {
       <PhilosophySection />
       <PartnerSection />
       <NewsletterSignup />
-    </div>
+      </>
   );
 }
