@@ -17,7 +17,7 @@ export default function DesktopMenu() {
   return (
     <>
       {/* Menu Desktop */}
-      <nav className="relative hidden md:flex space-x-6 font-poppins">
+      <nav className="relative hidden md:flex space-x-6 font-josefin font-light tracking-wider text-lg">
         {/* Cordonnerie avec sous-menu */}
         <div
           className="relative"
