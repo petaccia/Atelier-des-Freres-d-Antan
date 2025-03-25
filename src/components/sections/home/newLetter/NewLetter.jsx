@@ -14,7 +14,6 @@ export default function NewLetter() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simuler une requête API
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setIsSubscribed(true);
@@ -26,8 +25,7 @@ export default function NewLetter() {
   };
 
   return (
-    <div className="w-full relative min-h-[600px]  overflow-hidden">
-      {/* Image de fond */}
+    <div className="w-full relative min-h-[900px] sm:min-h-[700px] md:min-h-[600px] overflow-hidden">
       <Image
         src={blacksmith}
         alt="Newsletter Background"
@@ -35,30 +33,22 @@ export default function NewLetter() {
         className="object-cover"
       />
 
-      {/* Overlay sombre */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-      {/* Titre */}
-      <div className="absolute top-0 left-0 w-full py-20 flex items-center justify-center">
-        <div className="flex items-baseline gap-4 ">
-          <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl">
-            <FiMail className="w-8 h-8 text-primary" />
-          </div>
-          <h2 className="text-white">
-            Découvrez l'Art de la Durabilité
-          </h2>
-        </div>
-      </div>
-      {/* Contenu de la newsletter */}
-      <div className="absolute inset-0 flex items-center justify-center p-8">
-
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-8">
         <div className="max-w-6xl w-full">
-          {/* Texte à gauche */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="flex flex-col items-center mb-8">
+            <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4">
+              <FiMail className="w-8 h-8 text-primary" />
+            </div>
+            <h2 className="text-white text-xl sm:text-3xl md:text-4xl text-center h-2">
+              Découvrez l'Art de la Durabilité
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="text-white">
-
-
-              <p className="text-gray-200 mt-48 mb-8">
+              <p className="text-gray-200 mb-8">
                 Plongez dans l'univers de l'artisanat ! Recevez nos actualités, des promotions exclusives, des conseils d'experts en serrurerie et cordonnerie, et découvrez les coulisses de notre atelier. Abonnez-vous pour ne rien manquer.
               </p>
               <div className="space-y-3">
@@ -74,8 +64,7 @@ export default function NewLetter() {
               </div>
             </div>
 
-            {/* Formulaire à droite */}
-            <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg mt-48 ">
+            <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-lg mt-8 lg:mt-0">
               {isSubscribed ? (
                 <div className="p-6 bg-green-50/50 backdrop-blur-sm rounded-xl border border-green-100">
                   <p className="text-green-700 font-medium text-center">

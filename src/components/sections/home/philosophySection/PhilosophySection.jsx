@@ -1,9 +1,11 @@
+
+
 export default function PhilosophySection() {
   return (
     <section className="py-24 bg-gradient-to-br from-gray-900 to-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-white">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blueLight">
+          <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blueLight">
             Notre Philosophie
           </span>
         </h2>
@@ -26,7 +28,7 @@ export default function PhilosophySection() {
               caractéristiques d'une entreprise artisanale et familiale.
             </p>
             
-            <p>
+            <p className="h-full">
               Nous croyons en la durabilité et en la préservation des objets. 
               Chaque intervention est l'occasion de redonner vie à ce qui pourrait 
               être jeté, de prolonger l'existence des objets et de proposer des 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BiHome, BiHistory, BiEnvelope } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock   } from "react-icons/gi";
 import { useState } from "react";
-import FloatingCallButton from "@/components/ui/buttons/FloatingCallButton";
+import FloatingCallButton from "@/components/ui/buttons/floatingCallButton/FloatingCallButton";
 
 export default function MobileMenu() {
   const [activeTab, setActiveTab] = useState("accueil");

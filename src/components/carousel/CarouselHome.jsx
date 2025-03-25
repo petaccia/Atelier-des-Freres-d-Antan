@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { carouselSlides } from "./data/carouselSlides";
-import CarouselCard from "./components/CarouselCard";
+import CarouselCard from "./components/carouselCard/CarouselCard";
 import MapButton from "../ui/buttons/MapButton";
 import ShopAddress from "../ui/shopAddress/ShopAddress";
 
@@ -25,7 +25,7 @@ export default function CarouselHome() {
         768: { slidesPerView: 1 }, // Nombre de slides à afficher en fonction de la largeur de l'écran
         1024: { slidesPerView: 1 }, // Nombre de slides à afficher en fonction de la largeur de l'écran
       }}
-      className="relative w-full h-full  z-0" // Hauteur fixe pour le carousel
+      className="relative w-full h-full   z-0" // Hauteur fixe pour le carousel
     >
       {carouselSlides.map((slide, index) => (
         <SwiperSlide key={index}>
