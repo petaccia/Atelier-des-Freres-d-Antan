@@ -1,8 +1,8 @@
 import Image from "next/image";
-import depan from "../../../../../public/img/sections/services/depan.webp";
-import doorLock from "../../../../../public/img/sections/services/door-lock.webp";
-import feron from "../../../../../public/img/sections/services/feron.webp";
-import product_keys from "../../../../../public/img/sections/services/product_keys.webp";
+import depan from "../../../../../../public/img/sections/services/depan.webp";
+import doorLock from "../../../../../../public/img/sections/services/door-lock.webp";
+import feron from "../../../../../../public/img/sections/services/feron.webp";
+import product_keys from "../../../../../../public/img/sections/services/product_keys.webp";
 
 // data/services.ts
 export const services = [

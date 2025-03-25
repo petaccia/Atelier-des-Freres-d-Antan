@@ -1,7 +1,7 @@
 import { FaHandPaper } from "react-icons/fa"; // [[1]]
 import { MdOutlineFamilyRestroom } from "react-icons/md";
-import olive from "../../../../../public/img/sections/values/olive.png";
-import french from "../../../../../public/img/sections/values/french.png";
+import olive from "../../../../../../public/img/sections/values/olive.png";
+import french from "../../../../../../public/img/sections/values/french.png";
 import Image from "next/image";
 
 export const valuesData = [
