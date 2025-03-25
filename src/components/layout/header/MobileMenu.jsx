@@ -111,7 +111,7 @@ export default function MobileMenu() {
         </Link>
       </div>
     </nav>
-    <FloatingCallButton phoneNumber="07 88 41 63 91" position="middle-top" />
+    <FloatingCallButton phoneNumber="07 88 41 63 91" position="middle-top" className="md:hidden" />
     </>
   );
 }
