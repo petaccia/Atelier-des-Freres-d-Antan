@@ -170,7 +170,7 @@ export default function DesktopMenu() {
       </nav>
 
       {/* CallButton */}
-      <FloatingCallButton phoneNumber="07 88 41 63 91" position="top-right" />
+      <FloatingCallButton phoneNumber="07 88 41 63 91" position="top-right" className="hidden md:block" />
     </>
   );
 }

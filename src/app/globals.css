@@ -36,7 +36,7 @@
   }
   h2 {
     font-family: var(--font-primary);
-    @apply text-4xl md:text-5xl tracking-widest uppercase font-thin mb-16;
+    @apply text-xl md:text-5xl tracking-widest uppercase font-thin mb-16;
   }
 
   h3 {
