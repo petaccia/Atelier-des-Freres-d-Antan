@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import historyImage from "../../../../../public/img/sections/history/freres.webp";
+import historyImage from "../../../../../../public/img/sections/history/freres.webp";
 import GenericButton from "@/components/ui/buttons/GenericButton";
 
 export default function HistorySection() {

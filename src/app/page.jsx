@@ -1,13 +1,13 @@
 import CarouselHome from "@/components/carousel/CarouselHome";
-import ValueSection from "@/components/sections/home/ValueSection/ValueSection";
-import EssentialsSection from "@/components/sections/home/essentialsSection/EssentialsSection";
-import HistorySection from "@/components/sections/home/historySection/HistorySection";
-import Testimonials from "@/components/sections/home/testimonial/Testimonial";
-import ServicesSection from "@/components/sections/home/servicesSection/ServicesSection";
-import PartnerSection from "@/components/sections/home/PartnersSection/PartnersSection";
-import PhilosophySection from "@/components/sections/home/philosophySection/PhilosophySection";
-import RealizationsSection from "@/components/sections/home/realizationSection/RealizationSection";
-import NewsletterSignup from "@/components/sections/home/newLetter/NewLetter";
+import ValueSection from "@/components/pages/home/sections/ValueSection/ValueSection";
+import EssentialsSection from "@/components/pages/home/sections/essentialsSection/EssentialsSection";
+import HistorySection from "@/components/pages/home/sections/historySection/HistorySection";
+import Testimonials from "@/components/pages/home/sections/testimonial/Testimonial";
+import ServicesSection from "@/components/pages/home/sections/servicesSection/ServicesSection";
+import PartnerSection from "@/components/pages/home/sections/PartnersSection/PartnersSection";
+import PhilosophySection from "@/components/pages/home/sections/philosophySection/PhilosophySection";
+import RealizationsSection from "@/components/pages/home/sections/realizationSection/RealizationSection";
+import NewsletterSignup from "@/components/pages/home/sections/newLetter/NewLetter";
 
 export default function Home() {
   return (

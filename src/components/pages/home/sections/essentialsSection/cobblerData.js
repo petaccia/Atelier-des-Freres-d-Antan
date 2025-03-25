@@ -1,5 +1,5 @@
-import product_shoes from "../../../../../public/img/sections/essentials/products_shoes.webp";
-import locksmith from "../../../../../public/img/sections/essentials/locksmith.webp";
+import product_shoes from "../../../../../../public/img/sections/essentials/products_shoes.webp";
+import locksmith from "../../../../../../public/img/sections/essentials/locksmith.webp";
 
 
 import { GiStarsStack } from "react-icons/gi";

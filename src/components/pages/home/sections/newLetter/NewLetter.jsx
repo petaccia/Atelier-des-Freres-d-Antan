@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FiMail } from 'react-icons/fi';
 import Image from 'next/image';
-import blacksmith from '../../../../../public/img/sections/newletter/blacksmith.png';
+import blacksmith from '../../../../../../public/img/sections/newletter/blacksmith.png';
 
 export default function NewLetter() {
   const [email, setEmail] = useState('');
