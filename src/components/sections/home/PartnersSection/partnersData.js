@@ -7,7 +7,7 @@ export const partners = [
   {
     id: 2,
     name: "Bakertilly",
-    logo: "/img/sections/partners/Bakertilly.svg",
+    logo: "/img/sections/partners/BakerTilly.svg",
   },
   {
     id: 3,
@@ -32,6 +32,6 @@ export const partners = [
   {
     id: 7,
     name: "Paiment en ligne",
-    logo: "/img/sections/partners/kissKiss.svg",
+    logo: "/img/sections/partners/KissKiss.svg",
   },
 ];
