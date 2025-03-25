@@ -17,7 +17,7 @@ export default function  FloatingCallButton({
       case "top-right":
         return "top-1/3 right-4";
         case "middle-top":
-        return "top-46 right-1/4 mr-3";
+        return "top-46 right-1/4 mr-6";
         case"middle-right":
         return "top-1/2 right-4";
         case "middle-left":
