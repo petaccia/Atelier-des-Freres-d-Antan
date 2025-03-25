@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FaPhoneAlt } from "react-icons/fa";
+import "./floatingCallButton.css";
 
 
 
@@ -17,7 +18,7 @@ export default function  FloatingCallButton({
       case "top-right":
         return "top-1/3 right-4";
         case "middle-top":
-        return "top-46 right-1/4 mr-6";
+        return "middle-top top-44.5 right-1/4 mr-6";
         case"middle-right":
         return "top-1/2 right-4";
         case "middle-left":
@@ -36,11 +37,11 @@ export default function  FloatingCallButton({
 
   return (
     <div
-      className={`fixed z-50 ${getPositionStyles()} ${className}`}
+      className={`floating-call-button fixed z-50 ${getPositionStyles()} ${className}`}
     >
       <Link
         href={`tel:${phoneNumber}`}
-        className=" flex items-center justify-center bg-accent hover:bg-primary  text-white rounded py-2 px-4 shadow-lg hover:bg-accent-dark transition-colors duration-200 ml-3"
+        className="w-full flex items-center justify-center bg-accent hover:bg-primary  text-white rounded py-2 px-4 shadow-lg hover:bg-accent-dark transition-colors duration-200 ml-3"
       >
 
       <FaPhoneAlt className="w-4 h-4 mr-3" />

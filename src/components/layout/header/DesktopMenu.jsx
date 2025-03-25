@@ -1,5 +1,5 @@
 "use client";
-import FloatingCallButton from "@/components/ui/buttons/FloatingCallButton";
+import FloatingCallButton from "@/components/ui/buttons/floatingCallButton/FloatingCallButton";
 import { useMenuManager } from "@/hooks/useMenuManager";
 import Link from "next/link";
 import { MdKeyboardArrowDown } from "react-icons/md";

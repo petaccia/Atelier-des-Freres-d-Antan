@@ -9,6 +9,8 @@
   --font-secondary: 'Poppins', sans-serif; /* Police de votre choix */
   --font-tertiary: 'Petrona One', cursive; /* Police de votre choix */
 
+  --font-size-3xs: 0.625rem; /* 8px */
+
   --color-primary:#185871; /* Bleu principal (extrait de votre CSS)*/
   --color-primary-dark: #124354; /* Bleu sombre (extrait de votre CSS)*/
   --color-primary-light: #E0F2F7; /* Bleu clair (extrait de votre CSS)*/
@@ -41,12 +43,42 @@
 
   h3 {
     font-family: var(--font-secondary);
-    @apply text-2xl md:text-3xl font-medium tracking-widest uppercase;
+    @apply text-sm sm:text-2xl md:text-3xl font-medium tracking-widest uppercase;
+   
   }
 
   p {
     font-family: var(--font-secondary);
-    @apply text-sm md:text-base tracking-wider;
+    font-size: var(--font-size-3xs);
+    @apply text-xs sm:text-sm md:text-xl tracking-wider;
+  }
+  blockquote {
+    @apply sm:text-sm md:text-xl tracking-wider;
   }
 
+}
+
+
+@media (0px <= width <= 390px) {      
+  p {
+    font-size: var(--font-size-3xs);
+  }
+  blockquote {
+    font-size: var(--font-size-3xs);
+  }
+}
+
+@media (390px <= width <= 430px) {
+  h2 {
+    @apply font-bold
+  }      
+  h3 {
+    @apply text-xl h-12 ;
+  }
+  p {
+    @apply mt-12 text-base;
+  }
+  blockquote {
+    @apply text-xs h-16;
+  }
 }

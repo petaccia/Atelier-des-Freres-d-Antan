@@ -11,8 +11,8 @@ import CardPartner from "./CardPartner"
 export default function PartnersSection() {
 return(
    <section className="py-16 bg-primary">
-    <div className="container mx-auto px-40">
-      <h2 className="text-center">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="text-center text-whiteStone">
         Nos Partenaires
         </h2>
 
@@ -33,7 +33,7 @@ return(
             }}
             className="!pb-16"
           >
-      <div className="grid grid-cols-2 md:grid-cols-1 xl:grid-cols-7 gap-8"> 
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-8"> 
           {partners.map((partner) => (
             <SwiperSlide>
           <CardPartner key={partner.id} partner={partner} />
