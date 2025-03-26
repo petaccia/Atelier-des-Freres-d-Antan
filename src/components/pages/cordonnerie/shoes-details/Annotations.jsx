@@ -18,7 +18,17 @@ export default function Annotations() {
                   <span className="text-white"> Semelle </span>
                   <div className="absolute bottom-[200%] left-[100%] bg-white border-white border-1 w-20 transform rotate-135"></div>
               </div>
-          </div>
+              </div>
+
+              {/* Annotations pour la trépointe */}
+              <div className="absolute top-[80%] left-[30%] transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="flex items-center gap-4 mr-4">
+                      <span className="text-white rounded-full"> 3 </span>
+                      <span className="text-white"> - </span>
+                      <span className="text-white"> Trépointe </span>
+                      <div className="absolute bottom-[230%] left-[90%] bg-white border-white border-1 w-30 transform rotate-140"></div>
+                  </div>
+              </div>
           </>
   )
 }
