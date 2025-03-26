@@ -14,6 +14,12 @@ import { carouselSlides } from "@/components/pages/home/data/carouselSlides";
 export default function Home() {
   return (
     <>
+      <div className="bg-primary pt-32">
+        <div className="text-center my-8">
+          <h1 className=" text-white  rounded-lg">
+            Bienvenue à l'Atelier des Frères d'Antan
+          </h1>
+        </div>
       <Carousel slides={carouselSlides} />
       <EssentialsSection />
       <ValueSection />
@@ -24,6 +30,7 @@ export default function Home() {
       <PhilosophySection />
       <PartnerSection />
       <NewsletterSignup />
-      </>
+      </div>
+    </>
   );
 }
