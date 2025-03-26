@@ -34,7 +34,7 @@
 @layer base {
   h1 {
     font-family: var(--font-primary);
-    @apply text-xl md:text-xl tracking-widest capitalize font-thin;
+    @apply text-4xl sm:text-5xl md:text-6xl font-extralight text-white uppercase tracking-widest;
   }
   h2 {
     font-family: var(--font-primary);
