@@ -2,7 +2,7 @@ export default function Annotations() {
   return (
           <>
           {/* Annotations pour le talon */}
-          <div className="absolute top-[70%] left-[20%] transform -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute top-[71%] left-[22%] transform -translate-x-1/2 -translate-y-1/2">
               <div className="flex items-center gap-4">
                   <span className="text-white rounded-full"> 1 </span>
                   <span className="text-white"> - </span>
@@ -31,7 +31,7 @@ export default function Annotations() {
               </div>
 
               {/* Annotations pour le glissoir */}
-              <div className="absolute top-[20%] left-[20%] transform -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute top-[20%] left-[21%] transform -translate-x-1/2 -translate-y-1/2">
                   <div className="flex items-center gap-4">
                       <span className="text-white rounded-full"> 4 </span>
                       <span className="text-white"> - </span>
@@ -41,7 +41,7 @@ export default function Annotations() {
               </div>
 
               {/* Annotations pour des redresses */}
-              <div className="absolute bottom-[20%] left-[20%] transform -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute bottom-[20%] left-[22%] transform -translate-x-1/2 -translate-y-1/2">
                   <div className="flex items-center gap-4">
                       <span className="text-white rounded-full"> 5 </span>
                       <span className="text-white"> - </span>
