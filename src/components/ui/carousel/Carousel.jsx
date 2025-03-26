@@ -9,7 +9,7 @@ import CarouselCard from "./components/carouselCard/CarouselCard";
 import MapButton from "../buttons/MapButton";
 import ShopAddress from "../shopAddress/ShopAddress";
 
-export default function CarouselHome() {
+export default function Carousel() {
  
 
   return (

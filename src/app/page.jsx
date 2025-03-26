@@ -1,4 +1,4 @@
-import CarouselHome from "@/components/ui/carousel/CarouselHome";
+import Carousel from "@/components/ui/carousel/Carousel";
 import ValueSection from "@/components/pages/home/sections/ValueSection/ValueSection";
 import EssentialsSection from "@/components/pages/home/sections/essentialsSection/EssentialsSection";
 import HistorySection from "@/components/pages/home/sections/historySection/HistorySection";
@@ -12,7 +12,7 @@ import NewsletterSignup from "@/components/pages/home/sections/newLetter/NewLett
 export default function Home() {
   return (
     <>
-      <CarouselHome />
+      <Carousel />
       <EssentialsSection />
       <ValueSection />
       <HistorySection />
