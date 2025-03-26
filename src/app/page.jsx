@@ -1,4 +1,4 @@
-import CarouselHome from "@/components/carousel/CarouselHome";
+import CarouselHome from "@/components/ui/carousel/CarouselHome";
 import ValueSection from "@/components/pages/home/sections/ValueSection/ValueSection";
 import EssentialsSection from "@/components/pages/home/sections/essentialsSection/EssentialsSection";
 import HistorySection from "@/components/pages/home/sections/historySection/HistorySection";

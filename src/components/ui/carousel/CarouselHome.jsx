@@ -4,10 +4,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import { carouselSlides } from "./data/carouselSlides";
+import { carouselSlides } from "../../pages/home/data/carouselSlides";
 import CarouselCard from "./components/carouselCard/CarouselCard";
-import MapButton from "../ui/buttons/MapButton";
-import ShopAddress from "../ui/shopAddress/ShopAddress";
+import MapButton from "../buttons/MapButton";
+import ShopAddress from "../shopAddress/ShopAddress";
 
 export default function CarouselHome() {
  
