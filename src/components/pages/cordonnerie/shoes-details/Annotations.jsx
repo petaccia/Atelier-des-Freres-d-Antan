@@ -29,6 +29,16 @@ export default function Annotations() {
                       <div className="absolute bottom-[230%] left-[90%] bg-white border-white border-1 w-30 transform rotate-140"></div>
                   </div>
               </div>
+
+              {/* Annotations pour le glissoir */}
+              <div className="absolute top-[20%] left-[20%] transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="flex items-center gap-4">
+                      <span className="text-white rounded-full"> 4 </span>
+                      <span className="text-white"> - </span>
+                      <span className="text-white"> Glissoir </span>
+                      <div className="absolute top-[200%] left-[100%] bg-white border-white border-1 w-20 transform rotate-45"></div>
+                  </div>
+              </div>
           </>
   )
 }
