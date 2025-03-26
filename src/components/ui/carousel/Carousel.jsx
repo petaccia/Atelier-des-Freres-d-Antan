@@ -20,6 +20,7 @@ export default function Carousel( { slides }) {
       speed={1000} // Vitesse de transition
       spaceBetween={0}  // Espace entre les slides
       slidesPerView={1}
+      loop={true} // Boucle infinie
       breakpoints={{
         768: { slidesPerView: 1 }, // Nombre de slides à afficher en fonction de la largeur de l'écran
         1024: { slidesPerView: 1 }, // Nombre de slides à afficher en fonction de la largeur de l'écran
