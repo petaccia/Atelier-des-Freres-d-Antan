@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import shoeDetails from "../../../../../public/img/cordonnerie/shoe-details.jpg";
+import Annotations from "./Annotations";
 
 export default function ShoeDetails() {
     return (
@@ -13,6 +14,7 @@ export default function ShoeDetails() {
                 fill
                 className="object-contain shadow-2xl rounded-lg" 
             />
+            <Annotations />
         </div>
     );
 }
