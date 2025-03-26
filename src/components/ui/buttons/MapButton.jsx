@@ -7,7 +7,7 @@ export default function MapButton({ destination, origin = "" }) {
  
 
 return (
-  <div className="absolute mb-6 top-64 left-1/5 md:top-auto md:bottom-4 md:left-4 z-10">
+  <div className="absolute mb-6 top-64 left-1/5  md:top-10 md:left-4 z-10">
 
     {/* Map button */}
     <Link
