@@ -8,11 +8,13 @@ import PartnerSection from "@/components/pages/home/sections/PartnersSection/Par
 import PhilosophySection from "@/components/pages/home/sections/philosophySection/PhilosophySection";
 import RealizationsSection from "@/components/pages/home/sections/realizationSection/RealizationSection";
 import NewsletterSignup from "@/components/pages/home/sections/newLetter/NewLetter";
+import { carouselSlides } from "@/components/pages/home/data/carouselSlides";
+
 
 export default function Home() {
   return (
     <>
-      <Carousel />
+      <Carousel slides={carouselSlides} />
       <EssentialsSection />
       <ValueSection />
       <HistorySection />

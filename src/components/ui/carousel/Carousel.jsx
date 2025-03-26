@@ -4,12 +4,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import { carouselSlides } from "../../pages/home/data/carouselSlides";
 import CarouselCard from "./components/carouselCard/CarouselCard";
 import MapButton from "../buttons/MapButton";
 import ShopAddress from "../shopAddress/ShopAddress";
 
-export default function Carousel() {
+export default function Carousel( { slides }) {
  
 
   return (
@@ -27,7 +26,7 @@ export default function Carousel() {
       }}
       className="relative w-full h-full   z-0" // Hauteur fixe pour le carousel
     >
-      {carouselSlides.map((slide, index) => (
+      {slides.map((slide, index) => (
         <SwiperSlide key={index}>
           <CarouselCard slide={slide} />
           <MapButton destination={ShopAddress()} />
