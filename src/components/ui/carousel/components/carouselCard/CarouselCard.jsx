@@ -16,7 +16,7 @@ export default function CarouselCard({ slide }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
 
       {/* Lignes horizontales en haut */}
-      <div className="absolute bottom-1/6 left-1/10 sm:bottom- sm:left-1/5 md:bottom-1/4 md:left-1/4 bg-gray-900/70 w-[80%] sm:w-[70%] md:w-[60%] lg:w-[50%] h-auto rounded-2xl z-20 5 p-6 text-center" >
+      <div className="absolute bottom-1/6 left-1/10 sm:bottom- sm:left-1/5 md:bottom-[40%] md:left-1/4  bg-gray-900/70 w-[80%] sm:w-[70%] md:w-[60%] lg:w-[50%] h-auto rounded-2xl z-20 5 p-6 text-center" >
         <div className="max-w-xs md:max-w-xl mx-auto sm:mt-8 ">
 
 
