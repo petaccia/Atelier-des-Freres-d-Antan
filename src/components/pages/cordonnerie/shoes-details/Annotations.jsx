@@ -49,6 +49,16 @@ export default function Annotations() {
                       <div className="absolute bottom-[200%] left-[100%] bg-white border-white border-1 w-25 transform rotate-135"></div>
                   </div>
               </div>
+
+              {/* Annotations pour des lacets */}
+              <div className="absolute top-[30%] left-[63%] transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="flex items-center gap-4">
+                      <span className="text-white"> Des lacets </span>
+                      <span className="text-white"> - </span>
+                      <span className="text-white rounded-full"> 6 </span>
+                      <div className="absolute top-[200%] right-[100%] bg-white border-white border-1 w-20 transform rotate-135"></div>
+                  </div>
+              </div>
           </>
   )
 }
