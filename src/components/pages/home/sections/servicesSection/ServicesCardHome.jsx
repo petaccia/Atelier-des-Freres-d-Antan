@@ -3,7 +3,7 @@ import GenericButton from '@/components/ui/buttons/GenericButton';
 // components/PrestationCard.jsx
 import Image from 'next/image';
 
-export default function ServicesCard({ service }) {
+export default function ServicesCardHome({ service }) {
   return (
     <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-100 h-[400px] perspective-1000 transform-style-3d">
       {/* Front side */}

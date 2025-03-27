@@ -1,10 +1,9 @@
 // app/(landing)/prestations/page.jsx
 "use client";
 
-import ServicesCard from "./ServicesCard";
-import { services } from "./servicesData";
+import { services } from "../../pages/home/sections/servicesSection/servicesData";
 
-export default function ServicesSection() {
+export default function ServicesSection( { ServicesCard }) {
   return (
     <section className="py-16 bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
       <div className="container mx-auto px-4">
