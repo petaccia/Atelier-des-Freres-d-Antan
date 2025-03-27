@@ -1,7 +1,7 @@
 import shoes_repair from "../../../../../public/img/cordonnerie/sections/services/shoes-repair.jpg";
-import leatherwork from "../../../../../../public/img/cordonnerie/sections/services/leatherwork.jpg";
-import machine_key from "../../../../../../public/img/cordonnerie/sections/services/machine-key.webp";
-import proximity_badge from "../../../../../../public/img/cordonnerie/sections/services/proximity-badge.webp";;
+import leatherwork from "../../../../../public/img/cordonnerie/sections/services/leatherwork.jpg";
+import machine_key from "../../../../../public/img/cordonnerie/sections/services/machine_key.webp";
+import proximity_badge from "../../../../../public/img/cordonnerie/sections/services/badge.webp";
 export const servicesCordoData = [
   {
     id: 1,

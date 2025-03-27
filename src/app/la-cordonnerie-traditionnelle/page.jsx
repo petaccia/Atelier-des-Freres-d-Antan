@@ -1,6 +1,8 @@
 import { carouselSlidesCordo } from "@/components/pages/cordonnerie/data/carouselSlidesCordo";
+import { servicesCordoData } from "@/components/pages/cordonnerie/data/servicesCordoData";
 import IntroPageCordo from "@/components/pages/cordonnerie/sections/IntroPageCordo";
 import Carousel from "@/components/ui/carousel/Carousel";
+import ServicesSection from "@/components/ui/services/ServicesSection";
 
 export default function CordonnerieTraditionnelle() {
     return (
@@ -12,6 +14,7 @@ export default function CordonnerieTraditionnelle() {
             </div>
             <Carousel slides={carouselSlidesCordo}  />
             <IntroPageCordo />
+            <ServicesSection  services={servicesCordoData}/>
         </div>
     );
 };
