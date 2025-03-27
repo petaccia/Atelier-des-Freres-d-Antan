@@ -1,4 +1,5 @@
 import { carouselSlidesCordo } from "@/components/pages/cordonnerie/data/carouselSlidesCordo";
+import IntroPageCordo from "@/components/pages/cordonnerie/sections/IntroPageCordo";
 import Carousel from "@/components/ui/carousel/Carousel";
 
 export default function CordonnerieTraditionnelle() {
@@ -10,6 +11,7 @@ export default function CordonnerieTraditionnelle() {
                 </h1>
             </div>
             <Carousel slides={carouselSlidesCordo}  />
+            <IntroPageCordo />
         </div>
     );
 };
