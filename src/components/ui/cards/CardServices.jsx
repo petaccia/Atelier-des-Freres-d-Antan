@@ -1,18 +1,25 @@
-"use client";
-import GenericButton from '@/components/ui/buttons/GenericButton';
 // components/PrestationCard.jsx
+"use client";
 import Image from 'next/image';
+import GenericButton from '@/components/ui/buttons/GenericButton';
 
-export default function ServicesCardHome({ service }) {
+export default function CardServices({ service }) {
   return (
     <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-100 h-[400px] perspective-1000 transform-style-3d">
       {/* Front side */}
       <div className="absolute inset-0 transform transition-transform duration-1000 ease-in-out group-hover:rotate-y-180 backface-hidden">
         {/* Image section */}
         <div className="absolute inset-0">
-          {service.img({ 
-            className: "w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
-          })}
+          <Image 
+            src={service.img}
+            alt={service.title}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={`
+             w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+              `} 
+              />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50" />
         </div>

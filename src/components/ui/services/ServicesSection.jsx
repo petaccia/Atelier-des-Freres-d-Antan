@@ -1,9 +1,9 @@
 // app/(landing)/prestations/page.jsx
 "use client";
 
-import { services } from "../../pages/home/sections/servicesSection/servicesData";
+import CardServices from "../cards/CardServices";
 
-export default function ServicesSection( { ServicesCard }) {
+export default function ServicesSection( { services } ) {
   return (
     <section className="py-16 bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
       <div className="container mx-auto px-4">
@@ -13,7 +13,7 @@ export default function ServicesSection( { ServicesCard }) {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
-            <ServicesCard key={service.id} service={service} />
+            <CardServices key={service.id} service={service} />
           ))}
         </div>
       </div>

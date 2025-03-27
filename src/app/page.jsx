@@ -9,7 +9,8 @@ import PhilosophySection from "@/components/pages/home/sections/philosophySectio
 import RealizationsSection from "@/components/pages/home/sections/realizationSection/RealizationSection";
 import NewsletterSignup from "@/components/pages/home/sections/newLetter/NewLetter";
 import { carouselSlides } from "@/components/pages/home/data/carouselSlides";
-import ServicesCardHome from "@/components/pages/home/sections/servicesSection/ServicesCardHome";
+import ServicesCardHome from "@/components/ui/cards/CardServices";
+import { servicesDataHome } from "@/components/pages/home/data/servicesDataHome";
 
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
       <EssentialsSection />
       <ValueSection />
       <HistorySection />
-      <ServicesSection ServicesCard={ServicesCardHome} />
+      <ServicesSection services={servicesDataHome} />
       <RealizationsSection />
       <Testimonials />
       <PhilosophySection />
