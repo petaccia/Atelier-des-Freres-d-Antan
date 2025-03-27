@@ -1,6 +1,7 @@
 import { carouselSlidesCordo } from "@/components/pages/cordonnerie/data/carouselSlidesCordo";
 import { servicesCordoData } from "@/components/pages/cordonnerie/data/servicesCordoData";
 import IntroPageCordo from "@/components/pages/cordonnerie/sections/IntroPageCordo";
+import LeatherRepairSection from "@/components/pages/cordonnerie/sections/LeatherRepairSection";
 import ShoeRepairSection from "@/components/pages/cordonnerie/sections/ShoesRepairSection";
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
@@ -17,6 +18,7 @@ export default function CordonnerieTraditionnelle() {
             <IntroPageCordo />
             <ServicesSection  services={servicesCordoData}/>
             <ShoeRepairSection />
+            <LeatherRepairSection />
         </div>
     );
 };
