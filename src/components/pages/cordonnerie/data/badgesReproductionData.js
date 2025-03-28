@@ -10,6 +10,6 @@ export const badgesReproductionData = {
     imageSrc: "/img/cordonnerie/sections/services/badge.webp",
     imageAlt: "Badge",
     bgColor: "bg-primary",
-    imagePosition: "left",
+    imagePosition: "right",
     buttonText: "Besoin d'un badge ? Contactez-nous !",
   };
