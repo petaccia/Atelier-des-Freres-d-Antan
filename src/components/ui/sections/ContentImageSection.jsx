@@ -24,9 +24,9 @@ export default function ContentImageSection({
         >
           {title}
         </h2>
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${imagePosition === "right" ? "md:flex-row-reverse" : ""}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center `}>
           {/* Image avec bordure, ombre et effet de survol */}
-          <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden group border-2 border-white shadow-lg shadow-accent/50"> {/* Bordure et ombre */}
+          <div className={`relative h-64 md:h-96 rounded-2xl overflow-hidden group border-2 border-white shadow-lg shadow-accent/50 ${imagePosition === "right" ? "md:order-last" : ""}` }> 
             <Image
               src={imageSrc}
               alt={imageAlt}
