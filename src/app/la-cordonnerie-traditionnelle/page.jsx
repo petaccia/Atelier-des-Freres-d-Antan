@@ -1,5 +1,6 @@
 import { carouselSlidesCordo } from "@/components/pages/cordonnerie/data/carouselSlidesCordo";
 import { servicesCordoData } from "@/components/pages/cordonnerie/data/servicesCordoData";
+import BadgeReproductionSection from "@/components/pages/cordonnerie/sections/BadgesReproductionSection";
 import IntroPageCordo from "@/components/pages/cordonnerie/sections/IntroPageCordo";
 import KeyReproductionSection from "@/components/pages/cordonnerie/sections/keyReproductionSection";
 import LeatherRepairSection from "@/components/pages/cordonnerie/sections/LeatherRepairSection";
@@ -21,6 +22,7 @@ export default function CordonnerieTraditionnelle() {
             <ShoeRepairSection />
             <LeatherRepairSection />
             <KeyReproductionSection />
+            <BadgeReproductionSection />
         </div>
     );
 };
