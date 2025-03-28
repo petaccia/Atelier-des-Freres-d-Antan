@@ -1,4 +1,4 @@
-export const LeatherRepairData = {
+export const leatherRepairData = {
     title: "Réparation de Maroquinerie",
     content: "Notre atelier spécialisé redonne une seconde vie à vos articles en cuir. Nous proposons des services de réparation et de restauration pour :",
     services: [
