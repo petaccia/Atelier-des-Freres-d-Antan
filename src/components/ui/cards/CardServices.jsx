@@ -2,8 +2,10 @@
 "use client";
 import Image from 'next/image';
 import GenericButton from '@/components/ui/buttons/GenericButton';
+import Link from 'next/link';
 
 export default function CardServices({ service }) {
+
   return (
     <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-100 h-[400px] perspective-1000 transform-style-3d">
       {/* Front side */}
@@ -41,9 +43,11 @@ export default function CardServices({ service }) {
         <p className="text-center text-white/90 text-lg mb-8">
           {service.description}
         </p>
+        <Link href={service.href}>
         <GenericButton className="px-8 py-3 bg-primary text-white rounded-full border-2 border-white font-semibold hover:bg-accent  transition-colors">
           En savoir plus
         </GenericButton>
+      </Link>
       </div>
     </div>
   );

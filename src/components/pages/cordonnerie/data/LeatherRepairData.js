@@ -12,4 +12,5 @@ export const leatherRepairData = {
     bgColor: "bg-primary",
     imagePosition: "right",
     buttonText: "Besoin d'un réparation ? Contactez-nous",
+    href: "#leather-repair",
   };

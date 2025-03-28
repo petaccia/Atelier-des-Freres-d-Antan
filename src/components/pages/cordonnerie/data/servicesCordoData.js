@@ -8,23 +8,27 @@ export const servicesCordoData = [
     title: "Réparation de chaussures",
     description: "Restauration complète : talons, semelles, coutures et plus encore.",
     img: shoes_repair.src,
+    href: "#shoes-repair",
   },
   {
     id: 2,
     title: "Réparation de maroquinerie",
     description: "De la fermeture éclair aux coutures : nous redonnons vie à vos articles en cuir.",
     img: leatherwork.src, 
+    href: "#leather-repair",
   },
   {
     id: 3,
     title: "Reproduction de clés",
     description: "Duplication précise de tous types de clés, de la plus simple à la plus complexe.",
     img: machine_key.src,
+    href: "#key-reproduction",
   },
   {
     id: 4,
     title: "Duplication de badges",
     description: "Reproduction fiable de badges de proximité pour un accès sécurisé.",
     img: proximity_badge.src,
+    href: "#badges-reproduction",
   },
 ];
