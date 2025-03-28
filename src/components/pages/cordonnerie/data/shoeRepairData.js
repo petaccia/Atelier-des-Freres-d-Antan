@@ -1,6 +1,6 @@
 export const shoeRepairData = {
   title: "Réparation de Chaussures",
-  description: "Chez l'Atelier des Frères d'Antan, nous redonnons vie à vos chaussures préférées avec un savoir-faire artisanal. Nos services complets incluent :",
+  content: "Chez l'Atelier des Frères d'Antan, nous redonnons vie à vos chaussures préférées avec un savoir-faire artisanal. Nos services complets incluent :",
   services: [
     "Réparation de talons et semelles",
     "Couture et remplacement de tiges",
