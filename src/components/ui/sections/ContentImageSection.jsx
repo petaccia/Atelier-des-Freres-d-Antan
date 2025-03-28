@@ -18,7 +18,7 @@ export default function ContentImageSection({
       <div className="container mx-auto px-4">
         <h2 className={
           `text-center 
-          ${textColor === "text-white" ? "text-whiteAmber" : "text-primary"} }
+          ${bgColor === "bg-black" || bgColor === "bg-primary" ? "text-whiteAmber" : "text-primary"} }
           mb-12`
           }
         >
