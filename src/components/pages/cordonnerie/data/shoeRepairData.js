@@ -12,4 +12,5 @@ export const shoeRepairData = {
   bgColor: "bg-black",
   imagePosition: "left",
   buttonText: "Besoin d'une réparation ? Contactez-nous",
+  href: "#shoes-repair",
 };

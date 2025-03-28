@@ -12,4 +12,5 @@ export const keyReproductionData = {
     bgColor: "bg-black",
     imagePosition: "left",
     buttonText: "Besoin d'une reproduction de clé ? Contactez-nous",
+    href: "#key-reproduction"
 };

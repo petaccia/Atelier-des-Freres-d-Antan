@@ -4,7 +4,6 @@ import GenericButton from "@/components/ui/buttons/GenericButton";
 
 export default function ContentImageSection({
   bgColor,
-  textColor,
   title,
   imageSrc,
   imageAlt,
@@ -12,9 +11,10 @@ export default function ContentImageSection({
   services,
   buttonText,
   imagePosition,
+  id,
 }) {
   return (
-    <section className={`py-20 ${bgColor}`}>
+    <section id={id} className={`py-20 ${bgColor}`}>
       <div className="container mx-auto px-4">
         <h2 className={
           `text-center 
