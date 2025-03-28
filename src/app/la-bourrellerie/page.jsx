@@ -1,5 +1,7 @@
 import { carouselSlidesBour } from "@/components/pages/bourrellerie/data/carouselSlidesBour";
+import { servicesBourrellerieData } from "@/components/pages/bourrellerie/data/servicesBourrellerieData";
 import Carousel from "@/components/ui/carousel/Carousel";
+import ServicesSection from "@/components/ui/services/ServicesSection";
 
 export default function BourrelleriePage() {
   return (
@@ -10,6 +12,7 @@ export default function BourrelleriePage() {
                 </h1>
             </div>
             <Carousel slides={carouselSlidesBour} />
+            <ServicesSection services={servicesBourrellerieData} />
             </div>
   );
 }
