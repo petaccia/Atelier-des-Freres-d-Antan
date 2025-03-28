@@ -4,7 +4,7 @@ import GenericButton from "@/components/ui/buttons/GenericButton";
 
 export default function LeatherRepairSection() {
   return (
-    <section className="py-20 bg-black ">
+    <section className="py-20 bg-primary ">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-white mb-12">
           Réparation de Maroquinerie
