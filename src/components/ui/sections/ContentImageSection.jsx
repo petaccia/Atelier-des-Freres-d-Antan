@@ -50,7 +50,7 @@ export default function ContentImageSection({
               ))}  
             </ul>
             <div className="mt-8">
-              <GenericButton className="px-10 py-4 bg-accent text-white rounded-full border-2 border-white font-semibold hover:bg-primary transition-colors transform hover:scale-105 active:scale-95">
+              <GenericButton className={`px-10 py-4 bg-accent text-white rounded-full border-2 border-white font-semibold ${bgColor === "bg-primary" ?"hover:bg-black" : "hover:bg-primary"} transition-colors transform hover:scale-105 active:scale-95 duration-300`}>
                 {buttonText}
               </GenericButton>
             </div>
