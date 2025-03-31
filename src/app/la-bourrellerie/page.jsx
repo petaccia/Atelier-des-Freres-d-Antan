@@ -2,6 +2,7 @@ import { carouselSlidesBour } from "@/components/pages/bourrellerie/data/carouse
 import { servicesBourrellerieData } from "@/components/pages/bourrellerie/data/servicesBourrellerieData";
 import BagRepairSection from "@/components/pages/bourrellerie/sections/BagRepairSection";
 import CustomBeltsSection from "@/components/pages/bourrellerie/sections/CustomBeltsSection";
+import LeatherCareSection from "@/components/pages/bourrellerie/sections/LeatherCareSection";
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
 
@@ -17,6 +18,7 @@ export default function BourrelleriePage() {
             <ServicesSection services={servicesBourrellerieData} />
             <BagRepairSection />
             <CustomBeltsSection />
+            <LeatherCareSection />
             </div>
   );
 }
