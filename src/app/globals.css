@@ -16,7 +16,8 @@
   --color-primary-light: #E0F2F7; /* Bleu clair (extrait de votre CSS)*/
   --color-secondary: #1919c3; /* Bleu secondaire (extrait de votre CSS)*/
   --color-tertiary: #3c9a66; /* Vert pour les boutons */
-  --color-accent: #9b7956; /* Marron pour les hover */
+  --color-accent-light: #C8AC87; /* Marron clair pour le hover et active menu */
+  --color-accent: #9b7956; /* Marron pour les hover boutons */
   --color-whiteGray: #ebebeb; /* Gris clair */
   --color-blueLight: #edfcfe; /* Bleu clair */
   --color-whiteAmber: #fff8e1; /* Jaune clair */
