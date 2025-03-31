@@ -3,6 +3,7 @@ import { servicesBourrellerieData } from "@/components/pages/bourrellerie/data/s
 import BagRepairSection from "@/components/pages/bourrellerie/sections/BagRepairSection";
 import CustomBeltsSection from "@/components/pages/bourrellerie/sections/CustomBeltsSection";
 import LeatherCareSection from "@/components/pages/bourrellerie/sections/LeatherCareSection";
+import LeatherRepairBour from "@/components/pages/bourrellerie/sections/LeatherRepairBour";
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
 
@@ -19,6 +20,7 @@ export default function BourrelleriePage() {
             <BagRepairSection />
             <CustomBeltsSection />
             <LeatherCareSection />
+            <LeatherRepairBour />
             </div>
   );
 }
