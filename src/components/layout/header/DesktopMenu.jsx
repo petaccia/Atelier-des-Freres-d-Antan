@@ -17,7 +17,7 @@ export default function DesktopMenu() {
   return (
     <>
       {/* Menu Desktop */}
-      <nav className="relative hidden md:flex md:text-sm space-x-6 font-josefin font-light tracking-wider xl:text-lg">
+      <nav className="relative hidden md:flex md:text-sm space-x-6 font-primary capitalize font-light tracking-wider xl:text-lg">
         {/* Cordonnerie avec sous-menu */}
         <div
           className="relative"
@@ -25,9 +25,9 @@ export default function DesktopMenu() {
           onMouseLeave={hideMenu}
         >
           <button
-            className={`flex items-center hover:text-accent ${
+            className={`flex items-center hover:text-accent-light capitalize ${
               isActive("/la-cordonnerie", ["/la-cordonnerie-traditionnelle", "/la-bourrellerie"])
-                ? "text-accent"
+                ? "text-accent-light"
                 : ""
             }`}
           >
@@ -67,9 +67,9 @@ export default function DesktopMenu() {
           onMouseLeave={hideMenu}
         >
           <button
-            className={`flex items-center hover:text-accent ${
+            className={`flex items-center hover:text-accent-light capitalize ${
               isActive("/la-serrurerie", ["/la-serrurerie-traditionnelle", "/la-serrurerie-automobile"])
-                ? "text-accent"
+                ? "text-accent-light"
                 : ""
             }`}
           >
@@ -105,7 +105,7 @@ export default function DesktopMenu() {
         {/* Processus */}
         <Link
           href="/notre-processus-travaux"
-          className={`hover:text-accent ${pathname === "/notre-processus-travaux" ? "text-accent" : ""}`}
+          className={`hover:text-accent-light ${pathname === "/notre-processus-travaux" ? "text-accent-light" : ""}`}
         >
           Notre processus
         </Link>
@@ -117,9 +117,9 @@ export default function DesktopMenu() {
           onMouseLeave={hideMenu}
         >
           <button
-            className={`flex items-center hover:text-accent ${
+            className={`flex items-center hover:text-accent-light capitalize ${
               isActive("/a-propos", ["/nos-savoir-faire", "/nos-engagements", "/notre-histoire"])
-                ? "text-accent"
+                ? "text-accent-light"
                 : ""
             }`}
           >
@@ -163,7 +163,7 @@ export default function DesktopMenu() {
         {/* Contact */}
         <Link
           href="/contact"
-          className={`hover:text-accent ${pathname === "/contact" ? "text-accent" : ""}`}
+          className={`hover:text-accent-light ${pathname === "/contact" ? "text-accent-light" : ""}`}
         >
           Contact
         </Link>
