@@ -9,7 +9,7 @@ export const getMapsUrl = async (destination) => {
     // Obtenir la position actuelle (wrapped in Promise pour utiliser async/await)
     const getCurrentPosition = () => {
       return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject{
+        navigator.geolocation.getCurrentPosition(resolve, reject,{
           enableHighAccuracy: true,
           timeout: 5000,
           maximumAge: 10000,
