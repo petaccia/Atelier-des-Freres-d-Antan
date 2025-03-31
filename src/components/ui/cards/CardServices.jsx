@@ -43,7 +43,7 @@ export default function CardServices({ service }) {
         <p className="text-center text-white/90 text-lg mb-8">
           {service.description}
         </p>
-        <Link href={service.href}>
+        <Link href={service.href || "#"}>
         <GenericButton className="px-8 py-3 bg-primary text-white rounded-full border-2 border-white font-semibold hover:bg-accent  transition-colors">
           En savoir plus
         </GenericButton>

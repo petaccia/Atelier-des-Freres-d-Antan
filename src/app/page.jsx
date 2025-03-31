@@ -9,7 +9,6 @@ import PhilosophySection from "@/components/pages/home/sections/philosophySectio
 import RealizationsSection from "@/components/pages/home/sections/realizationSection/RealizationSection";
 import NewsletterSignup from "@/components/pages/home/sections/newLetter/NewLetter";
 import { carouselSlides } from "@/components/pages/home/data/carouselSlides";
-import ServicesCardHome from "@/components/ui/cards/CardServices";
 import { servicesDataHome } from "@/components/pages/home/data/servicesDataHome";
 
 
