@@ -13,10 +13,10 @@ export const servicesBourrellerieData = [
   },
   {
     id: 2,
-    title: "Ceintures sur mesure",
-    description: "Créez une ceinture unique, parfaitement adaptée à votre style et à vos besoins.",
+    title: "Pièces en cuir sur mesure",
+    description: "Création de pièces uniques en cuir, adaptées à vos besoins et à votre style.",
     img: belt.src,
-    href: "#custom-belts",
+    href: "#custom-leather",
   },
   {
     id: 3,
