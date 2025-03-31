@@ -1,7 +1,7 @@
 import { carouselSlidesBour } from "@/components/pages/bourrellerie/data/carouselSlidesBour";
 import { servicesBourrellerieData } from "@/components/pages/bourrellerie/data/servicesBourrellerieData";
 import BagRepairSection from "@/components/pages/bourrellerie/sections/BagRepairSection";
-import CustomBeltsSection from "@/components/pages/bourrellerie/sections/CustomBeltsSection";
+import CustomBeltsSection from "@/components/pages/bourrellerie/sections/CustomLeatherSection";
 import LeatherCareSection from "@/components/pages/bourrellerie/sections/LeatherCareSection";
 import LeatherRepairBour from "@/components/pages/bourrellerie/sections/LeatherRepairBour";
 import Carousel from "@/components/ui/carousel/Carousel";
