@@ -1,4 +1,5 @@
 import { carouselSlidesSerr } from "@/components/pages/serrurerie/data/carouselSlidesSerr";
+import IntroPageSerr from "@/components/pages/serrurerie/sections/IntroPageSerr";
 import Carousel from "@/components/ui/carousel/Carousel";
 
 export default function LaSerrureriePage() {
@@ -10,6 +11,7 @@ export default function LaSerrureriePage() {
                   </h1>
             </div>
             <Carousel slides={carouselSlidesSerr} />
+            <IntroPageSerr />
     </div>
   );
 }
