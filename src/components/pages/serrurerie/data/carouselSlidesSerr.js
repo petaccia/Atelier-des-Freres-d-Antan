@@ -1,6 +1,6 @@
 export const carouselSlidesSerr = [
   {
-    href: "/img/serrurerie/carousel/accesories.jpg",
+    href: "/img/serrurerie/carousel/accesories.png",
     title: "Fournitures et pose de tous accessoirs de serrurerie",
     text: "Vous cherchez des accessoires de serrurerie ? Nous vous proposons une large gamme d'articles pour améliorer la sécurité de votre habitation.",
     quote: "« L'excellence dans les moindres détails. »",
@@ -13,9 +13,9 @@ export const carouselSlidesSerr = [
   },
   {
     href: "/img/serrurerie/carousel/carenee.jpg",
-    title: "Serrure de sécurité",
-    text: "Installez une serrure de sécurité pour protéger votre bien.",
-    quote: "« Votre sécurité, notre engagement quotidien. »",
+    title: "Installez ou réparez une serrure à plusieurs points.",
+    text: "Besoin d'une serrure à plusieurs points ? Nous vous proposons une large gamme d'options pour répondre à vos besoins.",
+    quote: "« Une sécurité multipliée, un esprit tranquille.»",
   },
   {
     href: "/img/serrurerie/carousel/cyl-euro.jpg",
@@ -24,28 +24,28 @@ export const carouselSlidesSerr = [
     quote: "« La précision au service de votre protection. »",
   },
   {
-    href: "/img/serrurerie/carousel/grille-secu.webp",
+    href: "/img/serrurerie/carousel/grille-secu.jpg",
     title: "Une grille de sécurité",
     text: "Protégez votre habitation avec une grille de sécurité.",
     quote: "« Protection visible, dissuasion efficace. »",
   },
   {
-    href: "/img/serrurerie/carousel/grille.webp",
+    href: "/img/serrurerie/carousel/grille.jpg",
     title: "Une grille avec du style et un design original",
     text: "Votre grille qui garde le charme de l'extérieur de votre habitation.",
     quote: "« L'art de conjuguer sécurité et esthétique. »",
   },
   {
-    href: "/img/serrurerie/carousel/rideau-metal.webp",
+    href: "/img/serrurerie/carousel/rideau-metal.jpg",
     title: "Installation ou réparation d'un rideau métallique",
     text: "Besoin d'un rideau métallique ? Nous vous proposons une large gamme d'options pour répondre à vos besoins.",
     quote: "« La protection professionnelle par excellence. »",
   },
   {
-    href: "/img/serrurerie/carousel/serr-multi-points.webp",
-    title: "Installation ou réparation d'une serrure à plusieurs points",
-    text: "Besoin d'une serrure à plusieurs points ? Nous vous proposons une large gamme d'options pour répondre à vos besoins.",
-    quote: "« Une sécurité multipliée, un esprit tranquille. »",
+    href: "/img/serrurerie/carousel/bloc-metal.jpg",
+    title: "Installation d'une bloc porte métallique",
+    text: "Besoin de vous protéger ? Nous vous proposons une large gamme d'options pour répondre à vos besoins.",
+    quote: "« Une porte métallique, une protection durable. »",
   },
   {
     href: "/img/serrurerie/carousel/volet-roul.jpg",
