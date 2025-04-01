@@ -12,6 +12,7 @@ export default function Carousel( { slides }) {
  
 
   return (
+    <>
     <Swiper
       modules={[Pagination, Navigation, Autoplay]}
       autoplay={{ delay: 5000, waitForTransition: true }} // Ajout delai d'attente
@@ -30,10 +31,16 @@ export default function Carousel( { slides }) {
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
           <CarouselCard slide={slide} />
+          <div className="hidden md:block">
           <MapButton destination={ShopAddress()} />
+          </div>
         </SwiperSlide>
   ))
 }
     </Swiper >
+    <div className="md:hidden flex justify-center mt-10">
+        <MapButton destination={ShopAddress()} />
+      </div>
+    </>
   );
 }
