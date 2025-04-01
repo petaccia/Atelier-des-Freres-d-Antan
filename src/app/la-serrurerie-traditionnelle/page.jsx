@@ -4,9 +4,9 @@ import Carousel from "@/components/ui/carousel/Carousel";
 export default function LaSerrureriePage() {
   return (
     <div className="bg-primary pt-32"> 
-            <div className="text-center my-8">
+            <div className="text-center mt-20 md:my-8">
                 <h1 className="">
-                    La serrurerie traditionnelle
+                    La serrurerie 
                   </h1>
             </div>
             <Carousel slides={carouselSlidesSerr} />
