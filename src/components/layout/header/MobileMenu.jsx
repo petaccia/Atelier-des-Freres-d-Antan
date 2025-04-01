@@ -5,6 +5,7 @@ import { BiHome, BiHistory, BiEnvelope } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock   } from "react-icons/gi";
 import { useState } from "react";
 import FloatingCallButton from "@/components/ui/buttons/floatingCallButton/FloatingCallButton";
+import Image from "next/image";
 
 export default function MobileMenu() {
   const [activeTab, setActiveTab] = useState("accueil");
@@ -38,6 +39,22 @@ export default function MobileMenu() {
             <span className="text-xs">Cordonnerie</span>
           </div>
         </Link>
+
+        {/* Bourellerie*/}
+        <Link href="/la-bourrellerie">
+            <div 
+            className={`flex flex-col items-center space-y-1 ${
+              activeTab === "bourrellerie" ? "text-accent" : "text-gray-600"
+            }`}
+            onClick={() => setActiveTab("bourellerie")}
+          >
+            <Image src="/icons/leather-icon.svg" alt="Leather Icon" width={24} height={24} />
+            <span className="text-xs">Bourellerie</span>
+          </div>
+        </Link>
+
+
+
 
         {/* Serrurerie */}
         <Link href="/la-serrurerie-traditionnelle">
