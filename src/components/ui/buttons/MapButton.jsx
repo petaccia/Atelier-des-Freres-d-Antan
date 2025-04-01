@@ -19,7 +19,7 @@ export default function MapButton({ destination }) {
   };
 
   return (
-    <div className="absolute  bottom-7 left-1/5 md:top-10 md:left-4 md:z-10">
+    <div className="absolute  bottom-14 left-1/5 md:top-10 md:left-4 md:z-10">
       <button
         onClick={handleClick}
         disabled={isLoading}

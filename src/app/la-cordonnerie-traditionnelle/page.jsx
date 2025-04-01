@@ -11,9 +11,9 @@ import ServicesSection from "@/components/ui/services/ServicesSection";
 export default function CordonnerieTraditionnelle() {
     return (
         <div className="bg-primary pt-32"> 
-            <div className="text-center my-8">
+            <div className="text-center mt-20 md:my-8">
                 <h1 className="">
-                   La Cordonnerie Traditionnelle
+                   La Cordonnerie 
                 </h1>
             </div>
             <Carousel slides={carouselSlidesCordo}  />
