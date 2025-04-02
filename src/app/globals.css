@@ -50,8 +50,8 @@
 
   p {
     font-family: var(--font-secondary);
-    font-size: var(--font-size-3xs);
-    @apply text-xs sm:text-sm md:text-xl tracking-wider;
+    
+    @apply text-xs sm:text-base md:text-xl tracking-wider;
   }
   blockquote {
     @apply sm:text-sm md:text-xl tracking-wider;
@@ -61,9 +61,7 @@
 
 
 @media (0px <= width <= 390px) {      
-  p {
-    font-size: var(--font-size-3xs);
-  }
+ 
   blockquote {
     font-size: var(--font-size-3xs);
   }
