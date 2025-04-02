@@ -3,6 +3,7 @@ import { servicesSerrurerieData } from "@/components/pages/serrurerie/data/servi
 import IntroPageSerr from "@/components/pages/serrurerie/sections/IntroPageSerr";
 import KeyDuplicationSection from "@/components/pages/serrurerie/sections/KeyDuplicationSection";
 import LockRepairSection from "@/components/pages/serrurerie/sections/LockRepairSection";
+import SecuritySystemSection from "@/components/pages/serrurerie/sections/SecuritySystemSection";
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
 
@@ -19,6 +20,7 @@ export default function LaSerrureriePage() {
             <ServicesSection services={servicesSerrurerieData } />
             <LockRepairSection />
             <KeyDuplicationSection />
+            <SecuritySystemSection />
     </div>
   );
 }
