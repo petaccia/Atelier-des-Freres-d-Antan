@@ -91,9 +91,9 @@ export default function DesktopMenu() {
                 La serrurerie traditionnelle
               </Link>
               <Link
-                href="/la-serrurerie-automobile"
+                href="/mon-projet"
                 className={`w-full block px-2 py-1 hover:rounded-md hover:bg-accent/60 hover:text-primary ${
-                  pathname === "/la-serrurerie-automobile" ? "text-accent" : ""
+                  pathname === "/mon-projet" ? "text-accent" : ""
                 }`}
               >
                 Votre projet
