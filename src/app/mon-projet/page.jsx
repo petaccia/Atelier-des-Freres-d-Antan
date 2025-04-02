@@ -1,3 +1,4 @@
+import ClientRequestForm from "@/components/pages/projet/form/ClientRequestForm";
 import ClientHeroSection from "@/components/pages/projet/sections/ClientHeroSection";
 
 export default function ClientProjectPage() {
@@ -9,6 +10,7 @@ export default function ClientProjectPage() {
       </h1>
     </div>
     <ClientHeroSection />
+    <ClientRequestForm />
   </div>
   );
 }
