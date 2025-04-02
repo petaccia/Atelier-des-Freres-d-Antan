@@ -3,10 +3,10 @@ import { servicesSerrurerieData } from "@/components/pages/serrurerie/data/servi
 import EmergencySection from "@/components/pages/serrurerie/sections/EmergencySection";
 import IntroPageSerr from "@/components/pages/serrurerie/sections/IntroPageSerr";
 import KeyDuplicationSection from "@/components/pages/serrurerie/sections/KeyDuplicationSection";
-import LockRepairSection from "@/components/pages/serrurerie/sections/LockRepairSection";
 import SecuritySystemSection from "@/components/pages/serrurerie/sections/SecuritySystemSection";
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
+import SystemClosedSection from "@/components/pages/serrurerie/sections/SystemClosedSection";
 
 export default function LaSerrureriePage() {
   return (
@@ -19,7 +19,7 @@ export default function LaSerrureriePage() {
             <Carousel slides={carouselSlidesSerr} />
             <IntroPageSerr />
             <ServicesSection services={servicesSerrurerieData } />
-            <LockRepairSection />
+            <SystemClosedSection />
             <KeyDuplicationSection />
             <SecuritySystemSection />
             <EmergencySection />
