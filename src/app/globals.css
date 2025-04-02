@@ -81,3 +81,8 @@
     @apply text-xs h-16;
   }
 }
+
+/* color des icons svg */
+.icon-color {
+  fill: currentColor;
+}
