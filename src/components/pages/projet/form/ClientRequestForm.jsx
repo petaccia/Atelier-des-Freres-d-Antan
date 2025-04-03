@@ -5,9 +5,20 @@ import { servicesClientData } from "../data/servicesClientData";
 
 export default function ClientRequestForm() {
   const [selectedService, setSelectedService] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [additionalDetails, setAdditionalDetails] = useState("");
 
   const handleServiceSelect = (service) => {
     setSelectedService(service);
+    setSelectedOptions([]); // Réinitialiser les options quand on change de service
+  };
+
+  const handleOptionToggle = (option) => {
+    setSelectedOptions(prev => 
+      prev.includes(option) 
+        ? prev.filter(item => item !== option)
+        : [...prev, option]
+    );
   };
 
   return (
@@ -67,19 +78,56 @@ export default function ClientRequestForm() {
                   <button
                     key={index}
                     type="button"
-                    className="flex items-center gap-4 p-4 border-2 border-whiteAmber rounded-lg hover:bg-whiteAmber group text-left"
+                    onClick={() => handleOptionToggle(service)}
+                    className={`flex items-center gap-4 p-4 border-2 border-whiteAmber rounded-lg hover:bg-whiteAmber group text-left ${
+                      selectedOptions.includes(service) ? "bg-whiteAmber" : ""
+                    }`}
                   >
                     <div className="flex-1">
-                      <h4 className="text-lg font-medium text-whiteAmber group-hover:text-black transition-colors duration-300">
+                      <h4 className={`text-lg font-medium transition-colors duration-300 ${
+                        selectedOptions.includes(service) ? "text-black" : "text-whiteAmber group-hover:text-black"
+                      }`}>
                         {service.title}
                       </h4>
-                      <p className="text-sm text-whiteGray group-hover:text-black/70 transition-colors duration-300">
+                      <p className={`text-sm transition-colors duration-300 ${
+                        selectedOptions.includes(service) ? "text-black/70" : "text-whiteGray group-hover:text-black/70"
+                      }`}>
                         {service.description}
                       </p>
+                    </div>
+                    <div className={`w-6 h-6 border-2 rounded-md flex items-center justify-center transition-colors duration-300 ${
+                      selectedOptions.includes(service) 
+                        ? "border-black bg-black" 
+                        : "border-whiteAmber group-hover:border-black"
+                    }`}>
+                      {selectedOptions.includes(service) && (
+                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
                     </div>
                   </button>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Détails supplémentaires */}
+          {selectedService && selectedOptions.length > 0 && (
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xl font-semibold text-whiteAmber">Détails supplémentaires</h3>
+              <textarea
+                value={additionalDetails}
+                onChange={(e) => setAdditionalDetails(e.target.value)}
+                placeholder="Décrivez vos besoins spécifiques..."
+                className="w-full h-32 p-4 rounded-lg bg-transparent border-2 border-whiteAmber text-whiteAmber placeholder-whiteAmber/50 focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+              <button
+                type="submit"
+                className="mt-6 bg-accent hover:bg-accent/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 self-center"
+              >
+                Envoyer la demande
+              </button>
             </div>
           )}
         </form>
