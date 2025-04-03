@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import ServiceTypeButton from "./components/ServiceTypeButton";
 import ServiceOptionButton from "./components/ServiceOptionButton";
 import DetailsSection from "./components/DetailsSection";
+import ServiceSelection from "./components/ServiceSelection";
 
 export default function ClientRequestForm() {
   const [selectedService, setSelectedService] = useState(null);
@@ -12,18 +13,6 @@ export default function ClientRequestForm() {
   const [additionalDetails, setAdditionalDetails] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleServiceSelect = (service) => {
-    setSelectedService(service);
-    setSelectedOptions([]);
-  };
-
-  const handleOptionToggle = (option) => {
-    setSelectedOptions(prev => 
-      prev.includes(option) 
-        ? prev.filter(item => item !== option)
-        : [...prev, option]
-    );
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,36 +60,12 @@ export default function ClientRequestForm() {
 
         <form onSubmit={handleSubmit} className="mt-10 space-y-8">
           {/* Type de projet */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xl font-semibold mb-4 text-whiteAmber">Type de projet</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {servicesClientData.map((service, index) => (
-                <ServiceTypeButton
-                  key={index}
-                  service={service}
-                  isSelected={selectedService?.title === service.title}
-                  onSelect={handleServiceSelect}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Services spécifiques */}
-          {selectedService && (
-            <div className="flex flex-col gap-4 mt-8">
-              <h3 className="text-xl font-semibold mb-4 text-whiteAmber">Services disponibles</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {selectedService.services.map((service, index) => (
-                  <ServiceOptionButton
-                    key={index}
-                    service={service}
-                    isSelected={selectedOptions.includes(service)}
-                    onToggle={handleOptionToggle}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+         <ServiceSelection
+          selectedService={selectedService}
+          onServiceSelect={setSelectedService}
+          selectedOptions={selectedOptions}
+          onOptionSelect={setSelectedOptions}
+        />
 
           {/* Détails */}
           {selectedService && selectedOptions.length > 0 && (
