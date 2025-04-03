@@ -1,11 +1,8 @@
 "use client";
 import { useState } from "react";
-import { servicesClientData } from "../data/servicesClientData";
 import { toast, ToastContainer } from 'react-toastify';
-import ServiceTypeButton from "./components/ServiceTypeButton";
-import ServiceOptionButton from "./components/ServiceOptionButton";
-import DetailsSection from "./components/DetailsSection";
 import ServiceSelection from "./components/ServiceSelection";
+import DetailsInput from "./components/DetailsInput";
 
 export default function ClientRequestForm() {
   const [selectedService, setSelectedService] = useState(null);
@@ -67,26 +64,14 @@ export default function ClientRequestForm() {
           onOptionSelect={setSelectedOptions}
         />
 
+
           {/* Détails */}
           {selectedService && selectedOptions.length > 0 && (
-            <div className="flex flex-col gap-4">
-              <h3 className="text-xl font-semibold text-whiteAmber">Détails supplémentaires</h3>
-              <textarea
-                value={additionalDetails}
-                onChange={(e) => setAdditionalDetails(e.target.value)}
-                placeholder="Décrivez vos besoins spécifiques..."
-                className="w-full h-32 p-4 rounded-lg bg-transparent border-2 border-whiteAmber text-whiteAmber placeholder-whiteAmber/50 focus:outline-none focus:ring-2 focus:ring-accent"
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`mt-6 bg-accent hover:bg-accent/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 self-center ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
-              >
-                {isSubmitting ? 'Envoi en cours...' : 'Envoyer la demande'}
-              </button>
-            </div>
+           <DetailsInput
+            value={additionalDetails}
+            onChange={(e) => setAdditionalDetails(e.target.value)}
+            isSubmitting={isSubmitting}
+         />
           )}
         </form>
 
