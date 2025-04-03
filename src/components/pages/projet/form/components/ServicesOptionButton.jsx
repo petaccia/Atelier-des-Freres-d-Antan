@@ -1,3 +1,5 @@
+import { HiCheck } from "react-icons/hi";
+
 export default function ServicesOptionButton( { service, isSelected, onToggle } ) {
   return (
     <button
@@ -24,11 +26,7 @@ export default function ServicesOptionButton( { service, isSelected, onToggle } 
         ? "border-black bg-black" 
         : "border-whiteAmber group-hover:border-black"
     }`}>
-      {isSelected && (
-        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      )}
+      {isSelected && <HiCheck className="w-4 h-4 text-white" />}
     </div>
   </button>
 
