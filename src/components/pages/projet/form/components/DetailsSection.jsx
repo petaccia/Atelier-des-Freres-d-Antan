@@ -1,4 +1,4 @@
-export default function DetailsSection({ value, onChange }) {
+export default function DetailsSection({ value, onChange, onSubmit }) {
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-xl font-semibold text-whiteAmber">Détails supplémentaires</h3>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import ServiceSelection from "./components/ServiceSelection";
 import DetailsInput from "./components/DetailsInput";
+import SubmitButton from "./components/SubmitButton"; // Nouveau composant importé
 
 export default function ClientRequestForm() {
   const [selectedService, setSelectedService] = useState(null);
@@ -10,11 +11,12 @@ export default function ClientRequestForm() {
   const [additionalDetails, setAdditionalDetails] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const formIsValid = selectedService && selectedOptions.length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!selectedService || selectedOptions.length === 0) {
+    if (!formIsValid) {
       toast.error("Veuillez sélectionner au moins un service");
       return;
     }
@@ -22,10 +24,8 @@ export default function ClientRequestForm() {
     setIsSubmitting(true);
 
     try {
-      // Simuler un envoi de données
       await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Créer l'objet de données
+      
       const formData = {
         serviceType: selectedService.title,
         selectedServices: selectedOptions.map(opt => opt.title),
@@ -34,12 +34,10 @@ export default function ClientRequestForm() {
 
       console.log('Données envoyées:', formData);
 
-      // Réinitialiser le formulaire
       setSelectedService(null);
       setSelectedOptions([]);
       setAdditionalDetails("");
 
-      // Afficher le toast de succès
       toast.success("Votre demande a été envoyée avec succès !");
     } catch (error) {
       toast.error("Une erreur est survenue. Veuillez réessayer.");
@@ -56,23 +54,25 @@ export default function ClientRequestForm() {
         </h2>
 
         <form onSubmit={handleSubmit} className="mt-10 space-y-8">
-          {/* Type de projet */}
-         <ServiceSelection
-          selectedService={selectedService}
-          onServiceSelect={setSelectedService}
-          selectedOptions={selectedOptions}
-          onOptionSelect={setSelectedOptions}
-        />
+          <ServiceSelection
+            selectedService={selectedService}
+            onServiceSelect={setSelectedService}
+            selectedOptions={selectedOptions}
+            onOptionSelect={setSelectedOptions}
+          />
 
-
-          {/* Détails */}
-          {selectedService && selectedOptions.length > 0 && (
-           <DetailsInput
-            value={additionalDetails}
-            onChange={(e) => setAdditionalDetails(e.target.value)}
-            isSubmitting={isSubmitting}
-         />
+          {formIsValid && (
+            <DetailsInput
+              value={additionalDetails}
+              onChange={(e) => setAdditionalDetails(e.target.value)}
+              isSubmitting={isSubmitting}
+            />
           )}
+
+          <SubmitButton
+            isSubmitting={isSubmitting}
+            disabled={!formIsValid}
+          />
         </form>
 
         <ToastContainer
