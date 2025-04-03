@@ -1,4 +1,6 @@
 import { servicesClientData } from "../../data/servicesClientData";
+import ServiceOptionButton from "./ServiceOptionButton";
+import ServiceTypeButton from "./ServiceTypeButton";
 
 export default function ServiceSelection(
   { 
