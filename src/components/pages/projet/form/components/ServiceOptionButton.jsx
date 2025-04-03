@@ -1,6 +1,6 @@
 import { HiCheck } from "react-icons/hi";
 
-export default function ServicesOptionButton( { service, isSelected, onToggle } ) {
+export default function ServiceOptionButton( { service, isSelected, onToggle } ) {
   return (
     <button
     type="button"
