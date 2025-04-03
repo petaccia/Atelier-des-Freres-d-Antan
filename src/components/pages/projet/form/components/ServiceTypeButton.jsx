@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function ServicesTypeButton( { isSelected, service , onSelect } ) {
+export default function ServiceTypeButton( { isSelected, service , onSelect } ) {
   return (
     <button
     type="button"
