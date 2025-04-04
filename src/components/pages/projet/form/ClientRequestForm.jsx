@@ -59,6 +59,7 @@ export default function ClientRequestForm() {
             onServiceSelect={setSelectedService}
             selectedOptions={selectedOptions}
             onOptionSelect={setSelectedOptions}
+            isSubmitting={isSubmitting}
           />
 
           {formIsValid && (
