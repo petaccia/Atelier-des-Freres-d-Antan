@@ -104,8 +104,8 @@ export default function DesktopMenu() {
 
         {/* Processus */}
         <Link
-          href="/notre-processus-travaux"
-          className={`hover:text-accent-light ${pathname === "/notre-processus-travaux" ? "text-accent-light" : ""}`}
+          href="/process"
+          className={`hover:text-accent-light ${pathname === "/process" ? "text-accent-light" : ""}`}
         >
           Notre processus
         </Link>
