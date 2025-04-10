@@ -127,6 +127,17 @@ export default function Footer() {
                   Notre processus
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="https://atelierfreresdantan.fr/wp-content/uploads/2024/04/Atelier-des-Freres-dAntan-Conditions-Generales-de-Vente-17-avril-2024.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-whiteGray hover:text-accent transition-colors group"
+                >
+                  <span className="w-2 h-2 bg-accent rounded-full group-hover:bg-accent-light transition-colors"></span>
+                  Conditions Générales de Vente
+                </Link>
+              </li>
             </ul>
           </div>
 
