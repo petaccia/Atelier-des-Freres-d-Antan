@@ -5,17 +5,15 @@ import QualitySection from "@/components/pages/engagements/sections/QualitySecti
 import RepairSection from "@/components/pages/engagements/sections/RepairSection";
 import MaterialsSection from "@/components/pages/engagements/sections/MaterialsSection";
 import FrenchCraftsmanshipSection from "@/components/pages/engagements/sections/FrenchCraftsmanshipSection";
+import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function NosEngagements() {
   // Pas besoin d'animations ici, elles sont gérées par les composants
 
   return (
     <div className="bg-primary">
-      {/* Page content */}
-      <div className="text-center pt-32 mt-20 md:my-8">
-        <h1>
-          Nos Engagements
-        </h1>
+      <div className="pt-32">
+        <PageTitle title="Nos Engagements" />
       </div>
 
       {/* Hero Section */}

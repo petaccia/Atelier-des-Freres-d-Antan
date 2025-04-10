@@ -2,15 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TbChevronRight } from "react-icons/tb";
+import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function NotreHistoire() {
   return (
     <div className="bg-primary">
-      {/* Page content */}
-      <div className="text-center pt-32 mt-20 md:my-8">
-        <h1>
-          Notre Histoire
-        </h1>
+      <div className="pt-32">
+        <PageTitle title="Notre Histoire" />
       </div>
 
       {/* Hero Section avec image centrée */}
@@ -26,7 +24,7 @@ export default function NotreHistoire() {
           />
           <div className="absolute inset-0 bg-black/40" />
         </div>
-        
+
         {/* Contenu superposé sur l'image */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
           <div className="max-w-4xl">
@@ -56,10 +54,10 @@ export default function NotreHistoire() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
           <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl">
-            <Image 
-              src="/img/history/history.webp" 
-              alt="Création de l'Atelier des Frères d'Antan" 
-              fill 
+            <Image
+              src="/img/history/history.webp"
+              alt="Création de l'Atelier des Frères d'Antan"
+              fill
               className="object-cover  object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent" />
@@ -79,10 +77,10 @@ export default function NotreHistoire() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
           <div className="order-1 md:order-2 relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl">
-            <Image 
-              src="/img/history/tradition.jpg" 
-              alt="Héritage familial artisanal" 
-              fill 
+            <Image
+              src="/img/history/tradition.jpg"
+              alt="Héritage familial artisanal"
+              fill
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent" />
@@ -102,10 +100,10 @@ export default function NotreHistoire() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
           <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl">
-            <Image 
-              src="/img/history/authenticity.png" 
-              alt="Notre vision pour l'avenir" 
-              fill 
+            <Image
+              src="/img/history/authenticity.png"
+              alt="Notre vision pour l'avenir"
+              fill
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent" />
@@ -140,7 +138,7 @@ export default function NotreHistoire() {
                 Nous nous engageons à maintenir les plus hauts standards de qualité dans chacune de nos réalisations, en accordant une attention méticuleuse aux détails.
               </p>
             </div>
-            
+
             <div className="bg-primary p-8 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-300 shadow-lg hover:shadow-accent/10">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <span className="text-3xl text-accent-light">2</span>
@@ -150,7 +148,7 @@ export default function NotreHistoire() {
                 Nous honorons les techniques traditionnelles tout en les adaptant aux besoins contemporains, préservant ainsi un patrimoine artisanal précieux.
               </p>
             </div>
-            
+
             <div className="bg-primary p-8 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-300 shadow-lg hover:shadow-accent/10">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <span className="text-3xl text-accent-light">3</span>
@@ -173,15 +171,15 @@ export default function NotreHistoire() {
               Venez nous rencontrer et découvrir notre atelier à Montfort l'Amaury. Nous serons ravis de vous accueillir et de vous présenter notre travail.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link 
-                href="/nos-savoir-faire" 
+              <Link
+                href="/nos-savoir-faire"
                 className="inline-flex items-center justify-center bg-accent hover:bg-accent-light text-whiteStone font-medium px-8 py-3 rounded-lg transition-colors duration-300 text-lg"
               >
                 Découvrir nos savoir-faire
                 <TbChevronRight className="ml-2" />
               </Link>
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center bg-transparent border border-accent text-accent hover:bg-accent/10 font-medium px-8 py-3 rounded-lg transition-colors duration-300 text-lg"
               >
                 Nous contacter

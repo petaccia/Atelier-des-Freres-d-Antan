@@ -7,15 +7,12 @@ import LeatherRepairSection from "@/components/pages/cordonnerie/sections/Leathe
 import ShoeRepairSection from "@/components/pages/cordonnerie/sections/ShoesRepairSection";
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
+import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function CordonnerieTraditionnelle() {
     return (
-        <div className="bg-primary pt-32"> 
-            <div className="text-center mt-20 md:my-8">
-                <h1 className="">
-                   La Cordonnerie 
-                </h1>
-            </div>
+        <div className="bg-primary pt-32">
+            <PageTitle title="La Cordonnerie" />
             <Carousel slides={carouselSlidesCordo}  />
             <IntroPageCordo />
             <ServicesSection  services={servicesCordoData}/>

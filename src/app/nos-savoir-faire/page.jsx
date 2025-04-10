@@ -1,14 +1,12 @@
 "use client";
 import Image from "next/image";
+import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function NosSavoirFaire() {
   return (
     <div className="bg-primary">
-      {/* Page content */}
-      <div className="text-center pt-32 mt-20 md:my-8">
-        <h1>
-          Nos Savoir-Faire
-        </h1>
+      <div className="pt-32">
+        <PageTitle title="Nos Savoir-Faire" />
       </div>
 
       {/* Hero Section avec image centrée */}
