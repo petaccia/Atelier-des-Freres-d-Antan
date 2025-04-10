@@ -11,7 +11,8 @@ export const qualityEngagementData = {
     "Contrôle qualité rigoureux"
   ],
   buttonText: "Découvrir nos réalisations",
-  imagePosition: "left"
+  imagePosition: "left",
+  href: "/#realizations"
 };
 
 export const repairEngagementData = {
@@ -27,7 +28,8 @@ export const repairEngagementData = {
     "Solutions durables et écologiques"
   ],
   buttonText: "Nos services de réparation",
-  imagePosition: "right"
+  imagePosition: "right",
+  href: "/#services"
 };
 
 export const materialsEngagementData = {
@@ -43,7 +45,8 @@ export const materialsEngagementData = {
     "Respect des techniques traditionnelles"
   ],
   buttonText: "En savoir plus",
-  imagePosition: "left"
+  imagePosition: "left",
+  href: "/la-bourrellerie"
 };
 
 export const frenchCraftsmanshipData = {
@@ -59,5 +62,6 @@ export const frenchCraftsmanshipData = {
     "Transmission des savoir-faire"
   ],
   buttonText: "Découvrir notre histoire",
-  imagePosition: "right"
+  imagePosition: "right",
+  href: "/notre-histoire"
 };

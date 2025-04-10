@@ -12,5 +12,5 @@ export const bagRepairData = {
   bgColor: "bg-black",
   imagePosition: "left",
   buttonText: "Besoin d'une réparation ? Contactez-nous",
-  href: "#bag-repair",
+  href: "/contact",
 };

@@ -13,5 +13,5 @@ export const emergencyData = {
   bgColor: "bg-primary",  
   imagePosition: "left",  
   buttonText: "Appeler pour une urgence",  
-  href: "#emergency"  
+  href: "tel:0788416391"  
 };

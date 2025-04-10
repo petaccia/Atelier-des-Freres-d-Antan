@@ -1,6 +1,7 @@
 "use client";
 import GenericButton from "@/components/ui/buttons/GenericButton";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection({
   imageSrc,
@@ -42,11 +43,13 @@ export default function HeroSection({
         )}
         
         {buttonText && (
-          <GenericButton 
+          <GenericButton>
+            <Link
             href={buttonLink}
             className="bg-accent hover:bg-accent/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
           >
             {buttonText}
+            </Link>
           </GenericButton>
         )}
         

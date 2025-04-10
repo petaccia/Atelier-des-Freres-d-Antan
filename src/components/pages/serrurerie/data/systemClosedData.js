@@ -29,5 +29,5 @@ export const systemClosedData = {
   ],
   bgColor: "bg-black",
   buttonText: "Demander un devis",
-  href: "#system-closed"
+  href: "/contact"
 };

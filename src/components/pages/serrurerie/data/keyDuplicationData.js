@@ -12,5 +12,5 @@ export const keyDuplicationData = {
   bgColor: "bg-primary",
   imagePosition: "left",
   buttonText: "Demander une reproduction",
-  href: "#key-duplication"
+  href: "/contact"
 };

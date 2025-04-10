@@ -46,7 +46,7 @@ const realizations = [
 
 export default function RealizationsSection() {
   return (
-    <section className="relative py-12 md:py-16 lg:py-24 bg-primary">
+    <section id="realizations" className="relative py-12 md:py-16 lg:py-24 bg-primary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center  text-gray-900 ">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-whiteAmber to-blueLight">
@@ -105,7 +105,7 @@ export default function RealizationsSection() {
           </Swiper>
 
         </div>
-         
+
       </div>
     </section>
   )

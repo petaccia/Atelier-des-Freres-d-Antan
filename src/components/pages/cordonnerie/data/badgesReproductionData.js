@@ -12,5 +12,5 @@ export const badgesReproductionData = {
     bgColor: "bg-primary",
     imagePosition: "right",
     buttonText: "Besoin d'un badge ? Contactez-nous !",
-    href:"badges-reproduction",
+    href:"/contact",
   };

@@ -12,5 +12,5 @@ export const customLeatherData = {
   bgColor: "bg-primary",
   imagePosition: "right",
   buttonText: "Commander votre pièce sur mesure",
-  href: "#custom-leather"
+  href: "/contact"
 };

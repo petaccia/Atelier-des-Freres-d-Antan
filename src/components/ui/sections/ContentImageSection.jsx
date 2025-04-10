@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import GenericButton from "@/components/ui/buttons/GenericButton";
+import Link from "next/link";
 
 export default function ContentImageSection({
   bgColor,
@@ -13,6 +14,7 @@ export default function ContentImageSection({
   buttonText,
   imagePosition,
   id,
+  href,
 }) {
   // Vérifie si nous avons un tableau d'images ou une image unique
   const hasMultipleImages = Array.isArray(images) && images.length > 0;
@@ -77,11 +79,13 @@ export default function ContentImageSection({
                 </li>
               ))}  
             </ul>
-            <div className="mt-8">
+            <Link
+              href={href}
+              className="mt-8">
               <GenericButton className={`px-10 py-4 bg-accent text-white rounded-full border-2 border-white font-semibold ${bgColor === "bg-primary" ? "hover:bg-black" : "hover:bg-primary"} transition-colors transform hover:scale-105 active:scale-95 duration-300`}>
                 {buttonText}
               </GenericButton>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
