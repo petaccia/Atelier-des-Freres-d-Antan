@@ -116,8 +116,8 @@ export default function NosSavoirFaire() {
               </p>
             </div>
             <div className="mt-6">
-              <a href="/prestations" className="inline-flex items-center text-accent-light hover:text-accent transition-colors">
-                <span>Découvrir ses prestations</span>
+              <a href="/la-cordonnerie-traditionnelle" className="inline-flex items-center text-accent-light hover:text-accent transition-colors">
+                <span>Découvrir ses prestations de cordonnerie</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
@@ -170,8 +170,8 @@ export default function NosSavoirFaire() {
               </p>
             </div>
             <div className="mt-6">
-              <a href="/prestations" className="inline-flex items-center text-accent-light hover:text-accent transition-colors">
-                <span>Découvrir ses prestations</span>
+              <a href="/la-serrurerie-traditionnelle" className="inline-flex items-center text-accent-light hover:text-accent transition-colors">
+                <span>Découvrir ses prestations de serrurerie</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
