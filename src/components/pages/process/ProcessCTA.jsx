@@ -1,8 +1,8 @@
 import { TbLock, TbChevronRight } from "react-icons/tb";
 
-export default function ProcessCTA({ title, description, buttonText, buttonLink }) {
+export default function ProcessCTA({ cta }) {
   return (
-    <div className="relative max-w-4xl mx-auto px-4 md:px-8 mt-16 sm:mt-20">
+    <div className="relative max-w-4xl mx-auto px-4 md:px-8 pb-16">
       {/* Extension de la ligne de connexion verticale */}
       <div className="absolute left-8 sm:left-12 md:left-16 top-0 h-16 sm:h-20 w-0.5 bg-accent-light/20 transform -translate-x-1/2" />
 
@@ -24,19 +24,19 @@ export default function ProcessCTA({ title, description, buttonText, buttonLink 
           {/* Contenu */}
           <div className="space-y-3 sm:space-y-4 text-center sm:text-left">
             <h3 className="text-xl sm:text-2xl font-bold text-whiteAmber flex items-center justify-center sm:justify-start gap-2">
-              {title}
+              {cta.title}
               <TbChevronRight className="text-accent-light opacity-0 group-hover:opacity-100 transition-opacity" />
             </h3>
             <p className="text-whiteGray/80 text-base sm:text-lg leading-relaxed">
-              {description}
+              {cta.description}
             </p>
             <div className="pt-3 sm:pt-4">
               <a
-                href={buttonLink}
+                href={cta.buttonLink}
                 className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-light text-whiteStone font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all hover:scale-[1.02] hover:shadow-md text-base sm:text-lg"
               >
                 <TbChevronRight className="animate-[slideRight_1.5s_ease-in-out_infinite]" />
-                {buttonText}
+                {cta.buttonText}
               </a>
             </div>
           </div>

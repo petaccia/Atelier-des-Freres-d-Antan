@@ -2,7 +2,7 @@ import { TbChevronRight } from "react-icons/tb";
 
 export default function ProcessStep({ step }) {
   return (
-    <div key={step.id} className="relative flex group mb-12 sm:mb-16 min-h-[12rem]">
+    <div key={step.id} className="relative flex group py-12 min-h-[12rem]">
       {/* Cercle connecteur moderne */}
       <div className="absolute left-8 sm:left-12 md:left-16 top-8 sm:top-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
         <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-accent-light/10 rounded-full border-2 border-accent-light/30 backdrop-blur-sm">
