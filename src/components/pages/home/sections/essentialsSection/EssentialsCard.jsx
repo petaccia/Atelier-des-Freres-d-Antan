@@ -1,6 +1,7 @@
 "use client";
 import GenericButton from '@/components/ui/buttons/GenericButton';
 import Image from 'next/image';
+import Link from 'next/link';
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function EssentialsCard({
@@ -9,7 +10,8 @@ export default function EssentialsCard({
   title,
   description,
   icons,
-  buttonText
+  buttonText,
+  href
 }) {
   return (
     <div className="relative group flex-1 hover:transform hover:-translate-y-2 transition-all duration-300">
@@ -43,11 +45,13 @@ export default function EssentialsCard({
               ))}
             </div>
           </div>
-          <GenericButton
-            icon={<MdOutlineKeyboardArrowRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 pt-1 text-white" />}
+          <GenericButton>
+            <Link href={href}
             className="flex items-center justify-center gap-1 bg-accent text-white py-2 sm:py-2.5 md:py-3 px-4 sm:px-4.5 md:px-5 rounded-full hover:bg-primary text-sm sm:text-base"
-          >
+            icon={<MdOutlineKeyboardArrowRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 pt-1 text-white" />}
+            >
             {buttonText}
+            </Link>
           </GenericButton>
         </div>
       </div>
