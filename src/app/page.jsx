@@ -10,17 +10,14 @@ import RealizationsSection from "@/components/pages/home/sections/realizationSec
 import NewsletterSignup from "@/components/pages/home/sections/newLetter/NewLetter";
 import { carouselSlides } from "@/components/pages/home/data/carouselSlides";
 import { servicesDataHome } from "@/components/pages/home/data/servicesDataHome";
+import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 
 export default function Home() {
   return (
     <>
       <div className="bg-primary pt-32">
-        <div className="text-center my-8">
-          <h1 className=" text-white  rounded-lg">
-            Bienvenue à l'Atelier des Frères d'Antan
-          </h1>
-        </div>
+        <PageTitle title="Bienvenue à l'Atelier des Frères d'Antan" />
       <Carousel slides={carouselSlides} />
       <EssentialsSection />
       <ValueSection />
