@@ -13,5 +13,5 @@ export const securitySystemData = {
   bgColor: "bg-black",  
   imagePosition: "right",  
   buttonText: "Demander un devis",  
-  href: "#traditional-security"  
+  href: "/contact"  
 };

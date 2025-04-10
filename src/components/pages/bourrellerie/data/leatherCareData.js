@@ -12,5 +12,5 @@ export const leatherCareData = {
   bgColor: "bg-black",
   imagePosition: "left",
   buttonText: "Confiez-nous vos articles en cuir",
-  href: "#leather-care"
+  href: "/contact"
 };

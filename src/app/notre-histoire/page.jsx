@@ -6,7 +6,7 @@ import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function NotreHistoire() {
   return (
-    <div className="bg-primary">
+    <div id="history" className="bg-primary">
       <div className="pt-32">
         <PageTitle title="Notre Histoire" />
       </div>

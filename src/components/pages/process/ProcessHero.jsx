@@ -9,7 +9,7 @@ export default function ProcessHero({ title, description }) {
       title="Pourquoi nous choisir ?"
       subtitle="La transparence et la qualité sont au cœur de notre processus."
       buttonText="Commencer le processus"
-      buttonLink="/contact"
+      buttonLink="/mon-projet"
     />
   );
 }

@@ -12,5 +12,5 @@ export const leatherRepairBourData = {
   bgColor: "bg-primary",
   imagePosition: "right",
   buttonText: "Faites réparer vos objets en cuir",
-  href: "#leather-repair-bour"
+  href: "/contact"
 };

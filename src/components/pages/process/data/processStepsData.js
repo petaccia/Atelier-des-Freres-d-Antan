@@ -30,16 +30,9 @@ export const processStepsData = [
     title: "Démarrez votre projet",
     description: "Maintenant que vous connaissez notre processus transparent, passez à l'action et sécurisez votre propriété avec notre expertise en serrurerie.",
     buttonText: "Commencer le processus",
-    buttonLink: "/contact",
+    buttonLink: "/mon-projet",
     icon: <TbLock className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-accent-light animate-[pulse_3s_ease-in-out_infinite]" />,
     isCTA: true
   }
 ];
 
-// Données pour la section Hero du processus
-export const processHeroData = {
-  title: "Notre Processus Sécurisé",
-  description: "Une méthodologie éprouvée pour une serrurerie haute précision et une sécurité optimale.",
-  imageSrc: "/img/process/process-hero.jpg",
-  imageAlt: "Processus de travail - Atelier des Frères d'Antan"
-};
