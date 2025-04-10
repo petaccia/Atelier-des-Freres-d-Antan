@@ -7,15 +7,12 @@ import SecuritySystemSection from "@/components/pages/serrurerie/sections/Securi
 import Carousel from "@/components/ui/carousel/Carousel";
 import ServicesSection from "@/components/ui/services/ServicesSection";
 import SystemClosedSection from "@/components/pages/serrurerie/sections/SystemClosedSection";
+import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function LaSerrureriePage() {
   return (
-    <div className="bg-primary pt-32"> 
-            <div className="text-center mt-20 md:my-8">
-                <h1 className="">
-                    La serrurerie 
-                  </h1>
-            </div>
+    <div className="bg-primary pt-32">
+            <PageTitle title="La serrurerie" />
             <Carousel slides={carouselSlidesSerr} />
             <IntroPageSerr />
             <ServicesSection services={servicesSerrurerieData } />
