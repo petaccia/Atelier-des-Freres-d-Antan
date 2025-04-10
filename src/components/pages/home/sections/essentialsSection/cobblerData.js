@@ -20,7 +20,8 @@ export const cobblerData = {
     { component: <GoClock className="h-8 w-8 text-white" />, label: "Réparation express" },
     { component: <PiArrowsClockwiseThin className="h-8 w-8 text-white" />, label: "Tutoriels vidéo" }
   ],
-  buttonText: "Voir les réalisations"
+  buttonText: "Voir les réalisations",
+  href: "/#realizations"
 };
 
 export const serrurierData = {
@@ -33,5 +34,6 @@ export const serrurierData = {
     { component: <CgTrending className="h-8 w-8 text-white" />, label: "Dernière technologie" },
     { component: <RiSmartphoneLine className="h-8 w-8 text-white" />, label: "Devis digital" }
   ],
-  buttonText: "Demander un devis"
+  buttonText: "Demander un devis",
+  href: "/contact"
 };
