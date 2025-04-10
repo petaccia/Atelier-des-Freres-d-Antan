@@ -31,7 +31,7 @@ export default function NosSavoirFaire() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 mb-16 max-w-6xl mx-auto">
           {/* Photos des artisans */}
           <div className="w-full md:w-1/2 flex justify-center space-x-4">
-            <div className="relative w-36 h-48 md:w-44 md:h-56 rounded-xl overflow-hidden transform -rotate-3 shadow-xl">
+            <a href="#guillaume" className="relative w-36 h-48 md:w-44 md:h-56 rounded-xl overflow-hidden transform -rotate-3 shadow-xl cursor-pointer transition-transform hover:scale-105">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-dark/70 ">
                 <Image src="/img/savoir-faire/guillaume.webp" alt="Guillaume" fill className="object-cover" />
               </div>
@@ -39,8 +39,8 @@ export default function NosSavoirFaire() {
               <div className="absolute bottom-4 left-0 right-0 text-center z-20">
                 <p className="text-white font-medium">Guillaume</p>
               </div>
-            </div>
-            <div className="relative w-36 h-48 md:w-44 md:h-56 rounded-xl overflow-hidden transform rotate-3 shadow-xl mt-6">
+            </a>
+            <a href="#nicolas" className="relative w-36 h-48 md:w-44 md:h-56 rounded-xl overflow-hidden transform rotate-3 shadow-xl mt-6 cursor-pointer transition-transform hover:scale-105">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-dark/70">
                 <Image src="/img/savoir-faire/nicolas.webp" alt="Nicolas" fill className="object-cover" />
               </div>
@@ -48,7 +48,7 @@ export default function NosSavoirFaire() {
               <div className="absolute bottom-4 left-0 right-0 text-center">
                 <p className="text-white font-medium">Nicolas</p>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* Texte de présentation */}
@@ -76,7 +76,7 @@ export default function NosSavoirFaire() {
         </div>
 
         {/* Profil de Nicolas */}
-        <div className="flex flex-col lg:flex-row items-center gap-10 mb-20 max-w-6xl mx-auto bg-primary-dark/50 rounded-2xl p-6 md:p-10 border border-accent/10">
+        <div id="nicolas" className="flex flex-col lg:flex-row items-center gap-10 mb-20 max-w-6xl mx-auto bg-primary-dark/50 rounded-2xl p-6 md:p-10 border border-accent/10 scroll-mt-32">
           {/* Photo de Nicolas */}
           <div className="w-full lg:w-1/3 flex justify-center">
             <div className="relative w-64 h-80 rounded-xl overflow-hidden shadow-xl border-2 border-accent/20">
@@ -127,7 +127,7 @@ export default function NosSavoirFaire() {
         </div>
 
         {/* Profil de Guillaume */}
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-10 max-w-6xl mx-auto bg-primary-dark/50 rounded-2xl p-6 md:p-10 border border-accent/10">
+        <div id="guillaume" className="flex flex-col lg:flex-row-reverse items-center gap-10 max-w-6xl mx-auto bg-primary-dark/50 rounded-2xl p-6 md:p-10 border border-accent/10 scroll-mt-32">
           {/* Photo de Guillaume */}
           <div className="w-full lg:w-1/3 flex justify-center">
             <div className="relative w-64 h-80 rounded-xl overflow-hidden shadow-xl border-2 border-accent/20">
