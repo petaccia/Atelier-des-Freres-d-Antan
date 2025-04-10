@@ -4,13 +4,12 @@ import CoordinatesSection from "@/components/pages/contact/sections/CoordinatesS
 import FaqSection from "@/components/pages/contact/sections/FaqSection";
 import IntroPageContact from "@/components/pages/contact/sections/IntroPageContact";
 import NewsletterSection from "@/components/pages/contact/sections/NewsletterSection";
+import ContactHero from "@/components/pages/contact/sections/ContactHero";
 
 export default function Contact() {
   return (
-    <div className="bg-primary">
-      <div className="text-center pt-32 mt-20 md:my-8">
-        <h1>Contact</h1>
-        </div> 
+    <div className="bg-primary pt-20">
+      <ContactHero />
         <IntroPageContact />
         <ContactFormSection />
         <CoordinatesSection />
