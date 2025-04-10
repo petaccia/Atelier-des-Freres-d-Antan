@@ -3,6 +3,7 @@ import ProcessHero from "@/components/pages/process/ProcessHero";
 import ProcessTimeline from "@/components/pages/process/ProcessTimeline";
 import ProcessStep from "@/components/pages/process/ProcessStep";
 import ProcessCTA from "@/components/pages/process/ProcessCTA";
+import { processCtaData } from "@/components/pages/process/data/processCtaData";
 
 export default function Process() {
   // Contenu de la page
@@ -20,30 +21,20 @@ export default function Process() {
   };
 
   return (
-    <div className="bg-primary pb-16 sm:pb-20">
+    <div className="bg-primary pt-32">
       {/* Page content */}
-      <div className="text-center">
-        {/* Section Hero */}
-        <ProcessHero
-          title={pageContent.hero.title}
-          description={pageContent.hero.description}
-        />
-
-        {/* Timeline avec les étapes du processus */}
-        <ProcessTimeline>
-          {processStepsData.map((step) => (
-            <ProcessStep key={step.id} step={step} />
-          ))}
-        </ProcessTimeline>
-
-        {/* Section CTA */}
-        <ProcessCTA
-          title={pageContent.cta.title}
-          description={pageContent.cta.description}
-          buttonText={pageContent.cta.buttonText}
-          buttonLink={pageContent.cta.buttonLink}
-        />
+      <div className="text-center mt-20 md:my-8">
+        <h1>
+          Notre processus sécurisé
+        </h1>
       </div>
+      <ProcessHero />
+      <ProcessTimeline >
+      {processStepsData.map((step) => (
+        <ProcessStep key={step.id} step={step} />
+      ))}
+      </ProcessTimeline>
+      <ProcessCTA cta={processCtaData} />
     </div>
   );
 }
