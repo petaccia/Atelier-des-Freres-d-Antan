@@ -17,7 +17,7 @@ export const servicesDataHome = [
     title: "Blindage de Porte",
     description: "Sécurisation de votre porte et de vos accès",
     img: doorLock.src,
-    href: "/#traditional-locksmith",
+    href: "/la-serrurerie-traditionnelle#traditional-locksmith",
   },
   {
     id: 3,
@@ -31,6 +31,6 @@ export const servicesDataHome = [
     title: "Reproduction de Clés",
     description: "Votre clé cassée - Reproduction rapide et sur mesure",
     img: product_keys.src,
-    href: "/#key-duplication",
+    href: "/la-serrurerie-traditionnelle#key-duplication",
   },
 ];
