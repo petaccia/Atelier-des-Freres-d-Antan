@@ -22,6 +22,8 @@ export default function TestimonialCard({ testimonial }) {
           <Image
             src={testimonial.image || "/icons/avatar.png"}
             alt={testimonial.name}
+            width={112}
+            height={112}
             className="relative w-full h-full object-cover rounded-[18px] lg:rounded-[25px] border-2 border-white shadow-sm lg:shadow-md"
           />
           <div className="absolute -top-3 -left-3 lg:-top-5 lg:-left-5 bg-white/90 backdrop-blur-sm p-2 lg:p-3 rounded-md lg:rounded-lg shadow-xs lg:shadow-sm">
