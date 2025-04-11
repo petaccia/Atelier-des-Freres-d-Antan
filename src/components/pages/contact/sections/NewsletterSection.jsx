@@ -10,12 +10,12 @@ export default function NewsletterSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!isChecked) {
       setSubmitError("Veuillez accepter la politique de confidentialité.");
       return;
     }
-    
+
     setIsSubmitting(true);
     setSubmitSuccess(false);
     setSubmitError("");
@@ -23,7 +23,7 @@ export default function NewsletterSection() {
     try {
       // Simuler un envoi de formulaire
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      
+
       // Réinitialiser le formulaire après succès
       setEmail("");
       setIsChecked(false);
@@ -41,21 +41,22 @@ export default function NewsletterSection() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-whiteAmber mb-6">Découvrez notre newsletter</h2>
           <p className="text-whiteGray text-lg mb-8">
-            Recevez de nos nouvelles : nos actualités, des promotions, des conseils d'artisan en serrurerie et cordonnerie, les coulisses de notre entreprise, etc.
+            Recevez de nos nouvelles : nos actualités, des promotions, des conseils d'artisan en
+            serrurerie et cordonnerie, les coulisses de notre entreprise, etc.
           </p>
-          
+
           {submitSuccess && (
             <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
               <p>Merci pour votre inscription ! Vous recevrez bientôt nos actualités.</p>
             </div>
           )}
-          
+
           {submitError && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
               <p>{submitError}</p>
             </div>
           )}
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <input
@@ -69,12 +70,12 @@ export default function NewsletterSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`bg-accent hover:bg-accent-light text-whiteStone font-medium px-8 py-3 rounded-lg transition-colors duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`bg-accent hover:bg-accent-light text-whiteStone font-medium px-8 py-3 rounded-lg transition-colors duration-300 ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
               >
-                {isSubmitting ? 'Inscription...' : 'JE M\'INSCRIS !'}
+                {isSubmitting ? "Inscription..." : "JE M'INSCRIS !"}
               </button>
             </div>
-            
+
             <div className="flex items-center justify-center gap-2">
               <input
                 type="checkbox"

@@ -14,7 +14,7 @@ export const servicesCordoData = [
     id: 2,
     title: "Réparation de maroquinerie",
     description: "De la fermeture éclair aux coutures : nous redonnons vie à vos articles en cuir.",
-    img: leatherwork.src, 
+    img: leatherwork.src,
     href: "#leather-repair",
   },
   {

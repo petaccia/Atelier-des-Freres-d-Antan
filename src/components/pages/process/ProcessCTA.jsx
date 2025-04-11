@@ -6,7 +6,9 @@ export default function ProcessCTA({ cta }) {
       {/* Cercle final */}
       <div className="absolute left-8 sm:left-12 md:left-16 top-8 sm:top-1/2 -translate-y-1/2 -translate-x-1/2 z-10">
         <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 group-hover:bg-accent rounded-full border-2 border-accent-light/30 backdrop-blur-sm transition-colors duration-300">
-          <span className="text-xl sm:text-2xl font-bold text-accent-light group-hover:text-primary transition-colors duration-300">{cta.id}</span>
+          <span className="text-xl sm:text-2xl font-bold text-accent-light group-hover:text-primary transition-colors duration-300">
+            {cta.id}
+          </span>
         </div>
       </div>
 
@@ -15,9 +17,7 @@ export default function ProcessCTA({ cta }) {
         <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 h-full">
           {/* Icône */}
           <div className="flex-shrink-0 p-2 sm:p-3 bg-accent-light/10 rounded-lg hover:bg-accent-light/20 transition-colors self-center sm:self-start">
-            <span className="text-2xl sm:text-3xl text-accent-light">
-              {cta.icon}
-            </span>
+            <span className="text-2xl sm:text-3xl text-accent-light">{cta.icon}</span>
           </div>
 
           {/* Contenu */}

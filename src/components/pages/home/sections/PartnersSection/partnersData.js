@@ -3,7 +3,7 @@ export const partners = [
     id: 1,
     name: "La Vallée de Cheuseuvre",
     logo: "/img/sections/partners/chevreuse.svg",
-  }, 
+  },
   {
     id: 2,
     name: "Bakertilly",

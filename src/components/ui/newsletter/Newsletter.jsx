@@ -13,7 +13,7 @@ export default function Newsletter({
   bgClassName = "bg-gradient-to-b from-primary-dark to-black",
   showSeparator = false,
   separatorClassName = "border-t border-white/10",
-  onSubmit = null
+  onSubmit = null,
 }) {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,9 +58,7 @@ export default function Newsletter({
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-whiteAmber mb-6">{title}</h2>
-          <p className="text-whiteGray text-lg mb-8">
-            {description}
-          </p>
+          <p className="text-whiteGray text-lg mb-8">{description}</p>
 
           {submitSuccess && (
             <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
@@ -87,7 +85,7 @@ export default function Newsletter({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`bg-accent hover:bg-accent-light text-whiteStone font-medium px-8 py-3 rounded-lg transition-colors duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`bg-accent hover:bg-accent-light text-whiteStone font-medium px-8 py-3 rounded-lg transition-colors duration-300 ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
               >
                 {isSubmitting ? loadingText : buttonText}
               </button>
@@ -108,9 +106,7 @@ export default function Newsletter({
           </form>
         </div>
       </div>
-      {showSeparator && (
-        <div className={`container mx-auto mt-16 ${separatorClassName}`}></div>
-      )}
+      {showSeparator && <div className={`container mx-auto mt-16 ${separatorClassName}`}></div>}
     </section>
   );
 }

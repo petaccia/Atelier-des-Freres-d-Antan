@@ -68,7 +68,10 @@ export default function DesktopMenu() {
         >
           <button
             className={`flex items-center hover:text-accent-light capitalize ${
-              isActive("/la-serrurerie", ["/la-serrurerie-traditionnelle", "/la-serrurerie-automobile"])
+              isActive("/la-serrurerie", [
+                "/la-serrurerie-traditionnelle",
+                "/la-serrurerie-automobile",
+              ])
                 ? "text-accent-light"
                 : ""
             }`}
@@ -170,7 +173,11 @@ export default function DesktopMenu() {
       </nav>
 
       {/* CallButton */}
-      <FloatingCallButton phoneNumber="07 88 41 63 91" position="top-right" className="hidden md:block" />
+      <FloatingCallButton
+        phoneNumber="07 88 41 63 91"
+        position="top-right"
+        className="hidden md:block"
+      />
     </>
   );
 }

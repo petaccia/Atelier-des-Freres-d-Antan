@@ -13,11 +13,13 @@ export default function HistorySection() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
           {/* Conteneur d'image responsive */}
-          <div className="relative w-full mx-auto rounded-3xl overflow-hidden shadow-2xl"
+          <div
+            className="relative w-full mx-auto rounded-3xl overflow-hidden shadow-2xl"
             style={{
               paddingTop: `${aspectRatio}%`,
-              maxWidth: 'min(100vw, 700px)', // Ajusté pour 768px
-            }}>
+              maxWidth: "min(100vw, 700px)", // Ajusté pour 768px
+            }}
+          >
             <Image
               src={historyImage}
               alt="Atelier des Frères d'Antan"
@@ -31,28 +33,23 @@ export default function HistorySection() {
 
           {/* Contenu */}
           <div className="text-white">
-            <h2 className="mb-6 sm:mb-8">
-              L'aventure Atelier des Frères d'Antan
-            </h2>
+            <h2 className="mb-6 sm:mb-8">L'aventure Atelier des Frères d'Antan</h2>
             <div className="space-y-4 sm:space-y-6 text-base sm:text-lg leading-relaxed">
               <p>
-                Nous sommes deux frères : Guillaume et Nicolas. L'un serrurier et l'autre cordonnier.
-                Nous sommes fils d'artisans et avons passé plus de 12 ans dans l'entreprise familiale.
+                Nous sommes deux frères : Guillaume et Nicolas. L'un serrurier et l'autre
+                cordonnier. Nous sommes fils d'artisans et avons passé plus de 12 ans dans
+                l'entreprise familiale.
               </p>
               <p>
-                À la retraite de nos parents, nous avons décidé de mettre nos savoir-faire au service
-                de notre région natale. C'est ainsi qu'est né Atelier des Frères d'Antan.
+                À la retraite de nos parents, nous avons décidé de mettre nos savoir-faire au
+                service de notre région natale. C'est ainsi qu'est né Atelier des Frères d'Antan.
               </p>
-              <p>
-                Un lieu à notre image : authentique, convivial et valorisant nos savoir-faire.
-              </p>
+              <p>Un lieu à notre image : authentique, convivial et valorisant nos savoir-faire.</p>
             </div>
             {/* Bouton centré sous le texte */}
             <div className="mt-8 flex justify-center lg:justify-start">
               <Link href="/notre-histoire">
-                <GenericButton
-                  className="bg-black/30 text-white font-bold px-8 py-3 rounded-full hover:text-black hover:bg-accent transition-colors duration-300"
-                >
+                <GenericButton className="bg-black/30 text-white font-bold px-8 py-3 rounded-full hover:text-black hover:bg-accent transition-colors duration-300">
                   Notre histoire
                 </GenericButton>
               </Link>
