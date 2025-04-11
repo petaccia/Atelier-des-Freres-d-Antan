@@ -2,132 +2,167 @@
 "use client";
 import Link from "next/link";
 import { BiHome, BiHistory, BiEnvelope } from "react-icons/bi";
-import { GiRunningShoe, GiKeyLock   } from "react-icons/gi";
+import { GiRunningShoe, GiKeyLock } from "react-icons/gi";
 import { useState } from "react";
-import FloatingCallButton from "@/components/ui/buttons/floatingCallButton/FloatingCallButton";
-import Image from "next/image";
+import { MdClose, MdKeyboardArrowRight } from "react-icons/md";
+import { usePathname } from "next/navigation";
 
 export default function MobileMenu() {
   const [activeTab, setActiveTab] = useState("accueil");
+  const [overlayMenu, setOverlayMenu] = useState(null);
+  const pathname = usePathname();
+
+  // Déterminer l'onglet actif en fonction du chemin
+  const getActiveTabFromPath = (path) => {
+    if (path === "/") return "accueil";
+    if (path.includes("cordonnerie") || path.includes("bourrellerie")) return "cordonnerie";
+    if (path.includes("serrurerie") || path.includes("mon-projet")) return "serrurerie";
+    if (path.includes("process") || path.includes("savoir-faire") || 
+        path.includes("engagements") || path.includes("histoire")) return "apropos";
+    if (path.includes("contact")) return "contact";
+    return "accueil";
+  };
+
+  // Fermer l'overlay
+  const closeOverlay = () => {
+    setOverlayMenu(null);
+  };
+
+  // Ouvrir l'overlay pour un menu spécifique
+  const openOverlay = (menu) => {
+    if (menu === "cordonnerie") {
+      setOverlayMenu({
+        title: "Cordonnerie",
+        items: [
+          { label: "La cordonnerie traditionnelle", path: "/la-cordonnerie-traditionnelle" },
+          { label: "La bourrellerie", path: "/la-bourrellerie" }
+        ]
+      });
+    } else if (menu === "serrurerie") {
+      setOverlayMenu({
+        title: "Serrurerie",
+        items: [
+          { label: "La serrurerie traditionnelle", path: "/la-serrurerie-traditionnelle" },
+          { label: "Votre projet", path: "/mon-projet" }
+        ]
+      });
+    } else if (menu === "apropos") {
+      setOverlayMenu({
+        title: "À propos",
+        items: [
+          { label: "Notre processus", path: "/process" },
+          { label: "Nos savoir-faire", path: "/nos-savoir-faire" },
+          { label: "Nos engagements", path: "/nos-engagements" },
+          { label: "Notre histoire", path: "/notre-histoire" }
+        ]
+      });
+    }
+  };
 
   return (
     <>
-    <nav className="fixed inset-x-0 bottom-0 bg-white shadow-md md:hidden">
-      <div className="flex justify-around py-4">
-        {/* Accueil */}
-        <Link href="/">
-          <div 
-            className={`flex flex-col items-center space-y-1 ${
-              activeTab === "accueil" ? "text-accent" : "text-gray-600"
-            }`}
-            onClick={() => setActiveTab("accueil")}
-          >
-            <BiHome size={24} />
-            <span className="text-xs">Accueil</span>
-          </div>
-        </Link>
+      {/* Barre de navigation fixe en bas */}
+      <nav className="fixed inset-x-0 bottom-0 bg-white shadow-md md:hidden z-40">
+        <div className="flex justify-around py-4">
+          {/* Accueil */}
+          <Link href="/">
+            <div 
+              className={`flex flex-col items-center space-y-1 ${
+                activeTab === "accueil" ? "text-accent" : "text-gray-600"
+              }`}
+              onClick={() => setActiveTab("accueil")}
+            >
+              <BiHome size={24} />
+              <span className="text-xs">Accueil</span>
+            </div>
+          </Link>
 
-        {/* Cordonnerie */}
-        <Link href="/la-cordonnerie-traditionnelle">
+          {/* Cordonnerie - avec overlay */}
           <div 
             className={`flex flex-col items-center space-y-1 ${
               activeTab === "cordonnerie" ? "text-accent" : "text-gray-600"
             }`}
-            onClick={() => setActiveTab("cordonnerie")}
+            onClick={() => {
+              setActiveTab("cordonnerie");
+              openOverlay("cordonnerie");
+            }}
           >
             <GiRunningShoe size={24} />
             <span className="text-xs">Cordonnerie</span>
           </div>
-        </Link>
 
-        {/* Bourellerie*/}
-        <Link href="/la-bourrellerie">
-            <div 
-            className={`flex flex-col items-center space-y-1 ${
-              activeTab === "bourrellerie" ? "text-accent" : "text-gray-600"
-            }`}
-            onClick={() => setActiveTab("bourellerie")}
-          >
-            <Image src="/icons/leather-icon.svg" alt="Leather Icon" width={24} height={24} />
-            <span className="text-xs">Bourellerie</span>
-          </div>
-        </Link>
-
-
-
-
-        {/* Serrurerie */}
-        <Link href="/la-serrurerie-traditionnelle">
+          {/* Serrurerie - avec overlay */}
           <div 
             className={`flex flex-col items-center space-y-1 ${
               activeTab === "serrurerie" ? "text-accent" : "text-gray-600"
             }`}
-            onClick={() => setActiveTab("serrurerie")}
+            onClick={() => {
+              setActiveTab("serrurerie");
+              openOverlay("serrurerie");
+            }}
           >
             <GiKeyLock size={24} />
             <span className="text-xs">Serrurerie</span>
           </div>
-        </Link>
 
-        {/* Historique */}
-        <Link href="/historique">
+          {/* À propos - avec overlay */}
           <div 
             className={`flex flex-col items-center space-y-1 ${
-              activeTab === "historique" ? "text-accent" : "text-gray-600"
+              activeTab === "apropos" ? "text-accent" : "text-gray-600"
             }`}
-            onClick={() => setActiveTab("historique")}
+            onClick={() => {
+              setActiveTab("apropos");
+              openOverlay("apropos");
+            }}
           >
-            <svg 
-  xmlns="http://www.w3.org/2000/svg" 
-  viewBox="0 0 24 24" 
-  width="24" 
-  height="24" 
-  fill="none"
-  className="text-primary hover:text-accent transition-colors"
->
- 
-  <circle 
-    cx="12" 
-    cy="12" 
-    r="10" 
-    stroke="currentColor" 
-    strokeWidth="2"
-  />
-  
-  
-  <path 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    strokeWidth="2" 
-    d="M12 14a4 4 0 100-8 4 4 0 000 8z"
-    stroke="currentColor"
-  />
-  <path 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    strokeWidth="2" 
-    d="M17 17H7v-2h10v2z"
-    stroke="currentColor"
-  />
-</svg>
-            <span className="text-xs">Historique</span>
+            <BiHistory size={24} />
+            <span className="text-xs">À propos</span>
           </div>
-        </Link>
 
-        {/* Contact */}
-        <Link href="/contact">
-          <div 
-            className={`flex flex-col items-center space-y-1 ${
-              activeTab === "contact" ? "text-accent" : "text-gray-600"
-            }`}
-            onClick={() => setActiveTab("contact")}
-          >
-            <BiEnvelope size={24} />
-            <span className="text-xs">Contact</span>
+          {/* Contact */}
+          <Link href="/contact">
+            <div 
+              className={`flex flex-col items-center space-y-1 ${
+                activeTab === "contact" ? "text-accent" : "text-gray-600"
+              }`}
+              onClick={() => setActiveTab("contact")}
+            >
+              <BiEnvelope size={24} />
+              <span className="text-xs">Contact</span>
+            </div>
+          </Link>
+        </div>
+      </nav>
+
+      {/* Overlay pour les sous-menus */}
+      {overlayMenu && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 md:hidden">
+          <div className="bg-primary w-full max-w-sm rounded-xl p-6 relative">
+            <button 
+              className="absolute top-4 right-4 text-white hover:text-accent"
+              onClick={closeOverlay}
+            >
+              <MdClose size={24} />
+            </button>
+            
+            <h3 className="text-2xl font-bold text-accent mb-6">{overlayMenu.title}</h3>
+            
+            <div className="space-y-4">
+              {overlayMenu.items.map((item, index) => (
+                <Link 
+                  key={index} 
+                  href={item.path}
+                  className="flex items-center justify-between w-full p-3 bg-primary-dark/50 hover:bg-primary-dark text-white rounded-lg transition-colors"
+                  onClick={closeOverlay}
+                >
+                  <span>{item.label}</span>
+                  <MdKeyboardArrowRight size={20} className="text-accent" />
+                </Link>
+              ))}
+            </div>
           </div>
-        </Link>
-      </div>
-    </nav>
+        </div>
+      )}
     </>
   );
 }
