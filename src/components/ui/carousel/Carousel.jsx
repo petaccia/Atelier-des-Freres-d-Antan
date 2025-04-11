@@ -9,7 +9,7 @@ import MapButton from "../buttons/MapButton";
 import ShopAddress from "../shopAddress/ShopAddress";
 
 export default function Carousel( { slides }) {
- 
+
 
   return (
     <>
@@ -38,8 +38,8 @@ export default function Carousel( { slides }) {
   ))
 }
     </Swiper >
-    <div className="md:hidden flex justify-center mt-10">
-        <MapButton destination={ShopAddress()} />
+    <div className="md:hidden flex justify-center p-4">
+        <MapButton destination={ShopAddress()} floating={false} className="w-full max-w-md" />
       </div>
     </>
   );
