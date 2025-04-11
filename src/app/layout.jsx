@@ -1,16 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header/Header";
 import Footer from "@/components/layout/footer/Footer";
+import { Poppins } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Importation de Poppins depuis Google Fonts pour la police secondaire
+const poppins = Poppins({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata = {
@@ -32,7 +30,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${poppins.variable} antialiased`}>
         <div className="flex flex-col min-h-screen">
           {/* Header */}
           <Header />
