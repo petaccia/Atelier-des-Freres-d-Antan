@@ -49,9 +49,7 @@ export default function ClientRequestForm() {
   return (
     <section className="pb-20 bg-primary">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h2 className="text-whiteAmber text-center">
-          Faites votre demande
-        </h2>
+        <h2 className="text-whiteAmber text-center">Faites votre demande</h2>
 
         <form onSubmit={handleSubmit} className=" space-y-8">
           <ServiceSelection

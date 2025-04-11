@@ -138,9 +138,7 @@ export default function NotreHistoire() {
       {/* Valeurs */}
       <div className="bg-primary-dark pb-20">
         <div className="container mx-auto px-4">
-          <h2 className=" text-whiteAmber text-center ">
-            Nos Valeurs Fondamentales
-          </h2>
+          <h2 className=" text-whiteAmber text-center ">Nos Valeurs Fondamentales</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-primary p-8 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-300 shadow-lg hover:shadow-accent/10">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">

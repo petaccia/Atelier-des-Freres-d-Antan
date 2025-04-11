@@ -24,9 +24,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center">
-            <h3 className=" mb-4 text-whiteAmber tracking-wider uppercase">
-              Suivez-nous
-            </h3>
+            <h3 className=" mb-4 text-whiteAmber tracking-wider uppercase">Suivez-nous</h3>
             <SocialLinks
               showColors={false}
               iconSize={24}
