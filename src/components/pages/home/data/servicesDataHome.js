@@ -24,7 +24,7 @@ export const servicesDataHome = [
     title: "Serrurerie Métallique",
     description: "Création sur mesure de pièces artisanales",
     img: feron.src,
-    href: "/contact"
+    href: "/contact",
   },
   {
     id: 4,
