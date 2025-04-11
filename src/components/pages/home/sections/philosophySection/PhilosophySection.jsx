@@ -1,6 +1,6 @@
 export default function PhilosophySection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-900 to-black">
+    <section className="pb-20 bg-gradient-to-br from-gray-900 to-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-white">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blueLight">
