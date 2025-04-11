@@ -9,15 +9,15 @@ import ServicesSection from "@/components/ui/services/ServicesSection";
 import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
 export default function CordonnerieTraditionnelle() {
-    return (
-        <div className="bg-primary pt-32">
-            <PageTitle title="La Cordonnerie" />
-            <Carousel slides={carouselSlidesCordo}  />
-            <ServicesSection  services={servicesCordoData}/>
-            <ShoeRepairSection />
-            <LeatherRepairSection />
-            <KeyReproductionSection />
-            <BadgeReproductionSection />
-        </div>
-    );
-};
+  return (
+    <div className="bg-primary pt-32">
+      <PageTitle title="La Cordonnerie" />
+      <Carousel slides={carouselSlidesCordo} />
+      <ServicesSection services={servicesCordoData} />
+      <ShoeRepairSection />
+      <LeatherRepairSection />
+      <KeyReproductionSection />
+      <BadgeReproductionSection />
+    </div>
+  );
+}

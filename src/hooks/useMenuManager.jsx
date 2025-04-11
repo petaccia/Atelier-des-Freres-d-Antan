@@ -9,7 +9,7 @@ export const useMenuManager = () => {
   const handleMouseEnter = (menu) => {
     clearTimeout(menuTimeOut);
     setActiveMenu(menu);
-    setRotatedArrows(prev => ({ ...prev, [menu]: true }));
+    setRotatedArrows((prev) => ({ ...prev, [menu]: true }));
   };
 
   const hideMenu = () => {
@@ -24,6 +24,6 @@ export const useMenuManager = () => {
     activeMenu,
     rotatedArrows,
     handleMouseEnter,
-    hideMenu
+    hideMenu,
   };
 };

@@ -10,18 +10,19 @@ export default function FaqSection() {
             Questions Fréquentes
           </h2>
           <p className="text-whiteGray max-w-3xl mx-auto">
-            Retrouvez ici la réponse aux questions les plus fréquemment posées, que ce soit en serrurerie,
-            ferronnerie, cordonnerie ou bourrellerie.
+            Retrouvez ici la réponse aux questions les plus fréquemment posées, que ce soit en
+            serrurerie, ferronnerie, cordonnerie ou bourrellerie.
           </p>
           <p className="text-whiteGray mt-4 max-w-3xl mx-auto">
             Si vous avez une question spécifique, vous pouvez nous contacter directement
-            <a href="#contact-form" className="text-accent hover:text-accent-light ml-1">ici</a>.
+            <a href="#contact-form" className="text-accent hover:text-accent-light ml-1">
+              ici
+            </a>
+            .
           </p>
         </div>
 
-        <FaqCategories
-          categories={contactFaqCategories}
-        />
+        <FaqCategories categories={contactFaqCategories} />
 
         <div className="text-center mt-12">
           <a

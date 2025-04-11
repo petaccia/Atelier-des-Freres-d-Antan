@@ -28,12 +28,19 @@ export default function FaqAccordion({ faqs }) {
             onClick={() => toggleFaq(index)}
           >
             <div className="flex items-center">
-              <FiMessageCircle className={`mr-3 flex-shrink-0 ${openIndex === index ? "text-accent" : "text-whiteAmber"}`} size={20} />
-              <h4 className={`text-lg font-medium pr-4 ${openIndex === index ? "text-accent" : "text-whiteAmber"}`}>
+              <FiMessageCircle
+                className={`mr-3 flex-shrink-0 ${openIndex === index ? "text-accent" : "text-whiteAmber"}`}
+                size={20}
+              />
+              <h4
+                className={`text-lg font-medium pr-4 ${openIndex === index ? "text-accent" : "text-whiteAmber"}`}
+              >
                 {faq.question}
               </h4>
             </div>
-            <span className={`flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 transition-all duration-300 ${openIndex === index ? "bg-accent/20 text-accent rotate-180" : "bg-black/40 text-whiteAmber"}`}>
+            <span
+              className={`flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 transition-all duration-300 ${openIndex === index ? "bg-accent/20 text-accent rotate-180" : "bg-black/40 text-whiteAmber"}`}
+            >
               <FiChevronDown size={18} />
             </span>
           </button>

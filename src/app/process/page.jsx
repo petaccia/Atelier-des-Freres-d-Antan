@@ -11,10 +11,12 @@ export default function Process() {
       <PageTitle title="Notre Processus Sécurisé" />
       <ProcessHero />
       <ProcessTimeline>
-        {processStepsData.filter(step => !step.isCTA).map((step) => (
-          <ProcessStep key={step.id} step={step} />
-        ))}
-        <ProcessCTA cta={processStepsData.find(step => step.isCTA)} />
+        {processStepsData
+          .filter((step) => !step.isCTA)
+          .map((step) => (
+            <ProcessStep key={step.id} step={step} />
+          ))}
+        <ProcessCTA cta={processStepsData.find((step) => step.isCTA)} />
       </ProcessTimeline>
     </div>
   );

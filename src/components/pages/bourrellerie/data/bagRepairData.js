@@ -1,6 +1,7 @@
 export const bagRepairData = {
   title: "Réparation de sacs en cuir",
-  content: "Chez l'Atelier des Frères d'Antan, nous redonnons vie à vos sacs en cuir avec un savoir-faire artisanal. Nos services complets incluent :",
+  content:
+    "Chez l'Atelier des Frères d'Antan, nous redonnons vie à vos sacs en cuir avec un savoir-faire artisanal. Nos services complets incluent :",
   services: [
     "Réparation de fermetures éclair",
     "Couture et renforts",

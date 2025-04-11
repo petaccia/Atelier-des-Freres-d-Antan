@@ -15,8 +15,13 @@ export default function MobileMenu() {
     if (pathname === "/") return "accueil";
     if (pathname.includes("cordonnerie") || pathname.includes("bourrellerie")) return "cordonnerie";
     if (pathname.includes("serrurerie") || pathname.includes("mon-projet")) return "serrurerie";
-    if (pathname.includes("process") || pathname.includes("savoir-faire") || 
-        pathname.includes("engagements") || pathname.includes("histoire")) return "apropos";
+    if (
+      pathname.includes("process") ||
+      pathname.includes("savoir-faire") ||
+      pathname.includes("engagements") ||
+      pathname.includes("histoire")
+    )
+      return "apropos";
     if (pathname.includes("contact")) return "contact";
     return "accueil";
   });
@@ -34,16 +39,16 @@ export default function MobileMenu() {
         title: "Cordonnerie",
         items: [
           { label: "La cordonnerie traditionnelle", path: "/la-cordonnerie-traditionnelle" },
-          { label: "La bourrellerie", path: "/la-bourrellerie" }
-        ]
+          { label: "La bourrellerie", path: "/la-bourrellerie" },
+        ],
       });
     } else if (menu === "serrurerie") {
       setOverlayMenu({
         title: "Serrurerie",
         items: [
           { label: "La serrurerie traditionnelle", path: "/la-serrurerie-traditionnelle" },
-          { label: "Votre projet", path: "/mon-projet" }
-        ]
+          { label: "Votre projet", path: "/mon-projet" },
+        ],
       });
     } else if (menu === "apropos") {
       setOverlayMenu({
@@ -52,8 +57,8 @@ export default function MobileMenu() {
           { label: "Notre processus", path: "/process" },
           { label: "Nos savoir-faire", path: "/nos-savoir-faire" },
           { label: "Nos engagements", path: "/nos-engagements" },
-          { label: "Notre histoire", path: "/notre-histoire" }
-        ]
+          { label: "Notre histoire", path: "/notre-histoire" },
+        ],
       });
     }
   };
@@ -65,7 +70,7 @@ export default function MobileMenu() {
         <div className="flex justify-around py-4">
           {/* Accueil */}
           <Link href="/">
-            <div 
+            <div
               className={`flex flex-col items-center space-y-1 ${
                 activeTab === "accueil" ? "text-accent" : "text-white/80 hover:text-accent-light"
               }`}
@@ -77,7 +82,7 @@ export default function MobileMenu() {
           </Link>
 
           {/* Cordonnerie - avec overlay */}
-          <div 
+          <div
             className={`flex flex-col items-center space-y-1 cursor-pointer ${
               activeTab === "cordonnerie" ? "text-accent" : "text-white/80 hover:text-accent-light"
             }`}
@@ -91,7 +96,7 @@ export default function MobileMenu() {
           </div>
 
           {/* Serrurerie - avec overlay */}
-          <div 
+          <div
             className={`flex flex-col items-center space-y-1 cursor-pointer ${
               activeTab === "serrurerie" ? "text-accent" : "text-white/80 hover:text-accent-light"
             }`}
@@ -105,7 +110,7 @@ export default function MobileMenu() {
           </div>
 
           {/* À propos - avec overlay */}
-          <div 
+          <div
             className={`flex flex-col items-center space-y-1 cursor-pointer ${
               activeTab === "apropos" ? "text-accent" : "text-white/80 hover:text-accent-light"
             }`}
@@ -120,7 +125,7 @@ export default function MobileMenu() {
 
           {/* Contact */}
           <Link href="/contact">
-            <div 
+            <div
               className={`flex flex-col items-center space-y-1 ${
                 activeTab === "contact" ? "text-accent" : "text-white/80 hover:text-accent-light"
               }`}
@@ -137,19 +142,19 @@ export default function MobileMenu() {
       {overlayMenu && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 md:hidden">
           <div className="bg-primary-dark/90 w-full max-w-sm rounded-xl border border-accent/20 p-6 relative shadow-xl">
-            <button 
+            <button
               className="absolute top-4 right-4 text-white hover:text-accent"
               onClick={closeOverlay}
             >
               <MdClose size={24} />
             </button>
-            
+
             <h3 className="text-2xl font-bold text-accent mb-6">{overlayMenu.title}</h3>
-            
+
             <div className="space-y-4">
               {overlayMenu.items.map((item, index) => (
-                <Link 
-                  key={index} 
+                <Link
+                  key={index}
                   href={item.path}
                   className="flex items-center justify-between w-full p-3 bg-black/30 hover:bg-accent/20 text-white rounded-lg transition-colors border border-white/10 hover:border-accent/30"
                   onClick={closeOverlay}

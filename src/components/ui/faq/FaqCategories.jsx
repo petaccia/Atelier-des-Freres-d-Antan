@@ -3,11 +3,7 @@ import { useState } from "react";
 import FaqCategoryButton from "./FaqCategoryButton";
 import FaqAccordion from "./FaqAccordion";
 
-export default function FaqCategories({
-  categories,
-  subtitle = "",
-  className = ""
-}) {
+export default function FaqCategories({ categories, subtitle = "", className = "" }) {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   const handleSelectCategory = (category) => {
@@ -16,12 +12,7 @@ export default function FaqCategories({
 
   return (
     <div className={`${className}`}>
-
-      {subtitle && (
-        <p className="text-center text-whiteGray mb-10 max-w-3xl mx-auto">
-          {subtitle}
-        </p>
-      )}
+      {subtitle && <p className="text-center text-whiteGray mb-10 max-w-3xl mx-auto">{subtitle}</p>}
 
       {/* Category Buttons */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -46,13 +37,9 @@ export default function FaqCategories({
         {/* Category Title */}
         <div className="text-center mb-8 pb-4 border-b border-accent/20">
           <div className="inline-block px-4 py-2 bg-accent/10 rounded-lg mb-3">
-            <h3 className="text-2xl font-bold text-accent">
-              {selectedCategory.title}
-            </h3>
+            <h3 className="text-2xl font-bold text-accent">{selectedCategory.title}</h3>
           </div>
-          <p className="text-whiteGray max-w-3xl mx-auto">
-            {selectedCategory.description}
-          </p>
+          <p className="text-whiteGray max-w-3xl mx-auto">{selectedCategory.description}</p>
         </div>
 
         {/* FAQ Accordion */}

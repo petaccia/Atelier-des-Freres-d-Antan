@@ -17,7 +17,7 @@ export const servicesClientData = [
   },
   {
     title: "Serrurerie",
-    icon: GiKeyLock ,
+    icon: GiKeyLock,
     services: servicesSerrurerieData,
   },
 ];

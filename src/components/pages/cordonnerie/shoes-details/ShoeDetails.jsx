@@ -4,17 +4,17 @@ import shoeDetails from "../../../../../public/img/cordonnerie/shoe-details.jpg"
 import Annotations from "./Annotations";
 
 export default function ShoeDetails() {
-    return (
-        <div className="relative w-screen h-screen">
-            {/* overlay sur l'image */}
-            <div className="absolute w-full h-full bg-black opacity-50"></div>
-            <Image 
-                src={shoeDetails}
-                alt="Shoe details"
-                fill
-                className="object-contain shadow-2xl rounded-lg" 
-            />
-            <Annotations />
-        </div>
-    );
+  return (
+    <div className="relative w-screen h-screen">
+      {/* overlay sur l'image */}
+      <div className="absolute w-full h-full bg-black opacity-50"></div>
+      <Image
+        src={shoeDetails}
+        alt="Shoe details"
+        fill
+        className="object-contain shadow-2xl rounded-lg"
+      />
+      <Annotations />
+    </div>
+  );
 }

@@ -4,4 +4,4 @@ import { leatherRepairData } from "../data/leatherRepairData";
 
 export default function LeatherRepairSection() {
   return <ContentImageSection {...leatherRepairData} id="leather-repair" />;
-};
+}

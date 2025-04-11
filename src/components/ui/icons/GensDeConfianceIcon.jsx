@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function GensDeConfianceIcon({ size = 20 }) {
   return (
-   <Image
+    <Image
       src="/icons/social/gens-de-confiance.svg"
       alt="Gens de Confiance"
       width={size}

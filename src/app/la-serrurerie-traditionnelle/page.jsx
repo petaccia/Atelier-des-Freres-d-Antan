@@ -11,13 +11,13 @@ import PageTitle from "@/components/ui/pageTitle/PageTitle";
 export default function LaSerrureriePage() {
   return (
     <div className="bg-primary pt-32">
-            <PageTitle title="La serrurerie" />
-            <Carousel slides={carouselSlidesSerr} />
-            <ServicesSection services={servicesSerrurerieData } />
-            <SystemClosedSection />
-            <KeyDuplicationSection />
-            <SecuritySystemSection />
-            <EmergencySection />
+      <PageTitle title="La serrurerie" />
+      <Carousel slides={carouselSlidesSerr} />
+      <ServicesSection services={servicesSerrurerieData} />
+      <SystemClosedSection />
+      <KeyDuplicationSection />
+      <SecuritySystemSection />
+      <EmergencySection />
     </div>
   );
 }

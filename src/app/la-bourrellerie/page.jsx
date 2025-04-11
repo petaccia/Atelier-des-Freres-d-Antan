@@ -11,13 +11,13 @@ import PageTitle from "@/components/ui/pageTitle/PageTitle";
 export default function BourrelleriePage() {
   return (
     <div className="bg-primary pt-32">
-            <PageTitle title="La bourrellerie" />
-            <Carousel slides={carouselSlidesBour} />
-            <ServicesSection services={servicesBourrellerieData} />
-            <BagRepairSection />
-            <CustomBeltsSection />
-            <LeatherCareSection />
-            <LeatherRepairBour />
-            </div>
+      <PageTitle title="La bourrellerie" />
+      <Carousel slides={carouselSlidesBour} />
+      <ServicesSection services={servicesBourrellerieData} />
+      <BagRepairSection />
+      <CustomBeltsSection />
+      <LeatherCareSection />
+      <LeatherRepairBour />
+    </div>
   );
 }

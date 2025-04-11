@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from "react-toastify";
 import ServiceSelection from "./components/ServiceSelection";
 import DetailsInput from "./components/DetailsInput";
 import SubmitButton from "./components/SubmitButton"; // Nouveau composant importé
@@ -15,7 +15,7 @@ export default function ClientRequestForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formIsValid) {
       toast.error("Veuillez sélectionner au moins un service");
       return;
@@ -24,15 +24,15 @@ export default function ClientRequestForm() {
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       const formData = {
         serviceType: selectedService.title,
-        selectedServices: selectedOptions.map(opt => opt.title),
-        additionalDetails
+        selectedServices: selectedOptions.map((opt) => opt.title),
+        additionalDetails,
       };
 
-      console.log('Données envoyées:', formData);
+      console.log("Données envoyées:", formData);
 
       setSelectedService(null);
       setSelectedOptions([]);
@@ -70,10 +70,7 @@ export default function ClientRequestForm() {
             />
           )}
 
-          <SubmitButton
-            isSubmitting={isSubmitting}
-            disabled={!formIsValid}
-          />
+          <SubmitButton isSubmitting={isSubmitting} disabled={!formIsValid} />
         </form>
 
         <ToastContainer
