@@ -1,3 +1,4 @@
+@import "tailwindcss";
 /* Importation locale de Josefin Sans */
 @font-face {
   font-family: "Josefin Sans";
@@ -54,12 +55,11 @@
   font-style: normal;
   font-display: swap;
 }
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Petrona+One&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Petrona+One&display=swap"); */
 
-@import "tailwindcss";
 
-:root {
+@theme {
   --font-primary: "Josefin Sans", sans-serif; /* Police de votre choix */
   --font-secondary: "Poppins", sans-serif; /* Police de votre choix */
   --font-tertiary: "Petrona One", cursive; /* Police de votre choix */
