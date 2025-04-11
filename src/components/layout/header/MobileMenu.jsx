@@ -5,23 +5,22 @@ import { BiHome, BiHistory, BiEnvelope } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock } from "react-icons/gi";
 import { useState } from "react";
 import { MdClose, MdKeyboardArrowRight } from "react-icons/md";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function MobileMenu() {
-  const [activeTab, setActiveTab] = useState("accueil");
-  const [overlayMenu, setOverlayMenu] = useState(null);
   const pathname = usePathname();
-
-  // Déterminer l'onglet actif en fonction du chemin
-  const getActiveTabFromPath = (path) => {
-    if (path === "/") return "accueil";
-    if (path.includes("cordonnerie") || path.includes("bourrellerie")) return "cordonnerie";
-    if (path.includes("serrurerie") || path.includes("mon-projet")) return "serrurerie";
-    if (path.includes("process") || path.includes("savoir-faire") || 
-        path.includes("engagements") || path.includes("histoire")) return "apropos";
-    if (path.includes("contact")) return "contact";
+  const [activeTab, setActiveTab] = useState(() => {
+    // Initialiser l'onglet actif en fonction du chemin actuel
+    if (pathname === "/") return "accueil";
+    if (pathname.includes("cordonnerie") || pathname.includes("bourrellerie")) return "cordonnerie";
+    if (pathname.includes("serrurerie") || pathname.includes("mon-projet")) return "serrurerie";
+    if (pathname.includes("process") || pathname.includes("savoir-faire") || 
+        pathname.includes("engagements") || pathname.includes("histoire")) return "apropos";
+    if (pathname.includes("contact")) return "contact";
     return "accueil";
-  };
+  });
+  const [overlayMenu, setOverlayMenu] = useState(null);
 
   // Fermer l'overlay
   const closeOverlay = () => {
@@ -62,13 +61,13 @@ export default function MobileMenu() {
   return (
     <>
       {/* Barre de navigation fixe en bas */}
-      <nav className="fixed inset-x-0 bottom-0 bg-white shadow-md md:hidden z-40">
+      <nav className="fixed inset-x-0 bottom-0 bg-primary-dark shadow-lg border-t border-accent/20 backdrop-blur-sm md:hidden z-40">
         <div className="flex justify-around py-4">
           {/* Accueil */}
           <Link href="/">
             <div 
               className={`flex flex-col items-center space-y-1 ${
-                activeTab === "accueil" ? "text-accent" : "text-gray-600"
+                activeTab === "accueil" ? "text-accent" : "text-white/80 hover:text-accent-light"
               }`}
               onClick={() => setActiveTab("accueil")}
             >
@@ -79,8 +78,8 @@ export default function MobileMenu() {
 
           {/* Cordonnerie - avec overlay */}
           <div 
-            className={`flex flex-col items-center space-y-1 ${
-              activeTab === "cordonnerie" ? "text-accent" : "text-gray-600"
+            className={`flex flex-col items-center space-y-1 cursor-pointer ${
+              activeTab === "cordonnerie" ? "text-accent" : "text-white/80 hover:text-accent-light"
             }`}
             onClick={() => {
               setActiveTab("cordonnerie");
@@ -93,8 +92,8 @@ export default function MobileMenu() {
 
           {/* Serrurerie - avec overlay */}
           <div 
-            className={`flex flex-col items-center space-y-1 ${
-              activeTab === "serrurerie" ? "text-accent" : "text-gray-600"
+            className={`flex flex-col items-center space-y-1 cursor-pointer ${
+              activeTab === "serrurerie" ? "text-accent" : "text-white/80 hover:text-accent-light"
             }`}
             onClick={() => {
               setActiveTab("serrurerie");
@@ -107,8 +106,8 @@ export default function MobileMenu() {
 
           {/* À propos - avec overlay */}
           <div 
-            className={`flex flex-col items-center space-y-1 ${
-              activeTab === "apropos" ? "text-accent" : "text-gray-600"
+            className={`flex flex-col items-center space-y-1 cursor-pointer ${
+              activeTab === "apropos" ? "text-accent" : "text-white/80 hover:text-accent-light"
             }`}
             onClick={() => {
               setActiveTab("apropos");
@@ -123,7 +122,7 @@ export default function MobileMenu() {
           <Link href="/contact">
             <div 
               className={`flex flex-col items-center space-y-1 ${
-                activeTab === "contact" ? "text-accent" : "text-gray-600"
+                activeTab === "contact" ? "text-accent" : "text-white/80 hover:text-accent-light"
               }`}
               onClick={() => setActiveTab("contact")}
             >
@@ -136,8 +135,8 @@ export default function MobileMenu() {
 
       {/* Overlay pour les sous-menus */}
       {overlayMenu && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 md:hidden">
-          <div className="bg-primary w-full max-w-sm rounded-xl p-6 relative">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 md:hidden">
+          <div className="bg-primary-dark/90 w-full max-w-sm rounded-xl border border-accent/20 p-6 relative shadow-xl">
             <button 
               className="absolute top-4 right-4 text-white hover:text-accent"
               onClick={closeOverlay}
@@ -152,7 +151,7 @@ export default function MobileMenu() {
                 <Link 
                   key={index} 
                   href={item.path}
-                  className="flex items-center justify-between w-full p-3 bg-primary-dark/50 hover:bg-primary-dark text-white rounded-lg transition-colors"
+                  className="flex items-center justify-between w-full p-3 bg-black/30 hover:bg-accent/20 text-white rounded-lg transition-colors border border-white/10 hover:border-accent/30"
                   onClick={closeOverlay}
                 >
                   <span>{item.label}</span>
