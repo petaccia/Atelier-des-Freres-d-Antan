@@ -1,69 +1,13 @@
-/* Importation locale de Josefin Sans */
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-ExtraLight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Polices gérées par next/font/google dans layout.jsx */
 
 @import "tailwindcss";
 
-/* Importation de Petrona One */
-@import url("https://fonts.googleapis.com/css2?family=Petrona+One&display=swap");
+/* Toutes les polices sont gérées par next/font/google dans layout.jsx */
 
-:root {
-  --font-primary: "Josefin Sans", sans-serif; /* Police locale */
+@theme {
+  --font-primary: var(--font-josefin-sans), sans-serif; /* Police via next/font */
   --font-secondary: var(--font-poppins), sans-serif; /* Police via next/font */
-  --font-tertiary: "Petrona One", cursive; /* Police via import CSS */
+  --font-tertiary: var(--font-petrona), cursive; /* Police via next/font */
 
   --font-size-3xs: 0.625rem; /* 8px */
 
@@ -88,49 +32,124 @@
   --screen-xl: 1280px;
 }
 
-@layer base {
+/* Base styles for typography */
+h1 {
+  font-family: var(--font-josefin-sans), sans-serif;
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 100; /* font-thin */
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* tracking-widest */
+}
+
+@media (min-width: 640px) {
   h1 {
-    font-family: var(--font-primary);
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin text-white uppercase tracking-widest;
-  }
-  h2 {
-    font-family: var(--font-primary);
-    @apply text-xl md:text-5xl tracking-widest uppercase font-thin mb-16;
-  }
-
-  h3 {
-    font-family: var(--font-secondary);
-    @apply text-sm sm:text-2xl md:text-3xl font-medium tracking-widest uppercase;
-  }
-
-  p {
-    font-family: var(--font-secondary);
-
-    @apply text-xs sm:text-base md:text-xl tracking-wider;
-  }
-  blockquote {
-    @apply sm:text-sm md:text-xl tracking-wider;
+    font-size: 2.25rem; /* sm:text-4xl */
   }
 }
 
-@media (0px <= width <= 390px) {
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem; /* md:text-5xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3.75rem; /* lg:text-6xl */
+  }
+}
+
+h2 {
+  font-family: var(--font-josefin-sans), sans-serif;
+  font-size: 1.25rem; /* text-xl */
+  letter-spacing: 0.1em; /* tracking-widest */
+  text-transform: uppercase;
+  font-weight: 100; /* font-thin */
+  margin-bottom: 4rem; /* mb-16 */
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 3rem; /* md:text-5xl */
+  }
+}
+
+h3 {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  letter-spacing: 0.1em; /* tracking-widest */
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  h3 {
+    font-size: 1.5rem; /* sm:text-2xl */
+  }
+}
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.875rem; /* md:text-3xl */
+  }
+}
+
+p {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.75rem; /* text-xs */
+  letter-spacing: 0.05em; /* tracking-wider */
+}
+
+@media (min-width: 640px) {
+  p {
+    font-size: 1rem; /* sm:text-base */
+  }
+}
+
+@media (min-width: 768px) {
+  p {
+    font-size: 1.25rem; /* md:text-xl */
+  }
+}
+
+blockquote {
+  letter-spacing: 0.05em; /* tracking-wider */
+}
+
+@media (min-width: 640px) {
+  blockquote {
+    font-size: 0.875rem; /* sm:text-sm */
+  }
+}
+
+@media (min-width: 768px) {
+  blockquote {
+    font-size: 1.25rem; /* md:text-xl */
+  }
+}
+
+@media (max-width: 390px) {
   blockquote {
     font-size: var(--font-size-3xs);
   }
 }
 
-@media (390px <= width <= 430px) {
+@media (min-width: 390px) and (max-width: 430px) {
   h2 {
-    @apply font-bold;
+    font-weight: 700; /* font-bold */
   }
   h3 {
-    @apply text-xl h-12;
+    font-size: 1.25rem; /* text-xl */
+    height: 3rem; /* h-12 */
   }
   p {
-    @apply mt-12 text-base;
+    margin-top: 3rem; /* mt-12 */
+    font-size: 1rem; /* text-base */
   }
   blockquote {
-    @apply text-xs h-16;
+    font-size: 0.75rem; /* text-xs */
+    height: 4rem; /* h-16 */
   }
 }
 
