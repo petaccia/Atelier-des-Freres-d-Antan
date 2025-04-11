@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-medium mb-4 text-whiteAmber tracking-wider uppercase">
+            <h3 className=" mb-4 text-whiteAmber tracking-wider uppercase">
               Suivez-nous
             </h3>
             <SocialLinks
@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 mb-16">
           {/* Section Atelier */}
           <div className="bg-primary-dark/50 p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-accent/5 transition-all duration-300">
-            <h3 className="text-xl font-medium mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
+            <h3 className=" mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
               L'Atelier
             </h3>
             <div className="space-y-4">
@@ -75,7 +75,7 @@ export default function Footer() {
 
           {/* Section Nos Services */}
           <div className="bg-primary-dark/50 p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-accent/5 transition-all duration-300">
-            <h3 className="text-xl font-medium mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
+            <h3 className=" mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
               Nos Services
             </h3>
             <ul className="space-y-3">
@@ -120,7 +120,7 @@ export default function Footer() {
 
           {/* Section À Propos */}
           <div className="bg-primary-dark/50 p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-accent/5 transition-all duration-300">
-            <h3 className="text-xl font-medium mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
+            <h3 className="mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
               À Propos
             </h3>
             <ul className="space-y-3">
@@ -176,7 +176,7 @@ export default function Footer() {
 
           {/* Section Contact */}
           <div className="bg-primary-dark/50 p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-accent/5 transition-all duration-300">
-            <h3 className="text-xl font-medium mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
+            <h3 className="mb-6 text-whiteAmber tracking-wider uppercase border-b border-accent/20 pb-2">
               Contact
             </h3>
             <div className="space-y-4">
@@ -199,7 +199,7 @@ export default function Footer() {
                 </Link>
               </div>
               <div className="mt-4 pt-4 border-t border-white/10">
-                <p className="text-whiteGray/80 mb-2 text-sm">Zone d'intervention :</p>
+                <p className="text-whiteGray/80 mb-2">Zone d'intervention :</p>
                 <p className="text-whiteGray/80 text-sm">
                   Montfort l'Amaury et ses environs, Garancières, Houdan, La Queue-les-Yvelines,
                   Galluis, les Mesnuls, Gambais, les Essarts, Elancourt, Jouars-Pontchartrain,

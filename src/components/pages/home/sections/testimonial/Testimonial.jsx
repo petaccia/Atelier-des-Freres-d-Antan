@@ -11,7 +11,7 @@ import TestimonialCard from "./TestimonialCard";
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
+    <section className="bg-gradient-to-b from-whiteAmber to-whiteAmber/40">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center">
           <h2 className=" text-black">Témoignages</h2>
