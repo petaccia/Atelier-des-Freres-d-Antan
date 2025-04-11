@@ -10,23 +10,27 @@ export const servicesDataHome = [
     title: "Dépannage Urgence",
     description: "Porte claquée, cambriolage, clé cassée - Interventions rapides",
     img: depan.src,
+    href: "tel:0788416391",
   },
   {
     id: 2,
     title: "Blindage de Porte",
     description: "Sécurisation de votre porte et de vos accès",
     img: doorLock.src,
+    href: "/#traditional-locksmith",
   },
   {
     id: 3,
     title: "Serrurerie Métallique",
     description: "Création sur mesure de pièces artisanales",
     img: feron.src,
+    href: "/contact"
   },
   {
     id: 4,
     title: "Reproduction de Clés",
     description: "Votre clé cassée - Reproduction rapide et sur mesure",
     img: product_keys.src,
+    href: "/#key-duplication",
   },
 ];

@@ -9,6 +9,7 @@
 
 .backface-hidden {
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .rotate-y-180 {
@@ -21,28 +22,42 @@
 
 /* Fix for mobile devices */
 @media (max-width: 767px) {
-  .md-no-transform {
-    transform: none !important;
-    transition: opacity 0.5s ease-in-out !important;
+  .perspective-1000 {
+    perspective: none;
   }
-  
-  .md-hidden {
+
+  .transform-style-3d {
+    transform-style: flat;
+  }
+
+  .backface-hidden {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+
+  /* Alternative approach for mobile using opacity */
+  .group:hover .absolute:first-child {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .group:hover .absolute:last-child {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Hide back side by default on mobile */
+  .transform.rotate-y-180 {
     opacity: 0;
     pointer-events: none;
   }
-  
-  .md-visible {
+
+  /* Show back side on hover for mobile */
+  .group:hover .transform.rotate-y-180 {
     opacity: 1;
     pointer-events: auto;
-  }
-  
-  .group:hover .md-front-hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .group:hover .md-back-visible {
-    opacity: 1;
-    pointer-events: auto;
+    transform: none;
   }
 }
