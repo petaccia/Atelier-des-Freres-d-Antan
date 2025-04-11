@@ -10,7 +10,7 @@ import ShopAddress from "@/components/ui/shopAddress/ShopAddress";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-whiteGray py-16 ">
+    <footer className="bg-black text-whiteGray py-16">
       <div className="container mx-auto px-4">
         {/* Section Logo et Description */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-12 pb-8 border-b border-white/10">
@@ -168,9 +168,8 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="text-center border-t border-white/10 pt-8">
+        <div className="text-center border-t border-white/10 pt-8 mb-8">
           <p className="text-whiteGray/70">&copy; {new Date().getFullYear()} L'Atelier des Frères d'Antan. Tous droits réservés.</p>
-          <p className="mt-2 text-whiteGray/50 text-sm">Serrurerie serrurier pages jaunes Yvelines</p>
         </div>
       </div>
     </footer>
