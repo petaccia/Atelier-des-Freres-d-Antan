@@ -32,124 +32,40 @@
   --screen-xl: 1280px;
 }
 
-/* Base styles for typography */
-h1 {
-  font-family: var(--font-josefin-sans), sans-serif;
-  font-size: 1.875rem; /* text-3xl */
-  font-weight: 100; /* font-thin */
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.1em; /* tracking-widest */
-}
-
-@media (min-width: 640px) {
-  h1 {
-    font-size: 2.25rem; /* sm:text-4xl */
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-}
 
-@media (min-width: 768px) {
-  h1 {
-    font-size: 3rem; /* md:text-5xl */
+  body {
+    font-family: var(--font-primary), sans-serif;
+    background-color: var(--color-primary-dark);
+    color: var(--color-whiteGray);
   }
-}
 
-@media (min-width: 1024px) {
   h1 {
-    font-size: 3.75rem; /* lg:text-6xl */
+    font-family: var(--font-josefin-sans), sans-serif;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin tracking-widest uppercase;
   }
-}
 
-h2 {
-  font-family: var(--font-josefin-sans), sans-serif;
-  font-size: 1.25rem; /* text-xl */
-  letter-spacing: 0.1em; /* tracking-widest */
-  text-transform: uppercase;
-  font-weight: 100; /* font-thin */
-  margin-bottom: 4rem; /* mb-16 */
-}
-
-@media (min-width: 768px) {
   h2 {
-    font-size: 3rem; /* md:text-5xl */
+    font-family: var(--font-josefin-sans), sans-serif;
+    @apply text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light md:font-thin tracking-widest uppercase py-8 md:py-16;
   }
-}
 
-h3 {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 500; /* font-medium */
-  letter-spacing: 0.1em; /* tracking-widest */
-  text-transform: uppercase;
-}
-
-@media (min-width: 640px) {
   h3 {
-    font-size: 1.5rem; /* sm:text-2xl */
+    font-family: var(--font-poppins), sans-serif;
+    @apply text-base sm:text-base md:text-lg lg:text-xl font-medium tracking-wider uppercase;
   }
-}
 
-@media (min-width: 768px) {
-  h3 {
-    font-size: 1.875rem; /* md:text-3xl */
-  }
-}
-
-p {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 0.75rem; /* text-xs */
-  letter-spacing: 0.05em; /* tracking-wider */
-}
-
-@media (min-width: 640px) {
   p {
-    font-size: 1rem; /* sm:text-base */
+    font-family: var(--font-poppins), sans-serif;
+    @apply text-xs sm:text-sm font-thin tracking-wider;
   }
-}
 
-@media (min-width: 768px) {
-  p {
-    font-size: 1.25rem; /* md:text-xl */
-  }
-}
-
-blockquote {
-  letter-spacing: 0.05em; /* tracking-wider */
-}
-
-@media (min-width: 640px) {
   blockquote {
-    font-size: 0.875rem; /* sm:text-sm */
-  }
-}
-
-@media (min-width: 768px) {
-  blockquote {
-    font-size: 1.25rem; /* md:text-xl */
-  }
-}
-
-@media (max-width: 390px) {
-  blockquote {
-    font-size: var(--font-size-3xs);
-  }
-}
-
-@media (min-width: 390px) and (max-width: 430px) {
-  h2 {
-    font-weight: 700; /* font-bold */
-  }
-  h3 {
-    font-size: 1.25rem; /* text-xl */
-    height: 3rem; /* h-12 */
-  }
-  p {
-    margin-top: 3rem; /* mt-12 */
-    font-size: 1rem; /* text-base */
-  }
-  blockquote {
-    font-size: 0.75rem; /* text-xs */
-    height: 4rem; /* h-16 */
+    font-family: var(--font-poppins), sans-serif;
+    @apply text-xs sm:text-sm md:text-xl lg:text-2xl font-light tracking-wider;
   }
 }
 

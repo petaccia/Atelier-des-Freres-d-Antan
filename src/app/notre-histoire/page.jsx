@@ -26,7 +26,7 @@ export default function NotreHistoire() {
         </div>
 
         {/* Contenu superposé sur l'image */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
+        <div className="relative h-full flex flex-col items-center justify-center px-4 text-center">
           <div className="max-w-4xl">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               L'Histoire de l'Atelier des Frères d'Antan
@@ -136,11 +136,9 @@ export default function NotreHistoire() {
       </div>
 
       {/* Valeurs */}
-      <div className="bg-primary-dark py-20">
+      <div className="bg-primary-dark pb-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-whiteAmber text-center mb-16">
-            Nos Valeurs Fondamentales
-          </h2>
+          <h2 className=" text-whiteAmber text-center ">Nos Valeurs Fondamentales</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-primary p-8 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-300 shadow-lg hover:shadow-accent/10">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
@@ -185,10 +183,10 @@ export default function NotreHistoire() {
       </div>
 
       {/* CTA Section */}
-      <section className="py-16">
+      <section className="bg-primary pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-whiteAmber mb-6">Découvrez Notre Atelier</h2>
+            <h2 className=" text-whiteAmber">Découvrez Notre Atelier</h2>
             <p className="text-whiteGray text-lg mb-8 max-w-2xl mx-auto">
               Venez nous rencontrer et découvrir notre atelier à Montfort l'Amaury. Nous serons
               ravis de vous accueillir et de vous présenter notre travail.

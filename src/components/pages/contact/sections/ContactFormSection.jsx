@@ -50,9 +50,9 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section id="contact-form" className="py-16 bg-black">
+    <section id="contact-form" className="pb-20 bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-whiteAmber mb-12">Envoyez-nous un message</h2>
+        <h2 className="text-center text-whiteAmber ">Envoyez-nous un message</h2>
 
         <div className="max-w-3xl mx-auto bg-primary-dark rounded-2xl p-6 md:p-8 shadow-xl border border-accent/20">
           {submitSuccess && (

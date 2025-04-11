@@ -21,12 +21,12 @@ export default function ContentImageSection({
   const imageContent = hasMultipleImages ? images : [{ src: imageSrc, alt: imageAlt }];
 
   return (
-    <section id={id} className={`py-20 ${bgColor}`}>
+    <section id={id} className={`pb-20 ${bgColor}`}>
       <div className="container mx-auto px-4">
         <h2
           className={`text-center
           ${bgColor === "bg-black" || bgColor === "bg-primary" ? "text-whiteAmber" : "text-primary"}
-          mb-12`}
+          `}
         >
           {title}
         </h2>
