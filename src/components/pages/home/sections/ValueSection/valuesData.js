@@ -9,27 +9,21 @@ export const valuesData = [
     title: "Savoir-Faire Artisanal",
     description: "Un savoir-faire transmis de génération en génération",
     icon: () => <FaHandPaper className="text-5xl text-accent" />,
-    color: "accent"
+    color: "accent",
   },
   {
     title: "Ecologique",
     description: "Préserver l'environnement",
     icon: () => (
-      <Image 
-        src={olive}
-        alt="Ecologique"
-        width={40}
-        height={40}
-        className="object-contain"
-      />
+      <Image src={olive} alt="Ecologique" width={40} height={40} className="object-contain" />
     ),
-    color: "green-500"
-  }, 
+    color: "green-500",
+  },
   {
     title: "Travail Français",
     description: "De la fabrication française",
     icon: () => (
-      <Image 
+      <Image
         src={french}
         alt="Travail Français"
         width={40}
@@ -37,12 +31,12 @@ export const valuesData = [
         className="object-contain"
       />
     ),
-    color: "blue-500"
+    color: "blue-500",
   },
   {
     title: "Famille",
     description: "Un travail en famille",
     icon: () => <MdOutlineFamilyRestroom className="text-5xl text-accent" />,
-    color: "accent"
-  }
+    color: "accent",
+  },
 ];

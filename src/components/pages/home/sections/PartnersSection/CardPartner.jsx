@@ -16,14 +16,10 @@ export default function CardPartner({ partner }) {
       </div>
 
       {/* Nom du partenaire */}
-      <p className="text-base md:text-lg font-medium text-gray-800 mt-2 sm:mt-4">
-        {partner.name}
-      </p>
+      <p className="text-base md:text-lg font-medium text-gray-800 mt-2 sm:mt-4">{partner.name}</p>
 
       {/* Description du partenaire */}
-      <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
-        {partner.description}
-      </p>
+      <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">{partner.description}</p>
     </div>
   );
 }

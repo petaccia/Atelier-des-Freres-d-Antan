@@ -42,10 +42,13 @@ export default function NotreHistoire() {
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <p className="text-xl text-whiteGray mb-6 leading-relaxed">
-            L'Atelier des Frères d'Antan est né de la rencontre entre deux passions artisanales : la cordonnerie et la serrurerie. Deux métiers traditionnels, deux frères, une même vision de l'excellence.
+            L'Atelier des Frères d'Antan est né de la rencontre entre deux passions artisanales : la
+            cordonnerie et la serrurerie. Deux métiers traditionnels, deux frères, une même vision
+            de l'excellence.
           </p>
           <p className="text-lg text-whiteAmber">
-            Découvrez comment notre histoire familiale a façonné notre approche du métier et notre engagement envers la qualité.
+            Découvrez comment notre histoire familiale a façonné notre approche du métier et notre
+            engagement envers la qualité.
           </p>
         </div>
       </div>
@@ -67,10 +70,14 @@ export default function NotreHistoire() {
               La naissance d'un projet fraternel
             </h3>
             <p className="text-whiteGray text-lg leading-relaxed">
-              Après des années passées à se former et à exercer dans les entreprises familiales respectives, Nicolas et Guillaume ont décidé d'unir leurs savoir-faire pour créer un atelier à leur image.
+              Après des années passées à se former et à exercer dans les entreprises familiales
+              respectives, Nicolas et Guillaume ont décidé d'unir leurs savoir-faire pour créer un
+              atelier à leur image.
             </p>
             <p className="text-whiteGray text-lg leading-relaxed">
-              L'Atelier des Frères d'Antan a ouvert ses portes en 2022 à Montfort l'Amaury, avec l'ambition de perpétuer les techniques traditionnelles tout en répondant aux besoins contemporains.
+              L'Atelier des Frères d'Antan a ouvert ses portes en 2022 à Montfort l'Amaury, avec
+              l'ambition de perpétuer les techniques traditionnelles tout en répondant aux besoins
+              contemporains.
             </p>
           </div>
         </div>
@@ -90,10 +97,13 @@ export default function NotreHistoire() {
               Un héritage familial précieux
             </h3>
             <p className="text-whiteGray text-lg leading-relaxed">
-              Notre histoire s'enracine dans une tradition familiale d'artisanat. Nos parents nous ont transmis non seulement des techniques et des savoir-faire, mais aussi des valeurs : l'exigence, la minutie, le respect du client et des matériaux.
+              Notre histoire s'enracine dans une tradition familiale d'artisanat. Nos parents nous
+              ont transmis non seulement des techniques et des savoir-faire, mais aussi des valeurs
+              : l'exigence, la minutie, le respect du client et des matériaux.
             </p>
             <p className="text-whiteGray text-lg leading-relaxed">
-              Cette transmission intergénérationnelle est au cœur de notre identité et guide chacune de nos réalisations.
+              Cette transmission intergénérationnelle est au cœur de notre identité et guide chacune
+              de nos réalisations.
             </p>
           </div>
         </div>
@@ -113,10 +123,13 @@ export default function NotreHistoire() {
               Notre vision pour l'avenir
             </h3>
             <p className="text-whiteGray text-lg leading-relaxed">
-              Nous croyons fermement que les métiers traditionnels ont toute leur place dans le monde moderne. Notre ambition est de préserver ces savoir-faire tout en les adaptant aux besoins contemporains.
+              Nous croyons fermement que les métiers traditionnels ont toute leur place dans le
+              monde moderne. Notre ambition est de préserver ces savoir-faire tout en les adaptant
+              aux besoins contemporains.
             </p>
             <p className="text-whiteGray text-lg leading-relaxed">
-              L'Atelier des Frères d'Antan se veut un lieu de transmission, où la qualité et l'authenticité priment sur la production de masse et l'obsolescence programmée.
+              L'Atelier des Frères d'Antan se veut un lieu de transmission, où la qualité et
+              l'authenticité priment sur la production de masse et l'obsolescence programmée.
             </p>
           </div>
         </div>
@@ -133,9 +146,12 @@ export default function NotreHistoire() {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <span className="text-3xl text-accent-light">1</span>
               </div>
-              <h3 className="text-xl font-bold text-whiteAmber text-center mb-4">Excellence Artisanale</h3>
+              <h3 className="text-xl font-bold text-whiteAmber text-center mb-4">
+                Excellence Artisanale
+              </h3>
               <p className="text-whiteGray text-center">
-                Nous nous engageons à maintenir les plus hauts standards de qualité dans chacune de nos réalisations, en accordant une attention méticuleuse aux détails.
+                Nous nous engageons à maintenir les plus hauts standards de qualité dans chacune de
+                nos réalisations, en accordant une attention méticuleuse aux détails.
               </p>
             </div>
 
@@ -143,9 +159,12 @@ export default function NotreHistoire() {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <span className="text-3xl text-accent-light">2</span>
               </div>
-              <h3 className="text-xl font-bold text-whiteAmber text-center mb-4">Authenticité & Tradition</h3>
+              <h3 className="text-xl font-bold text-whiteAmber text-center mb-4">
+                Authenticité & Tradition
+              </h3>
               <p className="text-whiteGray text-center">
-                Nous honorons les techniques traditionnelles tout en les adaptant aux besoins contemporains, préservant ainsi un patrimoine artisanal précieux.
+                Nous honorons les techniques traditionnelles tout en les adaptant aux besoins
+                contemporains, préservant ainsi un patrimoine artisanal précieux.
               </p>
             </div>
 
@@ -153,9 +172,12 @@ export default function NotreHistoire() {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <span className="text-3xl text-accent-light">3</span>
               </div>
-              <h3 className="text-xl font-bold text-whiteAmber text-center mb-4">Service & Proximité</h3>
+              <h3 className="text-xl font-bold text-whiteAmber text-center mb-4">
+                Service & Proximité
+              </h3>
               <p className="text-whiteGray text-center">
-                Nous cultivons une relation de confiance avec nos clients, basée sur l'écoute, le conseil personnalisé et un service de proximité attentif.
+                Nous cultivons une relation de confiance avec nos clients, basée sur l'écoute, le
+                conseil personnalisé et un service de proximité attentif.
               </p>
             </div>
           </div>
@@ -168,7 +190,8 @@ export default function NotreHistoire() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-whiteAmber mb-6">Découvrez Notre Atelier</h2>
             <p className="text-whiteGray text-lg mb-8 max-w-2xl mx-auto">
-              Venez nous rencontrer et découvrir notre atelier à Montfort l'Amaury. Nous serons ravis de vous accueillir et de vous présenter notre travail.
+              Venez nous rencontrer et découvrir notre atelier à Montfort l'Amaury. Nous serons
+              ravis de vous accueillir et de vous présenter notre travail.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link

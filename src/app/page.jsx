@@ -12,29 +12,28 @@ import { carouselSlides } from "@/components/pages/home/data/carouselSlides";
 import { servicesDataHome } from "@/components/pages/home/data/servicesDataHome";
 import PageTitle from "@/components/ui/pageTitle/PageTitle";
 
-
 export default function Home() {
   return (
     <>
       <div className="bg-primary pt-32">
         <PageTitle title="Bienvenue à l'Atelier des Frères d'Antan" />
-      <Carousel slides={carouselSlides} />
-      <EssentialsSection />
-      <ValueSection />
-      <HistorySection />
-      <ServicesSection services={servicesDataHome} />
-      <RealizationsSection />
-      <Testimonials />
-      <PhilosophySection />
-      <PartnerSection />
-      <Newsletter
-        title="Découvrez l'Art de la Durabilité"
-        description="Plongez dans l'univers de l'artisanat ! Recevez nos actualités, des promotions exclusives, des conseils d'experts en serrurerie et cordonnerie, et découvrez les coulisses de notre atelier."
-        buttonText="S'INSCRIRE"
-        loadingText="Inscription en cours..."
-        showSeparator={true}
-        separatorClassName="border-t border-white/10 max-w-7xl"
-      />
+        <Carousel slides={carouselSlides} />
+        <EssentialsSection />
+        <ValueSection />
+        <HistorySection />
+        <ServicesSection services={servicesDataHome} />
+        <RealizationsSection />
+        <Testimonials />
+        <PhilosophySection />
+        <PartnerSection />
+        <Newsletter
+          title="Découvrez l'Art de la Durabilité"
+          description="Plongez dans l'univers de l'artisanat ! Recevez nos actualités, des promotions exclusives, des conseils d'experts en serrurerie et cordonnerie, et découvrez les coulisses de notre atelier."
+          buttonText="S'INSCRIRE"
+          loadingText="Inscription en cours..."
+          showSeparator={true}
+          separatorClassName="border-t border-white/10 max-w-7xl"
+        />
       </div>
     </>
   );

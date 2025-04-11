@@ -32,10 +32,10 @@ export default function NosEngagements() {
             Celui-ci se décline en 4 engagements forts dévoilés ici.
           </p>
           <p className="text-lg text-whiteAmber">
-            Ces engagements sont au cœur de nos métiers et sont appliqués pour chacune de nos prestations.
+            Ces engagements sont au cœur de nos métiers et sont appliqués pour chacune de nos
+            prestations.
           </p>
         </div>
-
       </div>
 
       {/* Sections d'engagement avec ContentImageSection */}
@@ -50,7 +50,9 @@ export default function NosEngagements() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-whiteAmber mb-6">Vous avez un projet ?</h2>
             <p className="text-whiteGray text-lg mb-8 max-w-2xl mx-auto">
-              Découvrez comment notre engagement envers la qualité et le savoir-faire artisanal peut bénéficier à votre projet. Contactez-nous dès aujourd'hui pour discuter de vos besoins.
+              Découvrez comment notre engagement envers la qualité et le savoir-faire artisanal peut
+              bénéficier à votre projet. Contactez-nous dès aujourd'hui pour discuter de vos
+              besoins.
             </p>
             <Link
               href="/contact"

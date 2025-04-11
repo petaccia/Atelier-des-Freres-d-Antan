@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from 'react';
-import { FiMail } from 'react-icons/fi';
-import Image from 'next/image';
-import blacksmith from '../../../../../../public/img/sections/newletter/blacksmith.png';
+import { useState } from "react";
+import { FiMail } from "react-icons/fi";
+import Image from "next/image";
+import blacksmith from "../../../../../../public/img/sections/newletter/blacksmith.png";
 
 export default function NewLetter() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,12 +26,7 @@ export default function NewLetter() {
 
   return (
     <div className="w-full relative min-h-[900px] sm:min-h-[700px] md:min-h-[600px] overflow-hidden">
-      <Image
-        src={blacksmith}
-        alt="Newsletter Background"
-        fill
-        className="object-cover"
-      />
+      <Image src={blacksmith} alt="Newsletter Background" fill className="object-cover" />
 
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
@@ -49,14 +44,18 @@ export default function NewLetter() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="text-white">
               <p className="text-gray-200 mb-8">
-                Plongez dans l'univers de l'artisanat ! Recevez nos actualités, des promotions exclusives, des conseils d'experts en serrurerie et cordonnerie, et découvrez les coulisses de notre atelier. Abonnez-vous pour ne rien manquer.
+                Plongez dans l'univers de l'artisanat ! Recevez nos actualités, des promotions
+                exclusives, des conseils d'experts en serrurerie et cordonnerie, et découvrez les
+                coulisses de notre atelier. Abonnez-vous pour ne rien manquer.
               </p>
               <div className="space-y-3">
                 <p className="text-gray-200">
-                  <span className="font-semibold text-primary">✓</span> Conseils d'entretien exclusifs
+                  <span className="font-semibold text-primary">✓</span> Conseils d'entretien
+                  exclusifs
                 </p>
                 <p className="text-gray-200">
-                  <span className="font-semibold text-primary">✓</span> Promotions réservées aux abonnés
+                  <span className="font-semibold text-primary">✓</span> Promotions réservées aux
+                  abonnés
                 </p>
                 <p className="text-gray-200">
                   <span className="font-semibold text-primary">✓</span> Coulisses de l'atelier
@@ -89,7 +88,7 @@ export default function NewLetter() {
                     disabled={isLoading}
                     className="w-full bg-gradient-to-br from-primary to-primary-dark text-white px-6 py-4 rounded-xl hover:shadow-lg transition-all focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   >
-                    {isLoading ? 'Inscription en cours...' : "S'inscrire"}
+                    {isLoading ? "Inscription en cours..." : "S'inscrire"}
                   </button>
                 </form>
               )}

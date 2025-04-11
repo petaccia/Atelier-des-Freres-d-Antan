@@ -12,11 +12,11 @@ export default function Contact() {
     <div className="bg-primary pt-32 pb-24">
       <PageTitle title="Contactez-nous" />
       <ContactHero />
-        <IntroPageContact />
-        <ContactFormSection />
-        <CoordinatesSection />
-        <NewsletterSection />
-        <FaqSection />
+      <IntroPageContact />
+      <ContactFormSection />
+      <CoordinatesSection />
+      <NewsletterSection />
+      <FaqSection />
     </div>
-    );
+  );
 }

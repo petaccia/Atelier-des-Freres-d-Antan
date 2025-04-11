@@ -10,7 +10,7 @@ export default function MapButton({ destination, floating = true, className = ""
     setIsLoading(true);
     try {
       const url = await getMapsUrl(destination);
-      window.open(url, '_blank');
+      window.open(url, "_blank");
     } catch (error) {
       console.error("Erreur lors de l'ouverture de l'itinéraire:", error);
     } finally {
@@ -19,13 +19,15 @@ export default function MapButton({ destination, floating = true, className = ""
   };
 
   return (
-    <div className={`${floating ? 'absolute bottom-14 left-1/5 md:top-10 md:left-4 md:z-10' : ''} ${className}`}>
+    <div
+      className={`${floating ? "absolute bottom-14 left-1/5 md:top-10 md:left-4 md:z-10" : ""} ${className}`}
+    >
       <button
         onClick={handleClick}
         disabled={isLoading}
         className={`group flex items-center justify-center space-x-2 sm:space-x-4 px-4 sm:px-6 py-2 sm:py-3
-                  ${floating ? 'bg-primary/60 md:bg-accent/30' : 'bg-accent/50'} rounded-full shadow-lg
-                  hover:bg-black/30 transition-all duration-200 z-10 ${!floating ? 'w-full' : ''}`}
+                  ${floating ? "bg-primary/60 md:bg-accent/30" : "bg-accent/50"} rounded-full shadow-lg
+                  hover:bg-black/30 transition-all duration-200 z-10 ${!floating ? "w-full" : ""}`}
       >
         {/* Location indicator */}
         <div className="flex items-center space-x-2 text-white">
@@ -37,8 +39,10 @@ export default function MapButton({ destination, floating = true, className = ""
         <div className="w-px h-4 sm:h-6 bg-white/30"></div>
 
         {/* Action button */}
-        <div className="flex items-center space-x-2 text-white font-medium
-                        hover:text-white/80 transition-colors duration-200">
+        <div
+          className="flex items-center space-x-2 text-white font-medium
+                        hover:text-white/80 transition-colors duration-200"
+        >
           <span className="text-xs sm:text-sm">
             {isLoading ? "Chargement..." : "Obtenir l'itinéraire"}
           </span>
