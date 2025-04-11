@@ -8,7 +8,7 @@ export default function CardServices({ service }) {
   return (
     <div className="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-100 h-[400px] perspective-1000 transform-style-3d">
       {/* Front side */}
-      <div className="absolute inset-0 transform transition-transform duration-1000 ease-in-out group-hover:rotate-y-180 backface-hidden">
+      <div className="absolute inset-0 transform transition-transform duration-1000 ease-in-out group-hover:rotate-y-180 backface-hidden md-no-transform group-hover:md-front-hidden">
         {/* Image section */}
         <div className="absolute inset-0">
           <Image
@@ -18,7 +18,7 @@ export default function CardServices({ service }) {
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className={`
-             w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+             w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000
               `}
           />
           {/* Gradient overlay */}
@@ -35,7 +35,7 @@ export default function CardServices({ service }) {
       </div>
 
       {/* Back side */}
-      <div className="absolute inset-0 transform rotate-y-180 backface-hidden transition-transform duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:rotate-y-0 bg-primary p-8 flex flex-col justify-center items-center text-white">
+      <div className="absolute inset-0 transform rotate-y-180 backface-hidden transition-transform duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:rotate-y-0 bg-primary p-8 flex flex-col justify-center items-center text-white md-no-transform md-hidden group-hover:md-back-visible">
         <h3 className=" text-center mb-6">{service.title}</h3>
         <p className="text-center text-white/90 text-lg mb-8">{service.description}</p>
         <Link href={service.href || "#"}>
