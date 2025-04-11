@@ -5,7 +5,6 @@ import FaqAccordion from "./FaqAccordion";
 
 export default function FaqCategories({
   categories,
-  title = "Questions Fréquentes",
   subtitle = "",
   className = ""
 }) {
@@ -17,11 +16,6 @@ export default function FaqCategories({
 
   return (
     <div className={`${className}`}>
-      {title && (
-        <h2 className="text-center text-3xl font-bold text-whiteAmber mb-4">
-          {title}
-        </h2>
-      )}
 
       {subtitle && (
         <p className="text-center text-whiteGray mb-10 max-w-3xl mx-auto">
