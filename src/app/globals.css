@@ -1,65 +1,11 @@
-/* Importation locale de Josefin Sans */
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-ExtraLight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Josefin Sans";
-  src: url("/font/josefin_sans/JosefinSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Petrona+One&display=swap");
-
+/* Importation locale de Josefin Sans */
 @import "tailwindcss";
 
-:root {
+
+@theme {
   --font-primary: "Josefin Sans", sans-serif; /* Police de votre choix */
   --font-secondary: "Poppins", sans-serif; /* Police de votre choix */
   --font-tertiary: "Petrona One", cursive; /* Police de votre choix */
