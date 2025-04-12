@@ -1,7 +1,7 @@
 export const partners = [
   {
     id: 1,
-    name: "La Vallée de Cheuseuvre",
+    name: "La Vallée de Cheuvreuse",
     logo: "/img/sections/partners/chevreuse.svg",
   },
   {
@@ -11,7 +11,7 @@ export const partners = [
   },
   {
     id: 3,
-    name: "Le journal le parisien",
+    name: "Le journal le Parisien",
     logo: "/img/sections/partners/leParisien.svg",
   },
   {
@@ -21,17 +21,17 @@ export const partners = [
   },
   {
     id: 5,
-    name: "Chambrte des métiers et du commerce",
+    name: "Chambre des métiers et du commerce",
     logo: "/img/sections/partners/cma.svg",
   },
   {
     id: 6,
-    name: "le réseau initiatives seines yvelines",
+    name: "Le réseau initiative seine Yvelines",
     logo: "/img/sections/partners/reseauInitiative.svg",
   },
   {
     id: 7,
-    name: "Paiment en ligne",
+    name: "Paiement en ligne",
     logo: "/img/sections/partners/KissKiss.svg",
   },
 ];
