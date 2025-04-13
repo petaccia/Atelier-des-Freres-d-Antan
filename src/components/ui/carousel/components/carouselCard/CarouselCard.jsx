@@ -20,7 +20,7 @@ export default function CarouselCard({ slide }) {
         <div className="max-w-xs md:max-w-xl mx-auto space-y-2 sm:space-y-4 ">
           {/* Titre, texte et citation */}
           <h3 className="h-14 sm:h-16 text-accent-light mb-1 xs:mb-12  ">{slide.title}</h3>
-          <p className=" sm:h-14 md:h-12 text-white max-w-2xl mb-12 md:my-8 ">{slide.text}</p>
+          <p className="h-2 sm:h-14 md:h-12 text-white max-w-2xl mb-12 md:my-8 ">{slide.text}</p>
           <blockquote className="h-10 sm:h-10 md:h-12 text-white italic   sm:mb-8 md:my-12">
             {slide.quote}
           </blockquote>
@@ -32,7 +32,7 @@ export default function CarouselCard({ slide }) {
           </div>
         </div>
         {/* Bouton de contact */}
-        <div className="button-container flex justify-center items-center mt-4 sm:mt-8">
+        <div className="button-container flex justify-center items-center mt-12 sm:mt-8">
           <ContactButton className=" bg-accent/30 hover:bg-primary/30 mb-4" />
         </div>
       </div>

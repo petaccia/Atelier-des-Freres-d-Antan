@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <div className="bg-primary pt-32">
-        <PageTitle title="Bienvenue à l'Atelier des Frères d'Antan" />
+        <PageTitle title="Bienvenue" />
         <Carousel slides={carouselSlides} />
         <EssentialsSection />
         <ValueSection />
