@@ -4,8 +4,6 @@
 
 /* Toutes les polices sont gérées par next/font/google dans layout.jsx */
 
-/* Import des styles pour les transformations 3D */
-@import "../styles/3d-transforms.css";
 
 @theme {
   --font-primary: var(--font-josefin-sans), sans-serif; /* Police via next/font */
