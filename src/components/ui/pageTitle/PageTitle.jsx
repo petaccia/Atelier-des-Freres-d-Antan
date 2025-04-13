@@ -7,7 +7,7 @@ export default function PageTitle({
 }) {
   return (
     <div
-      className={`"text-center mt-20 my-2 md:my-8" ${className}`}
+      className={`"text-center mt-20 my-4 md:my-8" ${className}`}
     >
       <h1 className={titleClassName}>{title}</h1>
     </div>
