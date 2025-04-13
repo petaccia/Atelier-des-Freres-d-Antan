@@ -1,7 +1,7 @@
 // MobileMenu.jsx
 "use client";
 import Link from "next/link";
-import { BiHome, BiHistory, BiEnvelope } from "react-icons/bi";
+import { BiHistory, BiEnvelope, BiStore } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock } from "react-icons/gi";
 import { useState } from "react";
 import { MdClose, MdKeyboardArrowRight } from "react-icons/md";
@@ -76,7 +76,7 @@ export default function MobileMenu() {
               }`}
               onClick={() => setActiveTab("accueil")}
             >
-              <BiHome size={24} />
+              <BiStore size={24} />
               <span className="text-xs">Accueil</span>
             </div>
           </Link>

@@ -18,6 +18,14 @@ export default function DesktopMenu() {
     <>
       {/* Menu Desktop */}
       <nav className="relative hidden md:flex md:text-sm space-x-6 font-primary capitalize font-light tracking-wider xl:text-lg">
+        {/* Accueil */}
+        <Link
+          href="/"
+          className={`hover:text-accent-light ${pathname === "/" ? "text-accent-light" : ""}`}
+        >
+          Accueil
+        </Link>
+
         {/* Cordonnerie avec sous-menu */}
         <div
           className="relative"
