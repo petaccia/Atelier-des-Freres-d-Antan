@@ -4,12 +4,9 @@ import Link from "next/link";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import logo from "../../../../public/logo/logo-blue.svg";
 
 export default function Header() {
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
 
   return (
     <header className="fixed top-0 w-full bg-primary shadow-md text-white z-10">
@@ -17,16 +14,12 @@ export default function Header() {
         <Image
           src={logo}
           alt="Logo"
-          width={200}
-          height={200}
-          className="w-[150px] h-[150px] md:w-[120px] md:h-[120px] lg:w-[100px] lg:h-[100px]"
+          width={500}
+          height={500}
+          className="w-[150px] h-[150px]"
         />
         <Link href="/">
-          {isHomePage ? (
-            <span className="hidden">Atelier des Frères d'Antan</span>
-          ) : (
-            <h1 className="text-xl pt-4 md:mt-0 mb-4 lg:mb-0">Atelier des Frères d'Antan</h1>
-          )}
+            <h1 className="hidden md:block text-xl pt-4 md:mt-0 mb-4 lg:mb-0">Atelier des Frères d'Antan</h1>
         </Link>
 
         {/* Menu Desktop */}
