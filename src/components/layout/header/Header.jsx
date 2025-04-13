@@ -13,7 +13,7 @@ export default function Header() {
         <Link href="/">
           <Image src={logo} alt="Logo" width={500} height={500} className="w-[150px] h-[150px]" />
         </Link>
-        
+
         {/* Menu Desktop */}
         <DesktopMenu />
 
