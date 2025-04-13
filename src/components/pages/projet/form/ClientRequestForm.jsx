@@ -3,12 +3,14 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import ServiceSelection from "./components/ServiceSelection";
 import DetailsInput from "./components/DetailsInput";
-import SubmitButton from "./components/SubmitButton"; // Nouveau composant importé
+import FileUpload from "./components/FileUpload";
+import SubmitButton from "./components/SubmitButton";
 
 export default function ClientRequestForm() {
   const [selectedService, setSelectedService] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [additionalDetails, setAdditionalDetails] = useState("");
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formIsValid = selectedService && selectedOptions.length > 0;
@@ -26,10 +28,16 @@ export default function ClientRequestForm() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      // Dans un cas réel, vous utiliseriez FormData pour envoyer les fichiers
       const formData = {
         serviceType: selectedService.title,
         selectedServices: selectedOptions.map((opt) => opt.title),
         additionalDetails,
+        files: uploadedFiles.map((file) => ({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+        })),
       };
 
       console.log("Données envoyées:", formData);
@@ -37,6 +45,7 @@ export default function ClientRequestForm() {
       setSelectedService(null);
       setSelectedOptions([]);
       setAdditionalDetails("");
+      setUploadedFiles([]);
 
       toast.success("Votre demande a été envoyée avec succès !");
     } catch (error) {
@@ -61,11 +70,15 @@ export default function ClientRequestForm() {
           />
 
           {formIsValid && (
-            <DetailsInput
-              value={additionalDetails}
-              onChange={(e) => setAdditionalDetails(e.target.value)}
-              isSubmitting={isSubmitting}
-            />
+            <>
+              <DetailsInput
+                value={additionalDetails}
+                onChange={(e) => setAdditionalDetails(e.target.value)}
+                isSubmitting={isSubmitting}
+              />
+
+              <FileUpload onFilesChange={setUploadedFiles} isSubmitting={isSubmitting} />
+            </>
           )}
 
           <SubmitButton isSubmitting={isSubmitting} disabled={!formIsValid} />
