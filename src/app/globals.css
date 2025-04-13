@@ -58,12 +58,12 @@
 
   h3 {
     font-family: var(--font-poppins), sans-serif;
-    @apply text-base sm:text-base md:text-lg lg:text-xl font-medium tracking-wider uppercase;
+    @apply text-base sm:text-base md:text-lg lg:text-3xl font-medium tracking-wider uppercase;
   }
 
   p {
     font-family: var(--font-poppins), sans-serif;
-    @apply text-xs sm:text-sm font-thin tracking-wider;
+    @apply text-xs sm:text-sm md:text-lg lg:text-xl font-thin tracking-wider;
   }
 
   blockquote {
