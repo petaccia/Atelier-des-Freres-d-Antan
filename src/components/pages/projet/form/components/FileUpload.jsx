@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState, useRef } from "react";
 import { FiUpload, FiX, FiFile, FiImage, FiVideo } from "react-icons/fi";
 
@@ -20,7 +21,7 @@ export default function FileUpload({ onFilesChange, isSubmitting }) {
 
     // Limiter à 5 fichiers maximum
     const newFiles = [...files, ...validFiles].slice(0, 5);
-    
+
     setFiles(newFiles);
     onFilesChange(newFiles);
   };
@@ -44,7 +45,7 @@ export default function FileUpload({ onFilesChange, isSubmitting }) {
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     if (e.dataTransfer.files.length > 0) {
       addFiles(Array.from(e.dataTransfer.files));
     }
@@ -71,7 +72,7 @@ export default function FileUpload({ onFilesChange, isSubmitting }) {
       <label className="block text-whiteGray  font-medium mb-2">
         <h3 className="text-xl font-semibold text-whiteAmber"> Ajouter des images ou vidéos</h3>
       </label>
-      
+
       <div
         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
           isDragging ? "border-accent bg-accent/10" : "border-gray-600 hover:border-accent/50"
@@ -90,7 +91,7 @@ export default function FileUpload({ onFilesChange, isSubmitting }) {
           className="hidden"
           disabled={isSubmitting}
         />
-        
+
         <FiUpload className="mx-auto h-12 w-12 text-accent" />
         <p className="mt-2  text-whiteGray ">
           Glissez-déposez des fichiers ici ou cliquez pour parcourir
@@ -98,9 +99,7 @@ export default function FileUpload({ onFilesChange, isSubmitting }) {
         <p className="text-xs text-whiteStone mt-1">
           Formats acceptés : images (JPG, PNG, GIF) et vidéos (MP4, MOV)
         </p>
-        <p className="text-xs text-whiteStone mt-1">
-          Maximum 5 fichiers, 10 Mo par fichier
-        </p>
+        <p className="text-xs text-whiteStone mt-1">Maximum 5 fichiers, 10 Mo par fichier</p>
       </div>
 
       {files.length > 0 && (
@@ -108,12 +107,17 @@ export default function FileUpload({ onFilesChange, isSubmitting }) {
           <p className="text-sm text-whiteGray mb-2">Fichiers sélectionnés ({files.length}/5):</p>
           <ul className="space-y-2">
             {files.map((file, index) => (
-              <li key={index} className="flex items-center justify-between bg-primary-dark/50 p-3 rounded-lg">
+              <li
+                key={index}
+                className="flex items-center justify-between bg-primary-dark/50 p-3 rounded-lg"
+              >
                 <div className="flex items-center space-x-3">
                   {getFilePreview(file) ? (
-                    <img 
-                      src={getFilePreview(file)} 
-                      alt={file.name} 
+                    <Image
+                      src={getFilePreview(file)}
+                      alt={file.name}
+                      width={40}
+                      height={40}
                       className="w-10 h-10 object-cover rounded"
                     />
                   ) : (
