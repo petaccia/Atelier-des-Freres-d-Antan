@@ -1,0 +1,94 @@
+/* Polices gérées par next/font/google dans layout.jsx */
+
+@import "tailwindcss";
+
+/* Toutes les polices sont gérées par next/font/google dans layout.jsx */
+
+@theme {
+  --font-primary: var(--font-josefin-sans), sans-serif; /* Police via next/font */
+  --font-secondary: var(--font-poppins), sans-serif; /* Police via next/font */
+  --font-tertiary: var(--font-petrona), cursive; /* Police via next/font */
+
+  --font-size-3xs: 0.625rem; /* 8px */
+
+  --color-primary: #185871; /* Bleu principal (extrait de votre CSS)*/
+  --color-primary-dark: #124354; /* Bleu sombre (extrait de votre CSS)*/
+  --color-primary-light: #e0f2f7; /* Bleu clair (extrait de votre CSS)*/
+  --color-secondary: #1919c3; /* Bleu secondaire (extrait de votre CSS)*/
+  --color-tertiary: #3c9a66; /* Vert pour les boutons */
+  --color-accent-light: #c8ac87; /* Marron clair pour le hover et active menu */
+  --color-accent: #9b7956; /* Marron pour les hover boutons */
+  --color-whiteGray: #ebebeb; /* Gris clair */
+  --color-blueLight: #edfcfe; /* Bleu clair */
+  --color-whiteAmber: #fff8e1; /* Jaune clair */
+  --color-whiteStone: #f8fafc; /* bg-stone-50 */
+  --color-whiteStoneDark: #f1f5f9; /* bg-stone-200 */
+
+  /* screen sizes */
+  --screen-xs: 480px;
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-primary), sans-serif;
+    background-color: var(--color-primary-dark);
+    color: var(--color-whiteGray);
+  }
+
+  h1 {
+    font-family: var(--font-josefin-sans), sans-serif;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin tracking-widest uppercase;
+  }
+
+  h2 {
+    font-family: var(--font-josefin-sans), sans-serif;
+    @apply text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light md:font-thin tracking-widest uppercase py-8 md:py-16;
+  }
+
+  h3 {
+    font-family: var(--font-poppins), sans-serif;
+    @apply text-base sm:text-base md:text-lg lg:text-3xl font-medium tracking-wider uppercase;
+  }
+
+  p {
+    font-family: var(--font-poppins), sans-serif;
+    @apply text-xs sm:text-sm md:text-lg lg:text-xl font-thin tracking-wider;
+  }
+
+  blockquote {
+    font-family: var(--font-poppins), sans-serif;
+    @apply text-xs sm:text-sm md:text-xl lg:text-2xl font-light tracking-wider;
+  }
+}
+
+/* color des icons svg */
+.icon-color {
+  fill: currentColor;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideRight {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
