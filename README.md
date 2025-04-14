@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Atelier Frères d'Antan
 
-## Getting Started
+Ce projet est structuré en plusieurs parties :
 
-First, run the development server:
+## Frontend
+
+Le dossier `frontend/` contient l'application Next.js qui gère l'interface utilisateur du site web.
+
+### Technologies utilisées
+
+- Next.js
+- React
+- Tailwind CSS
+- Framer Motion
+- Swiper
+
+### Installation et développement
 
 ```bash
+cd frontend
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Déploiement
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Le déploiement est géré par Vercel.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd frontend
+vercel
+```
 
-## Learn More
+Pour déployer en production :
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd frontend
+vercel --prod
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure du projet
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `frontend/` : Application Next.js
+  - `src/` : Code source de l'application
+  - `public/` : Fichiers statiques (images, polices, etc.)
+  - Fichiers de configuration (next.config.mjs, tailwind.config.js, etc.)
 
-## Deploy on Vercel
+## Branches Git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `dev` : Branche de développement principale
+- `feat/frontend-structure` : Restructuration du projet avec un dossier frontend dédié
+- `cleanup/remove-unused-files` : Suppression des fichiers inutiles après la restructuration
