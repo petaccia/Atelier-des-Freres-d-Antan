@@ -4,7 +4,7 @@ import { cobblerData, serrurierData } from "./cobblerData";
 
 export default function EssentialsSection() {
   return (
-    <section className=" bg-black">
+    <section className=" bg-black pb-20">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-white">LES ESSENTIELS</h2>
 
