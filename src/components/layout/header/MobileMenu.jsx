@@ -68,7 +68,6 @@ export default function MobileMenu() {
       {/* Barre de navigation fixe en bas */}
       <nav className="fixed inset-x-0 bottom-0 bg-primary-dark shadow-lg border-t border-accent/20 backdrop-blur-sm md:hidden z-40">
         <div className="flex justify-around py-4">
-          
           {/* Accueil */}
           <Link href="/">
             <div
