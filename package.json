@@ -1,22 +1,32 @@
 {
   "name": "atelier-freres-dantan",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "frontend:dev": "cd frontend && npm run dev",
-    "backend:dev": "cd backend && npm run dev",
-    "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\"",
-    "frontend:install": "cd frontend && npm install",
-    "backend:install": "cd backend && npm install",
-    "install:all": "npm install && npm run frontend:install && npm run backend:install",
-    "frontend:build": "cd frontend && npm run build",
-    "backend:build": "cd backend && npm run build",
-    "build": "npm run frontend:build && npm run backend:build",
-    "lint": "cd frontend && npm run lint",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "format": "prettier --write ."
   },
+  "dependencies": {
+    "framer-motion": "^12.6.3",
+    "next": "15.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-toastify": "^11.0.5",
+    "swiper": "^11.2.5"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "prettier": "^3.5.3"
-  }
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.0.13",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.2",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.0.13"
+  },
+  "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af"
 }
