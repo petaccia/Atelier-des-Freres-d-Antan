@@ -1,7 +1,7 @@
 // MobileMenu.jsx
 "use client";
 import Link from "next/link";
-import { BiHistory, BiEnvelope, BiStore } from "react-icons/bi";
+import { BiHistory, BiEnvelope, BiStore, BiPhone } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock } from "react-icons/gi";
 import { useState } from "react";
 import { MdClose, MdKeyboardArrowRight } from "react-icons/md";
@@ -68,6 +68,7 @@ export default function MobileMenu() {
       {/* Barre de navigation fixe en bas */}
       <nav className="fixed inset-x-0 bottom-0 bg-primary-dark shadow-lg border-t border-accent/20 backdrop-blur-sm md:hidden z-40">
         <div className="flex justify-around py-4">
+          
           {/* Accueil */}
           <Link href="/">
             <div
@@ -133,6 +134,13 @@ export default function MobileMenu() {
             >
               <BiEnvelope size={24} />
               <span className="text-xs">Contact</span>
+            </div>
+          </Link>
+          {/* Appeler */}
+          <Link href="tel:0788416391">
+            <div className="flex flex-col items-center space-y-1 text-white/80 hover:text-accent-light">
+              <BiPhone size={24} className="text-accent" />
+              <span className="text-xs">Appeler</span>
             </div>
           </Link>
         </div>
