@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "buildCommand": "npm run frontend:build",
+  "outputDirectory": "frontend/.next",
+  "installCommand": "npm run frontend:install",
+  "framework": "nextjs"
+}
