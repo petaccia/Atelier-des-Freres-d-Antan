@@ -12,8 +12,7 @@ export class AdminAuthController {
     const admin = await this.adminAuthService.validateAdmin(authDto);
     return {
       id: admin.id,
-      email: admin.email,
-      role: admin.role,
+      username: admin.username,
     }
   }
 }

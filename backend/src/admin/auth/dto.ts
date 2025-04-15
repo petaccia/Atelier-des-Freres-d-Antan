@@ -1,8 +1,9 @@
-import { IsString, IsEmail, MinLength } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
 
 export class AdminAuthDto {
-  @IsEmail()
-  email: string;
+  @IsString()
+  @MinLength(16)
+  username: string;
 
   @IsString()
   @MinLength(8)
