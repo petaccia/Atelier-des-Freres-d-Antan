@@ -1,39 +1,36 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
+import { PrismaClient } from '@prisma/client';
 import { AdminAuthDto } from './dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminAuthService {
-  constructor(private prisma: PrismaService) {}
+  private prisma = new PrismaClient();
 
-  async validateAdmin(adminAuthDto: AdminAuthDto) {
-    // Rechercher l'admin avec le username non hashé
+  constructor(private jwtService: JwtService) {}
+
+  async validateAdmin(authDto: AdminAuthDto) {
     const admin = await this.prisma.admin.findUnique({
-      where: {
-        username: adminAuthDto.username,
-
-      },
-      select: {
-        id: true,
-        username: true,
-        password: true,
-      },
+      where: { username: authDto.username },
     });
 
     if (!admin) {
-      throw new UnauthorizedException('Identification non reconnue');
+      throw new UnauthorizedException('Identifiants invalides');
     }
 
-    // Vérifier le mot de passe
-    const passwordValid = await bcrypt.compare(adminAuthDto.password, admin.password);
+    const passwordValid = await bcrypt.compare(authDto.password, admin.password);
 
     if (!passwordValid) {
-      throw new UnauthorizedException('Identification non reconnue');
+      throw new UnauthorizedException('Identifiants invalides');
     }
 
-    // Retourner l'admin sans le mot de passe
-    const { password, ...adminWithoutPassword } = admin;
-    return adminWithoutPassword;
+    const access_token = this.jwtService.sign({ 
+      sub: admin.id,
+      username: admin.username 
+    });
+
+    return { admin, access_token };
   }
 }
+
