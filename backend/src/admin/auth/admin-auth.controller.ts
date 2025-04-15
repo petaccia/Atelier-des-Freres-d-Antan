@@ -9,10 +9,11 @@ export class AdminAuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   async login(@Body() authDto: AdminAuthDto) {
-    const admin = await this.adminAuthService.validateAdmin(authDto);
+    const { admin, access_token } = await this.adminAuthService.validateAdmin(authDto);
     return {
       id: admin.id,
       username: admin.username,
+      access_token
     }
   }
 }
