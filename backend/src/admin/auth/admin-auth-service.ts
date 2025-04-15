@@ -8,20 +8,32 @@ export class AdminAuthService {
   constructor(private prisma: PrismaService) {}
 
   async validateAdmin(adminAuthDto: AdminAuthDto) {
-    const admin = await this.prisma.user.findUnique({
-      where: { email: adminAuthDto.email, role: 'ADMIN' },
+    // Rechercher l'admin avec le username non hashé
+    const admin = await this.prisma.admin.findUnique({
+      where: {
+        username: adminAuthDto.username,
+
+      },
+      select: {
+        id: true,
+        username: true,
+        password: true,
+      },
     });
 
     if (!admin) {
-      throw new UnauthorizedException('Indentification non reconnue.');;
+      throw new UnauthorizedException('Identification non reconnue');
     }
 
+    // Vérifier le mot de passe
     const passwordValid = await bcrypt.compare(adminAuthDto.password, admin.password);
 
     if (!passwordValid) {
-      throw new UnauthorizedException('Indentification non reconnue.');;
+      throw new UnauthorizedException('Identification non reconnue');
     }
 
-    return admin;
+    // Retourner l'admin sans le mot de passe
+    const { password, ...adminWithoutPassword } = admin;
+    return adminWithoutPassword;
   }
 }
