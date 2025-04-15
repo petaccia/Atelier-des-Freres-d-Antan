@@ -1,8 +1,9 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const ADMIN_AUTH_LOGIN_ENDPOINT = process.env.NEXT_PUBLIC_ADMIN_AUTH_LOGIN_ENDPOINT ;
 
 export const adminAuth = {
   async login(credentials) {
-    const response = await fetch(`${API_URL}/admin/auth/login`, {
+    const response = await fetch(`${API_URL}${ADMIN_AUTH_LOGIN_ENDPOINT}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
