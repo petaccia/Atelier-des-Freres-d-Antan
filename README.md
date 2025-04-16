@@ -1,52 +1,55 @@
 # Atelier Frères d'Antan
 
-Ce projet est structuré en plusieurs parties :
+## Prérequis
 
-## Frontend
+- Node.js (version spécifiée dans `.nvmrc`)
+- npm (inclus avec Node.js)
+- PostgreSQL
 
-Le dossier `frontend/` contient l'application Next.js qui gère l'interface utilisateur du site web.
+## Installation
 
-### Technologies utilisées
-
-- Next.js
-- React
-- Tailwind CSS
-- Framer Motion
-- Swiper
-
-### Installation et développement
-
+1. Cloner le projet
 ```bash
-cd frontend
-npm install
+git clone <url-du-projet>
+cd atelier-freres-dantan
+```
+
+2. Installer les dépendances (frontend et backend)
+```bash
+npm run install:all
+```
+
+3. Configurer les variables d'environnement
+- Copier `.env.example` vers `.env` dans le dossier `backend`
+- Copier `.env.example` vers `.env.local` dans le dossier `frontend`
+- Ajuster les variables selon votre environnement
+
+## Développement
+
+Pour lancer le frontend (Next.js) et le backend (NestJS) simultanément :
+```bash
 npm run dev
 ```
 
-### Déploiement
+Les serveurs seront disponibles sur :
+- Frontend : http://localhost:3000
+- Backend : http://localhost:5000
 
-Le déploiement est géré par Vercel.
-
+Pour lancer les serveurs séparément :
 ```bash
-cd frontend
-vercel
+# Frontend uniquement
+npm run dev:frontend
+
+# Backend uniquement
+npm run dev:backend
 ```
 
-Pour déployer en production :
+## Scripts disponibles
 
-```bash
-cd frontend
-vercel --prod
-```
+- `npm run install:all` : Installe les dépendances du frontend et du backend
+- `npm run dev` : Lance les serveurs de développement (frontend + backend)
+- `npm run build` : Build les applications frontend et backend
+- `npm run start` : Lance les applications en mode production
+- `npm run lint` : Exécute le linting sur les deux projets
+- `npm run format` : Formate le code des deux projets
 
-## Structure du projet
-
-- `frontend/` : Application Next.js
-  - `src/` : Code source de l'application
-  - `public/` : Fichiers statiques (images, polices, etc.)
-  - Fichiers de configuration (next.config.mjs, tailwind.config.js, etc.)
-
-## Branches Git
-
-- `dev` : Branche de développement principale
-- `feat/frontend-structure` : Restructuration du projet avec un dossier frontend dédié
-- `cleanup/remove-unused-files` : Suppression des fichiers inutiles après la restructuration
