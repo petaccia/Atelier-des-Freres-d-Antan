@@ -6,7 +6,7 @@ import { PrismaModule } from '../../prisma/prisma.module';
 
 @Module({
   imports: [
-    PrismaModule?
+    PrismaModule,
     CacheModule.register({
       ttl: 60 * 60, // 1 heure de cache
     }),
