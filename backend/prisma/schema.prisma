@@ -21,3 +21,43 @@ model Admin {
 
   @@map("admins")
 }
+
+// Menu models
+model Menu {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique // e.g., "main_menu", "footer_menu"
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  menuItems   MenuItem[]
+
+  @@map("menus")
+}
+
+model MenuItem {
+  id          Int       @id @default(autoincrement())
+  menuId      Int       // clé étrangère vers le menu
+  title       String    // texte du menu
+  path        String?   // lien vers la page
+  order       Int       @default(0)
+  isActive    Boolean   @default(true)
+  parentId    Int?      // clé étrangère vers le parent
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  menu        Menu      @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parent      MenuItem? @relation("MenuHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    MenuItem[] @relation("MenuHierarchy")
+
+  @@index([menuId])
+  @@index([parentId])
+  @@map("menu_items")
+}
+
+// Enum pour les types de menus
+enum MenuType {
+  MAIN
+  FOOTER
+  MOBILE
+}
