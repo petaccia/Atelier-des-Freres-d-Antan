@@ -1,5 +1,6 @@
 import { PrismaClient } from '../generated/prisma';
 import { main as seedAdmin } from './seed/seedAdmin';
+import { seedMenu } from './seed/seedMenu';
 
 const prisma = new PrismaClient();
 
@@ -7,6 +8,7 @@ async function main() {
   console.log('🌱 Début du seeding...');
   
   await seedAdmin();
+  await seedMenu();
   
   console.log('🌱 Seeding terminé !');
 }
