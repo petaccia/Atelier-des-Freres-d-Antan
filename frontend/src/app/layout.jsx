@@ -1,6 +1,4 @@
 import "./globals.css";
-import Header from "@/components/layout/header/Header";
-import Footer from "@/components/layout/footer/Footer";
 import { Poppins, Petrona, Josefin_Sans } from "next/font/google";
 
 const poppins = Poppins({

@@ -1,52 +1,59 @@
-'use client';
+"use client";
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAdminMenu } from '@/backoffice/hooks/useAdminMenu';
-import BackofficeLayout from '@/backoffice/components/layouts/BackofficeLayout';
-import MenuHeader from '@/backoffice/components/menu/MenuHeader';
 import MenuList from '@/backoffice/components/menu/MenuList';
-import LoadingState from '@/backoffice/components/common/LoadingState';
-import ErrorState from '@/backoffice/components/common/ErrorState';
+import MenuHeader from '@/backoffice/components/menu/MenuHeader';
+import Sidebar from '@/backoffice/components/layouts/Sidebar';
+import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 
 export default function MenuPage() {
-  const router = useRouter();
-  const { 
-    menuItems, 
-    isLoading, 
-    error, 
-    createMenuItem, 
-    updateMenuItem, 
-    deleteMenuItem 
-  } = useAdminMenu();
+  const { menuItems, isLoading, error, refreshMenu } = useAdminMenu();
 
-  useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/backoffice/login');
-    }
-  }, [router]);
-
-  const renderContent = () => {
-    if (isLoading) return <LoadingState />;
-    if (error) return <ErrorState message={error} />;
-
-    return (
-      <>
-        <MenuHeader onCreateItem={createMenuItem} />
-        <div className="bg-primary-dark/50 rounded-xl p-6 border border-accent/10">
-          <MenuList 
-            items={menuItems}
-            onUpdate={updateMenuItem}
-            onDelete={deleteMenuItem}
-          />
-        </div>
-      </>
-    );
+  const handleUpdate = async (id) => {
+    console.log('Mise à jour de l\'item:', id);
   };
 
+  const handleDelete = async (id) => {
+    console.log('Suppression de l\'item:', id);
+  };
+
+  const handleCreate = () => {
+    console.log('Création d\'un nouvel item');
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-primary">
+        <Sidebar />
+        <div className="ml-64 p-8">
+          <LoadingState />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-primary">
+        <Sidebar />
+        <div className="ml-64 p-8">
+          <div>Une erreur est survenue: {error}</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <BackofficeLayout>
-      {renderContent()}
-    </BackofficeLayout>
+    <div className="min-h-screen bg-primary">
+      <Sidebar />
+      <div className="ml-64 p-8">
+        <MenuHeader onCreateItem={handleCreate} />
+        <MenuList 
+          items={menuItems} 
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+        />
+      </div>
+    </div>
   );
 }
