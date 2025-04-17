@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
-import ManagementCard from '@/components/backoffice/cards/ManagementCard';
+import ManagementCard from '@/backoffice/components/cards/CardSite';
 import { managementCards } from '@/backoffice/backofficeData/maganementCards';
 
 export default function SitePage() {
