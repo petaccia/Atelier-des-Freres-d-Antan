@@ -31,11 +31,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className={`${poppins.className} ${petrona.className} ${josefinSans.className}`}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Sidebar from '@/backoffice/components/layouts/Sidebar';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -21,6 +22,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-primary p-8">
+      <Sidebar />
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold text-whiteAmber">Dashboard</h1>
