@@ -89,39 +89,113 @@ export function useAdminMenu() {
       // Simuler un délai de traitement
       await new Promise(resolve => setTimeout(resolve, 500));
 
-      // Mettre à jour le state local
-      setMenuItems(prevItems => {
-        // Vérifier si c'est un élément principal
-        const isMainItem = prevItems.some(item => item.id === id);
+      // Trouver l'élément à mettre à jour et son parent actuel
+      let currentItem = null;
+      let currentParentId = null;
+      let isMainItem = false;
 
-        if (isMainItem) {
-          return prevItems.map(item => {
-            if (item.id === id) {
-              return { ...item, ...itemData, updatedAt: new Date() };
-            }
-            return item;
-          });
-        } else {
-          // C'est un sous-menu, parcourir les enfants de chaque élément principal
-          return prevItems.map(item => {
-            if (item.children && item.children.some(child => child.id === id)) {
-              return {
-                ...item,
-                children: item.children.map(child => {
-                  if (child.id === id) {
-                    return { ...child, ...itemData, updatedAt: new Date() };
-                  }
-                  return child;
-                })
-              };
-            }
-            return item;
-          });
+      // Rechercher dans les éléments principaux
+      for (const item of menuItems) {
+        if (item.id === id) {
+          currentItem = item;
+          isMainItem = true;
+          break;
         }
-      });
+        // Rechercher dans les sous-menus
+        if (item.children && item.children.length > 0) {
+          const childItem = item.children.find(child => child.id === id);
+          if (childItem) {
+            currentItem = childItem;
+            currentParentId = item.id;
+            break;
+          }
+        }
+      }
+
+      if (!currentItem) {
+        throw new Error(`Élément avec l'ID ${id} non trouvé`);
+      }
+
+      // Vérifier si le parent a changé
+      const parentChanged = currentParentId !== itemData.parentId;
+
+      // Si le parent a changé, nous devons réorganiser la structure
+      if (parentChanged) {
+        setMenuItems(prevItems => {
+          // 1. Supprimer l'élément de sa position actuelle
+          let newItems = [...prevItems];
+
+          if (isMainItem) {
+            // Supprimer de la liste principale
+            newItems = newItems.filter(item => item.id !== id);
+          } else {
+            // Supprimer du sous-menu
+            newItems = newItems.map(item => {
+              if (item.id === currentParentId) {
+                return {
+                  ...item,
+                  children: item.children.filter(child => child.id !== id)
+                };
+              }
+              return item;
+            });
+          }
+
+          // 2. Ajouter l'élément à sa nouvelle position
+          const updatedItem = {
+            ...currentItem,
+            ...itemData,
+            updatedAt: new Date()
+          };
+
+          if (itemData.parentId) {
+            // Ajouter comme sous-menu
+            return newItems.map(item => {
+              if (item.id === itemData.parentId) {
+                return {
+                  ...item,
+                  children: [...(item.children || []), updatedItem]
+                };
+              }
+              return item;
+            });
+          } else {
+            // Ajouter comme élément principal
+            return [...newItems, updatedItem];
+          }
+        });
+      } else {
+        // Mise à jour simple sans changement de parent
+        setMenuItems(prevItems => {
+          if (isMainItem) {
+            return prevItems.map(item => {
+              if (item.id === id) {
+                return { ...item, ...itemData, updatedAt: new Date() };
+              }
+              return item;
+            });
+          } else {
+            return prevItems.map(item => {
+              if (item.children && item.children.some(child => child.id === id)) {
+                return {
+                  ...item,
+                  children: item.children.map(child => {
+                    if (child.id === id) {
+                      return { ...child, ...itemData, updatedAt: new Date() };
+                    }
+                    return child;
+                  })
+                };
+              }
+              return item;
+            });
+          }
+        });
+      }
 
       return { id, ...itemData };
     } catch (err) {
+      console.error('Erreur lors de la mise à jour:', err);
       setError(err.message);
       throw err;
     }
@@ -130,21 +204,51 @@ export function useAdminMenu() {
   // Fonction pour supprimer un élément de menu
   const deleteMenuItem = async (id) => {
     try {
+      // Trouver l'élément à supprimer pour vérifier s'il a des sous-menus
+      let itemToDelete = null;
+      let isMainItem = false;
+      let hasChildren = false;
+
+      // Rechercher dans les éléments principaux
+      for (const item of menuItems) {
+        if (item.id === id) {
+          itemToDelete = item;
+          isMainItem = true;
+          hasChildren = item.children && item.children.length > 0;
+          break;
+        }
+        // Rechercher dans les sous-menus
+        if (item.children && item.children.length > 0) {
+          const childItem = item.children.find(child => child.id === id);
+          if (childItem) {
+            itemToDelete = childItem;
+            break;
+          }
+        }
+      }
+
+      if (!itemToDelete) {
+        throw new Error(`Élément avec l'ID ${id} non trouvé`);
+      }
+
+      // Vérifier si l'élément a des sous-menus et demander confirmation si nécessaire
+      if (hasChildren) {
+        console.warn(`L'élément ${itemToDelete.title} a des sous-menus qui seront également supprimés`);
+      }
+
       // Simuler la suppression d'un élément de menu (à remplacer par un appel API réel)
-      console.log(`Suppression de l'élément de menu ${id}`);
+      console.log(`Suppression de l'élément de menu ${id}:`, itemToDelete.title);
 
       // Simuler un délai de traitement
       await new Promise(resolve => setTimeout(resolve, 500));
 
       // Mettre à jour le state local
       setMenuItems(prevItems => {
-        // Vérifier si c'est un élément principal
-        const isMainItem = prevItems.some(item => item.id === id);
-
         if (isMainItem) {
+          // Supprimer l'élément principal et tous ses sous-menus
           return prevItems.filter(item => item.id !== id);
         } else {
-          // C'est un sous-menu, parcourir les enfants de chaque élément principal
+          // C'est un sous-menu, le supprimer du parent
           return prevItems.map(item => {
             if (item.children && item.children.some(child => child.id === id)) {
               return {
@@ -157,8 +261,13 @@ export function useAdminMenu() {
         }
       });
 
-      return { success: true };
+      return {
+        success: true,
+        deletedItem: itemToDelete,
+        hasDeletedChildren: hasChildren
+      };
     } catch (err) {
+      console.error('Erreur lors de la suppression:', err);
       setError(err.message);
       throw err;
     }

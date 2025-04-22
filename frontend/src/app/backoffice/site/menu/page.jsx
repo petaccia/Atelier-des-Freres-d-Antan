@@ -6,11 +6,13 @@ import MenuHeader from '@/backoffice/components/menu/MenuHeader';
 import MenuFormModal from '@/backoffice/components/menu/MenuFormModal';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
+import Toast from '@/backoffice/components/ui/notifications/Toast';
 
 export default function MenuPage() {
   const { menuItems, isLoading, error, createMenuItem, updateMenuItem, deleteMenuItem } = useAdminMenu();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   const handleUpdate = async (id) => {
     // Trouver l'item à éditer
@@ -38,12 +40,46 @@ export default function MenuPage() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+    // Trouver l'item pour vérifier s'il a des sous-menus
+    const itemToDelete = findItemById(id, menuItems);
+
+    if (!itemToDelete) {
+      setNotification({
+        message: `Erreur: Élément non trouvé`,
+        type: 'error'
+      });
+      return;
+    }
+
+    // Vérifier si l'item a des sous-menus
+    const hasChildren = itemToDelete.children && itemToDelete.children.length > 0;
+
+    // Message de confirmation adapté
+    let confirmMessage = `Êtes-vous sûr de vouloir supprimer l'élément "${itemToDelete.title}" ?`;
+    if (hasChildren) {
+      confirmMessage = `Attention ! L'élément "${itemToDelete.title}" contient ${itemToDelete.children.length} sous-menu(s) qui seront également supprimés. Voulez-vous continuer ?`;
+    }
+
+    if (window.confirm(confirmMessage)) {
       try {
-        await deleteMenuItem(id);
+        const result = await deleteMenuItem(id);
+
+        // Message de succès adapté
+        let successMessage = `L'élément "${itemToDelete.title}" a été supprimé avec succès`;
+        if (result.hasDeletedChildren) {
+          successMessage += ` ainsi que ses sous-menus`;
+        }
+
+        setNotification({
+          message: successMessage,
+          type: 'success'
+        });
       } catch (error) {
         console.error('Erreur lors de la suppression:', error);
-        alert('Une erreur est survenue lors de la suppression.');
+        setNotification({
+          message: `Erreur: ${error.message || 'Une erreur est survenue lors de la suppression.'}`,
+          type: 'error'
+        });
       }
     }
   };
@@ -58,13 +94,26 @@ export default function MenuPage() {
       if (editingItem) {
         // Mise à jour d'un élément existant
         await updateMenuItem(editingItem.id, formData);
+        setNotification({
+          message: `L'élément "${formData.title}" a été mis à jour avec succès`,
+          type: 'success'
+        });
       } else {
         // Création d'un nouvel élément
         await createMenuItem(formData);
+        setNotification({
+          message: `L'élément "${formData.title}" a été créé avec succès`,
+          type: 'success'
+        });
       }
+      return true; // Indiquer que tout s'est bien passé
     } catch (error) {
       console.error('Erreur lors de l\'enregistrement:', error);
-      throw new Error('Une erreur est survenue lors de l\'enregistrement.');
+      setNotification({
+        message: `Erreur: ${error.message || 'Une erreur est survenue lors de l\'enregistrement.'}`,
+        type: 'error'
+      });
+      throw error; // Propager l'erreur pour que le formulaire puisse la gérer
     }
   };
 
@@ -109,6 +158,15 @@ export default function MenuPage() {
           menuItems={menuItems}
           editItem={editingItem}
         />
+
+        {/* Notifications */}
+        {notification && (
+          <Toast
+            message={notification.message}
+            type={notification.type}
+            onClose={() => setNotification(null)}
+          />
+        )}
       </div>
     </div>
   );
