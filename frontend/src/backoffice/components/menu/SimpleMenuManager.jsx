@@ -1,23 +1,20 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { 
-  MdKeyboardArrowRight, 
-  MdKeyboardArrowDown,
-  MdEdit,
-  MdVisibility,
-  MdDelete,
-  MdDragIndicator,
+import {
   MdRefresh,
   MdInfo,
-  MdPhoneIphone, 
-  MdTablet, 
-  MdLaptop, 
+  MdPhoneIphone,
+  MdTablet,
+  MdLaptop,
   MdDesktopWindows,
-  MdPublish
+  MdPublish,
+  MdEdit
 } from 'react-icons/md';
-import { BiHistory, BiEnvelope, BiStore, BiPhone, BiCog } from "react-icons/bi";
-import { GiRunningShoe, GiKeyLock } from "react-icons/gi";
-import { FaPhoneAlt } from "react-icons/fa";
+
+// Importation des composants
+import DeviceButton from './components/DeviceButton';
+import MenuItemComponent from './components/MenuItemComponent';
+import DeviceTips from './components/DeviceTips';
 
 // URL de l'API
 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
@@ -44,11 +41,11 @@ export default function SimpleMenuManager({
       try {
         setIsLoading(true);
         const response = await fetch(`${apiUrl}${menuEndpoint}`);
-        
+
         if (!response.ok) {
           throw new Error(`Failed to fetch menu: ${response.status} ${response.statusText}`);
         }
-        
+
         const data = await response.json();
         console.log('Menu data from API:', data);
         setMenuData(data);
@@ -71,102 +68,58 @@ export default function SimpleMenuManager({
     }));
   };
 
-  // Fonction pour rendre l'icône en fonction du nom
-  const renderIcon = (title) => {
-    const titleLower = title.toLowerCase();
-    
-    if (titleLower.includes('accueil')) {
-      return <BiStore size={20} />;
-    } else if (titleLower.includes('cordonnerie')) {
-      return <GiRunningShoe size={20} />;
-    } else if (titleLower.includes('serrurerie')) {
-      return <GiKeyLock size={20} />;
-    } else if (titleLower.includes('propos') || titleLower.includes('histoire')) {
-      return <BiHistory size={20} />;
-    } else if (titleLower.includes('contact')) {
-      return <BiEnvelope size={20} />;
-    } else if (titleLower.includes('processus') || titleLower.includes('process')) {
-      return <BiCog size={20} />;
-    } else if (titleLower.includes('appeler') || titleLower.includes('téléphone')) {
-      return <FaPhoneAlt size={20} />;
-    }
-    
-    return null;
-  };
-
-  // Fonction pour rendre un élément de menu
-  const renderMenuItem = (item, isSubmenu = false) => {
+  // Fonction pour rendre un élément de menu avec ses sous-menus
+  const renderMenuItemWithSubmenu = (item) => {
     const isExpanded = expandedItems[item.id];
-    
+
     return (
-      <div key={item.id} className={`${isSubmenu ? 'ml-8 border-l border-accent/30 pl-4' : ''}`}>
-        <div className={`flex items-center p-3 ${isSubmenu ? 'bg-primary-dark/50' : 'bg-primary-dark/30'} rounded-lg mb-2 group`}>
-          {/* Poignée de glisser-déposer */}
-          <div className="cursor-move text-white/40 hover:text-white/60 mr-3">
-            <MdDragIndicator size={20} />
-          </div>
-          
-          {/* Icône (visible uniquement pour les menus mobile et tablette) */}
-          {(selectedDevice === 'mobile' || selectedDevice === 'tablet') && !isSubmenu && (
-            <div className="mr-3 text-accent">
-              {renderIcon(item.title)}
+      <div key={item.id}>
+        <MenuItemComponent
+          item={item}
+          isSubmenu={false}
+          deviceType={selectedDevice}
+          isExpanded={isExpanded}
+          onToggleExpand={toggleExpand}
+          onUpdate={onUpdate}
+          onDelete={onDelete}
+          onToggleVisibility={onToggleVisibility}
+        >
+          {item.children && item.children.length > 0 && isExpanded && (
+            <div className="mb-4">
+              {item.children.map(child => (
+                <MenuItemComponent
+                  key={child.id}
+                  item={child}
+                  isSubmenu={true}
+                  deviceType={selectedDevice}
+                  isExpanded={expandedItems[child.id]}
+                  onToggleExpand={toggleExpand}
+                  onUpdate={onUpdate}
+                  onDelete={onDelete}
+                  onToggleVisibility={onToggleVisibility}
+                >
+                  {child.children && child.children.length > 0 && expandedItems[child.id] && (
+                    <div className="mb-4">
+                      {child.children.map(grandChild => (
+                        <MenuItemComponent
+                          key={grandChild.id}
+                          item={grandChild}
+                          isSubmenu={true}
+                          deviceType={selectedDevice}
+                          isExpanded={expandedItems[grandChild.id]}
+                          onToggleExpand={toggleExpand}
+                          onUpdate={onUpdate}
+                          onDelete={onDelete}
+                          onToggleVisibility={onToggleVisibility}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </MenuItemComponent>
+              ))}
             </div>
           )}
-          
-          {/* Titre et chemin */}
-          <div className="flex-grow">
-            <h3 className="font-medium text-white">{item.title}</h3>
-            <p className="text-sm text-white/60">{item.path || '#'}</p>
-          </div>
-          
-          {/* Bouton d'expansion pour les éléments avec sous-menu */}
-          {item.children && item.children.length > 0 && (
-            <button
-              onClick={() => toggleExpand(item.id)}
-              className="p-2 rounded-md text-white/70 hover:bg-primary-dark/50 transition-colors mr-2"
-              title={isExpanded ? "Réduire" : "Développer"}
-            >
-              {isExpanded ? <MdKeyboardArrowDown size={20} /> : <MdKeyboardArrowRight size={20} />}
-            </button>
-          )}
-          
-          {/* Actions */}
-          <div className="flex space-x-2">
-            {/* Bouton de visibilité */}
-            <button
-              onClick={() => onToggleVisibility(item.id, selectedDevice)}
-              className="p-2 rounded-md text-white/70 hover:bg-primary-dark/50 transition-colors"
-              title="Basculer la visibilité"
-            >
-              <MdVisibility size={18} />
-            </button>
-            
-            {/* Bouton d'édition */}
-            <button
-              onClick={() => onUpdate(item.id)}
-              className="p-2 rounded-md text-white/70 hover:bg-accent/20 hover:text-accent transition-colors"
-              title="Éditer"
-            >
-              <MdEdit size={18} />
-            </button>
-            
-            {/* Bouton de suppression */}
-            <button
-              onClick={() => onDelete(item.id)}
-              className="p-2 rounded-md text-white/70 hover:bg-red-500/20 hover:text-red-400 transition-colors"
-              title="Supprimer"
-            >
-              <MdDelete size={18} />
-            </button>
-          </div>
-        </div>
-        
-        {/* Sous-menu */}
-        {item.children && item.children.length > 0 && isExpanded && (
-          <div className="mb-4">
-            {item.children.map(child => renderMenuItem(child, true))}
-          </div>
-        )}
+        </MenuItemComponent>
       </div>
     );
   };
@@ -206,7 +159,7 @@ export default function SimpleMenuManager({
       <div className="bg-primary-dark/50 p-4 rounded-lg">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <h2 className="text-xl font-semibold text-accent">Gestion du Menu</h2>
-          
+
           <div className="flex flex-wrap gap-2">
             <button
               onClick={onSaveDraft}
@@ -215,7 +168,7 @@ export default function SimpleMenuManager({
               <MdEdit size={18} />
               <span>Enregistrer brouillon</span>
             </button>
-            
+
             <button
               onClick={onPublish}
               className="px-4 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-colors flex items-center gap-2"
@@ -226,89 +179,69 @@ export default function SimpleMenuManager({
           </div>
         </div>
       </div>
-      
+
       {/* Sélection d'appareil */}
       <div className="bg-primary-dark/30 p-4 rounded-lg">
         <h3 className="text-lg font-medium text-white mb-3">Sélectionner un appareil</h3>
-        
+
         <div className="flex flex-wrap gap-2">
-          <button
+          <DeviceButton
+            icon={<MdPhoneIphone size={20} />}
+            label="Mobile"
+            isSelected={selectedDevice === 'mobile'}
             onClick={() => setSelectedDevice('mobile')}
-            className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-              selectedDevice === 'mobile' 
-                ? 'bg-accent text-white' 
-                : 'bg-primary-dark/50 text-white/70 hover:bg-primary-dark/70'
-            }`}
-          >
-            <MdPhoneIphone size={20} />
-            <span>Mobile</span>
-          </button>
-          
-          <button
+          />
+
+          <DeviceButton
+            icon={<MdTablet size={20} />}
+            label="Tablette"
+            isSelected={selectedDevice === 'tablet'}
             onClick={() => setSelectedDevice('tablet')}
-            className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-              selectedDevice === 'tablet' 
-                ? 'bg-accent text-white' 
-                : 'bg-primary-dark/50 text-white/70 hover:bg-primary-dark/70'
-            }`}
-          >
-            <MdTablet size={20} />
-            <span>Tablette</span>
-          </button>
-          
-          <button
+          />
+
+          <DeviceButton
+            icon={<MdLaptop size={20} />}
+            label="Portable"
+            isSelected={selectedDevice === 'laptop'}
             onClick={() => setSelectedDevice('laptop')}
-            className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-              selectedDevice === 'laptop' 
-                ? 'bg-accent text-white' 
-                : 'bg-primary-dark/50 text-white/70 hover:bg-primary-dark/70'
-            }`}
-          >
-            <MdLaptop size={20} />
-            <span>Portable</span>
-          </button>
-          
-          <button
+          />
+
+          <DeviceButton
+            icon={<MdDesktopWindows size={20} />}
+            label="Bureau"
+            isSelected={selectedDevice === 'desktop'}
             onClick={() => setSelectedDevice('desktop')}
-            className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-              selectedDevice === 'desktop' 
-                ? 'bg-accent text-white' 
-                : 'bg-primary-dark/50 text-white/70 hover:bg-primary-dark/70'
-            }`}
-          >
-            <MdDesktopWindows size={20} />
-            <span>Bureau</span>
-          </button>
+          />
         </div>
       </div>
-      
+
       {/* Contenu du menu */}
       <div className="bg-primary-dark/20 p-4 rounded-lg">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium text-accent">
             Menu {
-              selectedDevice === 'mobile' 
-                ? 'Mobile' 
-                : selectedDevice === 'tablet' 
-                  ? 'Tablette' 
-                  : selectedDevice === 'laptop' 
-                    ? 'Portable' 
+              selectedDevice === 'mobile'
+                ? 'Mobile'
+                : selectedDevice === 'tablet'
+                  ? 'Tablette'
+                  : selectedDevice === 'laptop'
+                    ? 'Portable'
                     : 'Bureau'
             }
           </h3>
-          
+
           <div className="text-white/60 text-sm">
-            {selectedDevice === 'mobile' || selectedDevice === 'tablet' 
-              ? 'Avec icônes' 
+            {selectedDevice === 'mobile' || selectedDevice === 'tablet'
+              ? 'Avec icônes'
               : 'Sans icônes'
             }
           </div>
         </div>
-        
+
         {/* Liste des éléments de menu */}
         <div className="space-y-2">
           {menuItems.length > 0 ? (
-            menuItems.map(item => renderMenuItem(item))
+            menuItems.map(item => renderMenuItemWithSubmenu(item))
           ) : (
             <p className="text-white/60 text-center py-8">
               Aucun élément de menu n'est configuré pour cet appareil.
@@ -316,29 +249,9 @@ export default function SimpleMenuManager({
           )}
         </div>
       </div>
-      
+
       {/* Notes spécifiques pour les menus mobile et tablette */}
-      {selectedDevice === 'mobile' && (
-        <div className="bg-primary-dark/20 p-4 rounded-lg">
-          <h3 className="text-accent font-medium mb-2">Conseils pour le menu mobile</h3>
-          <ul className="text-white/70 text-sm space-y-2 list-disc pl-5">
-            <li>Les icônes sont particulièrement importantes pour les menus mobiles - elles aident les utilisateurs à identifier rapidement les éléments du menu.</li>
-            <li>Gardez les éléments du menu mobile concis et limités en nombre.</li>
-            <li>Assurez-vous d'inclure les éléments essentiels comme "Appeler" et de placer "Processus" dans le sous-menu "À propos".</li>
-          </ul>
-        </div>
-      )}
-      
-      {selectedDevice === 'tablet' && (
-        <div className="bg-primary-dark/20 p-4 rounded-lg">
-          <h3 className="text-accent font-medium mb-2">Conseils pour le menu tablette</h3>
-          <ul className="text-white/70 text-sm space-y-2 list-disc pl-5">
-            <li>Les icônes aident à la navigation sur tablette, tout en permettant plus d'éléments que sur mobile.</li>
-            <li>Assurez-vous d'inclure les éléments essentiels comme "Appeler" et de placer "Processus" dans le sous-menu "À propos".</li>
-            <li>Vous pouvez afficher plus d'éléments que sur mobile, mais restez concis.</li>
-          </ul>
-        </div>
-      )}
+      <DeviceTips deviceType={selectedDevice} />
     </div>
   );
 }
