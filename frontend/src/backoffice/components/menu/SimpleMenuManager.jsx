@@ -47,8 +47,15 @@ export default function SimpleMenuManager({
     <div className="space-y-6">
       {/* En-tête avec actions */}
       <MenuHeader
-        onSaveDraft={onSaveDraft}
-        onPublish={onPublish}
+        title="Gestion du Menu"
+        actions={{
+          saveDraft: onSaveDraft,
+          publish: onPublish,
+          discardChanges: () => console.log('Discard changes not implemented')
+        }}
+        state={{
+          hasDraft: false // À remplacer par l'état réel si disponible
+        }}
       />
 
       {/* Sélection d'appareil */}
