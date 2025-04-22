@@ -7,12 +7,22 @@ import MenuFormModal from '@/backoffice/components/menu/MenuFormModal';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 import Toast from '@/backoffice/components/ui/notifications/Toast';
+import ConfirmationModal from '@/backoffice/components/ui/modals/ConfirmationModal';
 
 export default function MenuPage() {
   const { menuItems, isLoading, error, createMenuItem, updateMenuItem, deleteMenuItem } = useAdminMenu();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [notification, setNotification] = useState(null);
+
+  // État pour la modale de confirmation de suppression
+  const [deleteConfirmation, setDeleteConfirmation] = useState({
+    isOpen: false,
+    itemId: null,
+    itemTitle: '',
+    hasChildren: false,
+    childrenCount: 0
+  });
 
   const handleUpdate = async (id) => {
     // Trouver l'item à éditer
@@ -53,35 +63,47 @@ export default function MenuPage() {
 
     // Vérifier si l'item a des sous-menus
     const hasChildren = itemToDelete.children && itemToDelete.children.length > 0;
+    const childrenCount = hasChildren ? itemToDelete.children.length : 0;
 
-    // Message de confirmation adapté
-    let confirmMessage = `Êtes-vous sûr de vouloir supprimer l'élément "${itemToDelete.title}" ?`;
-    if (hasChildren) {
-      confirmMessage = `Attention ! L'élément "${itemToDelete.title}" contient ${itemToDelete.children.length} sous-menu(s) qui seront également supprimés. Voulez-vous continuer ?`;
-    }
+    // Ouvrir la modale de confirmation
+    setDeleteConfirmation({
+      isOpen: true,
+      itemId: id,
+      itemTitle: itemToDelete.title,
+      hasChildren,
+      childrenCount
+    });
+  };
 
-    if (window.confirm(confirmMessage)) {
-      try {
-        const result = await deleteMenuItem(id);
+  // Fonction exécutée lorsque l'utilisateur confirme la suppression
+  const confirmDelete = async () => {
+    const { itemId, itemTitle, hasChildren } = deleteConfirmation;
 
-        // Message de succès adapté
-        let successMessage = `L'élément "${itemToDelete.title}" a été supprimé avec succès`;
-        if (result.hasDeletedChildren) {
-          successMessage += ` ainsi que ses sous-menus`;
-        }
+    try {
+      const result = await deleteMenuItem(itemId);
 
-        setNotification({
-          message: successMessage,
-          type: 'success'
-        });
-      } catch (error) {
-        console.error('Erreur lors de la suppression:', error);
-        setNotification({
-          message: `Erreur: ${error.message || 'Une erreur est survenue lors de la suppression.'}`,
-          type: 'error'
-        });
+      // Message de succès adapté
+      let successMessage = `L'élément "${itemTitle}" a été supprimé avec succès`;
+      if (result.hasDeletedChildren) {
+        successMessage += ` ainsi que ses sous-menus`;
       }
+
+      setNotification({
+        message: successMessage,
+        type: 'success'
+      });
+    } catch (error) {
+      console.error('Erreur lors de la suppression:', error);
+      setNotification({
+        message: `Erreur: ${error.message || 'Une erreur est survenue lors de la suppression.'}`,
+        type: 'error'
+      });
     }
+  };
+
+  // Fermer la modale de confirmation
+  const closeDeleteConfirmation = () => {
+    setDeleteConfirmation(prev => ({ ...prev, isOpen: false }));
   };
 
   const handleCreate = () => {
@@ -167,6 +189,27 @@ export default function MenuPage() {
             onClose={() => setNotification(null)}
           />
         )}
+
+        {/* Modale de confirmation de suppression */}
+        <ConfirmationModal
+          isOpen={deleteConfirmation.isOpen}
+          onClose={closeDeleteConfirmation}
+          onConfirm={confirmDelete}
+          title="Confirmer la suppression"
+          message={
+            deleteConfirmation.hasChildren
+              ? `Vous êtes sur le point de supprimer l'élément "${deleteConfirmation.itemTitle}" du menu ainsi que ses ${deleteConfirmation.childrenCount} sous-menu(s).
+
+Attention : Cette action ne supprime pas les pages associées, mais les visiteurs ne pourront plus y accéder depuis le menu. Cette action est irréversible.`
+              : `Vous êtes sur le point de supprimer l'élément "${deleteConfirmation.itemTitle}" du menu.
+
+Attention : Cette action ne supprime pas la page associée, mais les visiteurs ne pourront plus y accéder depuis le menu. Cette action est irréversible.`
+          }
+          confirmationText="supprimer"
+          confirmButtonText="Supprimer"
+          cancelButtonText="Annuler"
+          isDestructive={true}
+        />
       </div>
     </div>
   );
