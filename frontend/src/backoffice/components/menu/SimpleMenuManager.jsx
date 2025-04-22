@@ -11,6 +11,9 @@ import ErrorState from './components/ErrorState';
 // Importation du hook personnalisé
 import useMenuManager from '@/backoffice/hooks/useMenuManager';
 
+// Importation de la configuration
+import { deviceOptions } from './config/deviceOptions';
+
 export default function SimpleMenuManager({
   onUpdate,
   onDelete,
@@ -50,8 +53,10 @@ export default function SimpleMenuManager({
 
       {/* Sélection d'appareil */}
       <DeviceSelector
-        selectedDevice={selectedDevice}
-        onDeviceChange={setSelectedDevice}
+        title="Sélectionner un appareil"
+        options={deviceOptions}
+        selectedValue={selectedDevice}
+        onValueChange={setSelectedDevice}
       />
 
       {/* Liste des menus */}

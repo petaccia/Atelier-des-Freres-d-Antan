@@ -1,6 +1,6 @@
 'use client';
-import { 
-  MdKeyboardArrowRight, 
+import {
+  MdKeyboardArrowRight,
   MdKeyboardArrowDown,
   MdEdit,
   MdVisibility,
@@ -10,22 +10,23 @@ import {
 import { BiHistory, BiEnvelope, BiStore, BiPhone, BiCog } from "react-icons/bi";
 import { GiRunningShoe, GiKeyLock } from "react-icons/gi";
 import { FaPhoneAlt } from "react-icons/fa";
+import { deviceOptions } from '../config/deviceOptions';
 
-export default function MenuItemComponent({ 
-  item, 
-  isSubmenu = false, 
-  deviceType, 
-  isExpanded, 
-  onToggleExpand, 
-  onUpdate, 
-  onDelete, 
+export default function MenuItemComponent({
+  item,
+  isSubmenu = false,
+  deviceType,
+  isExpanded,
+  onToggleExpand,
+  onUpdate,
+  onDelete,
   onToggleVisibility,
   children // Pour les sous-menus
 }) {
   // Fonction pour rendre l'icône en fonction du titre
   const renderIcon = (title) => {
     const titleLower = title.toLowerCase();
-    
+
     if (titleLower.includes('accueil')) {
       return <BiStore size={20} />;
     } else if (titleLower.includes('cordonnerie')) {
@@ -41,7 +42,7 @@ export default function MenuItemComponent({
     } else if (titleLower.includes('appeler') || titleLower.includes('téléphone')) {
       return <FaPhoneAlt size={20} />;
     }
-    
+
     return null;
   };
 
@@ -52,20 +53,20 @@ export default function MenuItemComponent({
         <div className="cursor-move text-white/40 hover:text-white/60 mr-3">
           <MdDragIndicator size={20} />
         </div>
-        
-        {/* Icône (visible uniquement pour les menus mobile et tablette) */}
-        {(deviceType === 'mobile' || deviceType === 'tablet') && !isSubmenu && (
+
+        {/* Icône (visible uniquement pour les appareils configurés pour afficher des icônes) */}
+        {deviceOptions.find(option => option.value === deviceType)?.showIcons && !isSubmenu && (
           <div className="mr-3 text-accent">
             {renderIcon(item.title)}
           </div>
         )}
-        
+
         {/* Titre et chemin */}
         <div className="flex-grow">
           <h3 className="font-medium text-white">{item.title}</h3>
           <p className="text-sm text-white/60">{item.path || '#'}</p>
         </div>
-        
+
         {/* Bouton d'expansion pour les éléments avec sous-menu */}
         {item.children && item.children.length > 0 && (
           <button
@@ -76,7 +77,7 @@ export default function MenuItemComponent({
             {isExpanded ? <MdKeyboardArrowDown size={20} /> : <MdKeyboardArrowRight size={20} />}
           </button>
         )}
-        
+
         {/* Actions */}
         <div className="flex space-x-2">
           {/* Bouton de visibilité */}
@@ -87,7 +88,7 @@ export default function MenuItemComponent({
           >
             <MdVisibility size={18} />
           </button>
-          
+
           {/* Bouton d'édition */}
           <button
             onClick={() => onUpdate(item.id)}
@@ -96,7 +97,7 @@ export default function MenuItemComponent({
           >
             <MdEdit size={18} />
           </button>
-          
+
           {/* Bouton de suppression */}
           <button
             onClick={() => onDelete(item.id)}
@@ -107,7 +108,7 @@ export default function MenuItemComponent({
           </button>
         </div>
       </div>
-      
+
       {/* Sous-menu */}
       {children}
     </div>
