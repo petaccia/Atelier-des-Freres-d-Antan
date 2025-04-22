@@ -4,7 +4,7 @@ import { useAdminMenu } from '@/backoffice/hooks/useAdminMenu';
 import MenuList from '@/backoffice/components/menu/MenuList';
 import MenuHeader from '@/backoffice/components/menu/MenuHeader';
 import MenuFormModal from '@/backoffice/components/menu/MenuFormModal';
-import MenuPublishWorkflow from '@/backoffice/components/menu/MenuPublishWorkflow';
+import SimpleMenuManager from '@/backoffice/components/menu/SimpleMenuManager';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 import Toast from '@/backoffice/components/ui/notifications/Toast';
@@ -234,16 +234,14 @@ export default function MenuPage() {
       <div className="ml-64 p-8">
         <MenuHeader onCreateItem={handleCreate} />
 
-        {/* Workflow de prévisualisation et publication */}
-        <MenuPublishWorkflow
-          menuItems={menuItems}
-          draftItems={draftItems}
+        {/* Gestionnaire de menu simple */}
+        <SimpleMenuManager
           isLoading={isLoading}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
+          onToggleVisibility={() => {}}
           onPublish={handlePublish}
           onSaveDraft={handleSaveDraft}
-          onDiscardChanges={handleDiscardChanges}
         />
 
         {/* Modal de création/édition */}
