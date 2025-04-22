@@ -4,13 +4,27 @@ import { useAdminMenu } from '@/backoffice/hooks/useAdminMenu';
 import MenuList from '@/backoffice/components/menu/MenuList';
 import MenuHeader from '@/backoffice/components/menu/MenuHeader';
 import MenuFormModal from '@/backoffice/components/menu/MenuFormModal';
+import MenuPublishWorkflow from '@/backoffice/components/menu/MenuPublishWorkflow';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 import Toast from '@/backoffice/components/ui/notifications/Toast';
 import ConfirmationModal from '@/backoffice/components/ui/modals/ConfirmationModal';
 
 export default function MenuPage() {
-  const { menuItems, isLoading, error, createMenuItem, updateMenuItem, deleteMenuItem } = useAdminMenu();
+  const {
+    menuItems,
+    draftItems,
+    isLoading,
+    error,
+    hasDraft,
+    createMenuItem,
+    updateMenuItem,
+    deleteMenuItem,
+    saveDraft,
+    publishChanges,
+    discardChanges
+  } = useAdminMenu();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [notification, setNotification] = useState(null);
@@ -82,6 +96,9 @@ export default function MenuPage() {
     try {
       const result = await deleteMenuItem(itemId);
 
+      // Fermer la modale de confirmation
+      closeDeleteConfirmation();
+
       // Message de succès adapté
       let successMessage = `L'élément "${itemTitle}" a été supprimé avec succès`;
       if (result.hasDeletedChildren) {
@@ -92,6 +109,10 @@ export default function MenuPage() {
         message: successMessage,
         type: 'success'
       });
+
+      // Rafraîchir les données après la suppression
+      // Dans une implémentation réelle avec API, nous ferions cela après l'appel API
+      // refreshMenu();
     } catch (error) {
       console.error('Erreur lors de la suppression:', error);
       setNotification({
@@ -161,15 +182,68 @@ export default function MenuPage() {
     );
   }
 
+  // Fonctions pour le workflow de publication
+  const handleSaveDraft = async () => {
+    try {
+      await saveDraft();
+      setNotification({
+        message: 'Brouillon sauvegardé avec succès',
+        type: 'success'
+      });
+    } catch (error) {
+      setNotification({
+        message: `Erreur: ${error.message || 'Une erreur est survenue lors de la sauvegarde du brouillon.'}`,
+        type: 'error'
+      });
+    }
+  };
+
+  const handlePublish = async () => {
+    try {
+      await publishChanges();
+      setNotification({
+        message: 'Menu publié avec succès',
+        type: 'success'
+      });
+    } catch (error) {
+      setNotification({
+        message: `Erreur: ${error.message || 'Une erreur est survenue lors de la publication.'}`,
+        type: 'error'
+      });
+    }
+  };
+
+  const handleDiscardChanges = async () => {
+    try {
+      await discardChanges();
+      setNotification({
+        message: 'Modifications annulées',
+        type: 'success'
+      });
+    } catch (error) {
+      setNotification({
+        message: `Erreur: ${error.message || 'Une erreur est survenue lors de l\'annulation des modifications.'}`,
+        type: 'error'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-primary">
       <Sidebar />
       <div className="ml-64 p-8">
         <MenuHeader onCreateItem={handleCreate} />
-        <MenuList
-          items={menuItems}
+
+        {/* Workflow de prévisualisation et publication */}
+        <MenuPublishWorkflow
+          menuItems={menuItems}
+          draftItems={draftItems}
+          isLoading={isLoading}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
+          onPublish={handlePublish}
+          onSaveDraft={handleSaveDraft}
+          onDiscardChanges={handleDiscardChanges}
         />
 
         {/* Modal de création/édition */}
