@@ -16,7 +16,8 @@ export default function MenuList({ items, onUpdate, onDelete }) {
             id: item.id,
             title: item.title,
             path: item.path || '/',
-            order: item.order || 0
+            order: item.order || 0,
+            children: item.children || []
           }}
           handleUpdate={onUpdate}
           handleDelete={onDelete}
