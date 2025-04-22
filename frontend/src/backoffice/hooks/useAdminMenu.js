@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 
 export function useAdminMenu() {
-  const [menuItems, setMenuItems] = useState([]);
+  const [menuItems, setMenuItems] = useState([]); // Éléments publiés
+  const [draftItems, setDraftItems] = useState([]); // Brouillon des éléments
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [menuId, setMenuId] = useState(null);
+  const [hasDraft, setHasDraft] = useState(false);
 
   const fetchMenuItems = async () => {
     try {
@@ -261,6 +263,39 @@ export function useAdminMenu() {
         }
       });
 
+      // Mettre à jour également les brouillons si nécessaire
+      if (hasDraft) {
+        setDraftItems(prevItems => {
+          if (isMainItem) {
+            // Supprimer l'élément principal et tous ses sous-menus
+            return prevItems.filter(item => item.id !== id);
+          } else {
+            // C'est un sous-menu, le supprimer du parent
+            return prevItems.map(item => {
+              if (item.children && item.children.some(child => child.id === id)) {
+                return {
+                  ...item,
+                  children: item.children.filter(child => child.id !== id)
+                };
+              }
+              return item;
+            });
+          }
+        });
+
+        // Mettre à jour le brouillon dans le stockage local
+        try {
+          const updatedDraft = draftItems.filter(item => item.id !== id);
+          localStorage.setItem('menuDraft', JSON.stringify(updatedDraft));
+        } catch (e) {
+          console.error('Erreur lors de la mise à jour du brouillon:', e);
+        }
+      }
+
+      // Rafraîchir les données depuis le serveur pour s'assurer que tout est synchronisé
+      // Dans une implémentation réelle, nous ferions cela après l'appel API
+      // fetchMenuItems();
+
       return {
         success: true,
         deletedItem: itemToDelete,
@@ -273,17 +308,85 @@ export function useAdminMenu() {
     }
   };
 
+  // Charger le brouillon depuis le stockage local
+  const loadDraft = () => {
+    try {
+      const savedDraft = localStorage.getItem('menuDraft');
+      if (savedDraft) {
+        const parsedDraft = JSON.parse(savedDraft);
+        setDraftItems(parsedDraft);
+        setHasDraft(true);
+        return parsedDraft;
+      }
+    } catch (err) {
+      console.error('Erreur lors du chargement du brouillon:', err);
+    }
+    return null;
+  };
+
+  // Sauvegarder le brouillon dans le stockage local
+  const saveDraft = async () => {
+    try {
+      // Utiliser les éléments actuels comme brouillon
+      const draft = [...menuItems];
+      localStorage.setItem('menuDraft', JSON.stringify(draft));
+      setDraftItems(draft);
+      setHasDraft(true);
+      return draft;
+    } catch (err) {
+      console.error('Erreur lors de la sauvegarde du brouillon:', err);
+      throw err;
+    }
+  };
+
+  // Publier les changements (remplacer les éléments publiés par le brouillon)
+  const publishChanges = async () => {
+    try {
+      // Dans une implémentation réelle, nous enverrions les changements au backend ici
+      // Pour l'instant, nous simulons simplement la publication
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Supprimer le brouillon après publication
+      localStorage.removeItem('menuDraft');
+      setHasDraft(false);
+
+      return { success: true, message: 'Menu publié avec succès' };
+    } catch (err) {
+      console.error('Erreur lors de la publication:', err);
+      throw err;
+    }
+  };
+
+  // Annuler les changements (supprimer le brouillon et revenir aux éléments publiés)
+  const discardChanges = async () => {
+    try {
+      localStorage.removeItem('menuDraft');
+      setDraftItems([]);
+      setHasDraft(false);
+      return { success: true };
+    } catch (err) {
+      console.error('Erreur lors de l\'annulation des changements:', err);
+      throw err;
+    }
+  };
+
   useEffect(() => {
     fetchMenuItems();
+    loadDraft(); // Charger le brouillon au démarrage
   }, []);
 
   return {
     menuItems,
+    draftItems,
     isLoading,
     error,
+    hasDraft,
     refreshMenu: fetchMenuItems,
     createMenuItem,
     updateMenuItem,
-    deleteMenuItem
+    deleteMenuItem,
+    saveDraft,
+    publishChanges,
+    discardChanges
   };
 }
