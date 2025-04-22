@@ -1,7 +1,7 @@
 'use client';
-import { menuActions } from '../config/menuActions';
+import { menuActions } from '../../config/menuActions';
 
-export default function MenuHeader({
+export default function MenuHeader({ 
   title = "Gestion du Menu",
   actions = {},
   state = {},
@@ -26,7 +26,7 @@ export default function MenuHeader({
     <div className={className}>
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
         <h2 className="text-xl font-semibold text-accent">{title}</h2>
-
+        
         <div className="flex flex-wrap gap-2">
           {menuActions
             .filter(shouldShowAction)

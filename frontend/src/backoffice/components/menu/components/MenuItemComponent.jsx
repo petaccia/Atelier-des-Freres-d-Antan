@@ -2,9 +2,9 @@
 import { MdDragIndicator } from 'react-icons/md';
 
 // Importation des composants
-import MenuItemContent from './MenuItemContent';
-import MenuItemActions from './MenuItemActions';
-import ExpandButton from './ExpandButton';
+import MenuItemContent from './content/MenuItemContent';
+import MenuItemActions from './actions/MenuItemActions';
+import ExpandButton from './ui/ExpandButton';
 
 export default function MenuItemComponent({
   item,

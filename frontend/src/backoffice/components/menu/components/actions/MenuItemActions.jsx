@@ -1,5 +1,5 @@
 'use client';
-import { menuItemActions } from '../config/menuItemActions';
+import { menuItemActions } from '../../config/menuItemActions';
 
 export default function MenuItemActions({ 
   itemId, 

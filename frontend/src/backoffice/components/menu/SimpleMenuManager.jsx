@@ -1,12 +1,12 @@
 'use client';
 
 // Importation des composants
-import MenuHeader from './components/MenuHeader';
-import DeviceSelector from './components/DeviceSelector';
-import MenuList from './components/MenuList';
-import DeviceTips from './components/DeviceTips';
-import LoadingState from './components/LoadingState';
-import ErrorState from './components/ErrorState';
+import MenuHeader from './components/layout/MenuHeader';
+import DeviceSelector from './components/layout/DeviceSelector';
+import MenuList from './components/layout/MenuList';
+import DeviceTips from './components/ui/DeviceTips';
+import LoadingState from './components/ui/LoadingState';
+import ErrorState from './components/ui/ErrorState';
 
 // Importation du hook personnalisé
 import useMenuManager from '@/backoffice/hooks/useMenuManager';

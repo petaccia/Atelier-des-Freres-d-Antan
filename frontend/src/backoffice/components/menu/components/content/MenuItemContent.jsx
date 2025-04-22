@@ -1,6 +1,6 @@
 'use client';
-import { getIconByTitle } from '../config/menuIcons';
-import { deviceOptions } from '../config/deviceOptions';
+import { getIconByTitle } from '../../config/menuIcons';
+import { deviceOptions } from '../../config/deviceOptions';
 
 export default function MenuItemContent({ 
   item, 
