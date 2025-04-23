@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useDesktopMenu } from '@/backoffice/hooks/useDesktopMenu';
 import { useMobileMenu } from '@/backoffice/hooks/useMobileMenu';
 import { getIconByTitle } from '@/backoffice/components/menu/config/menuIcons';
+import DeviceSelector from '@/components/ui/selectors/DeviceSelector';
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
@@ -89,19 +90,11 @@ export default function MenuPage() {
         </div>
 
         {/* Sélecteur d'appareil */}
-        <div className="flex space-x-4 mb-6">
-          <button
-            onClick={() => setSelectedDevice('desktop')}
-            className={`px-4 py-2 rounded-lg ${selectedDevice === 'desktop' ? 'bg-accent text-white' : 'bg-primary-dark/50 text-white/70'}`}
-          >
-            Desktop
-          </button>
-          <button
-            onClick={() => setSelectedDevice('mobile')}
-            className={`px-4 py-2 rounded-lg ${selectedDevice === 'mobile' ? 'bg-accent text-white' : 'bg-primary-dark/50 text-white/70'}`}
-          >
-            Mobile/Tablette
-          </button>
+        <div className="mb-6">
+        <DeviceSelector 
+          selectedDevice={selectedDevice} 
+          onDeviceChange={setSelectedDevice} 
+        />
         </div>
 
         {/* Affichage des éléments du menu */}
