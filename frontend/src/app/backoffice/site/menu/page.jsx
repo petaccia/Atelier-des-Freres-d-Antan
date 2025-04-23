@@ -1,18 +1,51 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import Link from 'next/link';
 import { useDesktopMenu } from '@/backoffice/hooks/useDesktopMenu';
 import { useMobileMenu } from '@/backoffice/hooks/useMobileMenu';
+import { getIconByTitle } from '@/backoffice/components/menu/config/menuIcons';
 
 export default function MenuPage() {
-  const [selectedDevice, setSelectedDevice] = useState('desktop');
+  const [selectedDevice, setSelectedDevice] = useState('mobile');
   const desktopMenu = useDesktopMenu();
   const mobileMenu = useMobileMenu();
 
   // Sélectionner le menu en fonction de l'appareil choisi
   const currentMenu = selectedDevice === 'desktop' ? desktopMenu : mobileMenu;
   const { menuItems, isLoading, error } = currentMenu;
+
+  // Fonction pour afficher un élément de menu avec ses sous-menus
+  const renderMenuItem = (item, isSubmenu = false) => {
+    const hasChildren = item.children && item.children.length > 0;
+    const showIcon = selectedDevice !== 'desktop' && item.showIcon !== false && !isSubmenu;
+
+    return (
+      <div key={item.id} className={`${isSubmenu ? 'ml-8 border-l border-accent/30 pl-4' : ''} mb-4`}>
+        <div className={`flex items-center p-3 ${isSubmenu ? 'bg-primary-dark/50' : 'bg-primary-dark/30'} rounded-lg`}>
+          {/* Icône (uniquement pour les éléments principaux en mode mobile/tablette) */}
+          {showIcon && (
+            <div className="mr-3 text-accent">
+              {getIconByTitle(item.title)}
+            </div>
+          )}
+
+          {/* Informations sur l'élément de menu */}
+          <div className="flex-grow">
+            <h3 className="font-medium text-white">{item.title}</h3>
+            <p className="text-sm text-white/60">{item.path || '#'}</p>
+          </div>
+        </div>
+
+        {/* Afficher les sous-menus s'il y en a */}
+        {hasChildren && (
+          <div className="mt-2">
+            {item.children.map(child => renderMenuItem(child, true))}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   if (isLoading) {
     return (
@@ -67,16 +100,27 @@ export default function MenuPage() {
             onClick={() => setSelectedDevice('mobile')}
             className={`px-4 py-2 rounded-lg ${selectedDevice === 'mobile' ? 'bg-accent text-white' : 'bg-primary-dark/50 text-white/70'}`}
           >
-            Mobile
+            Mobile/Tablette
           </button>
         </div>
 
-        {/* Affichage simple des éléments du menu */}
+        {/* Affichage des éléments du menu */}
         <div className="bg-primary-dark/30 p-4 rounded-lg">
           <h2 className="text-xl text-white mb-4">Éléments du menu {selectedDevice}</h2>
-          <pre className="text-white/80 overflow-auto p-4 bg-primary-dark/50 rounded-lg">
-            {JSON.stringify(menuItems, null, 2)}
-          </pre>
+
+          {selectedDevice !== 'desktop' ? (
+            <div className="space-y-4">
+              {menuItems && menuItems.length > 0 ? (
+                menuItems.map(item => renderMenuItem(item))
+              ) : (
+                <p className="text-white/60 p-4">Aucun élément de menu trouvé.</p>
+              )}
+            </div>
+          ) : (
+            <pre className="text-white/80 overflow-auto p-4 bg-primary-dark/50 rounded-lg">
+              {JSON.stringify(menuItems, null, 2)}
+            </pre>
+          )}
         </div>
       </div>
     </div>
