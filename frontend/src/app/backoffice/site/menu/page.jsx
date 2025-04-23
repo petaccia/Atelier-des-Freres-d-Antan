@@ -2,43 +2,20 @@
 import { useState } from 'react';
 import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import Link from 'next/link';
-import { useDesktopMenu } from '@/backoffice/hooks/useDesktopMenu';
-import { useMobileMenu } from '@/backoffice/hooks/useMobileMenu';
-import { getIconByTitle } from '@/backoffice/components/menu/config/menuIcons';
 import DeviceSelector from '@/components/ui/selectors/DeviceSelector';
+import { MenuItem, useDeviceMenu } from '@/backoffice/components/menu';
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
-  const desktopMenu = useDesktopMenu();
-  const mobileMenu = useMobileMenu();
+  const { menuItems, isLoading, error } = useDeviceMenu(selectedDevice);
 
-  // Sélectionner le menu en fonction de l'appareil choisi
-  const currentMenu = selectedDevice === 'desktop' ? desktopMenu : mobileMenu;
-  const { menuItems, isLoading, error } = currentMenu;
-
-  // Fonction pour afficher un élément de menu avec ses sous-menus
   const renderMenuItem = (item, isSubmenu = false) => {
     const hasChildren = item.children && item.children.length > 0;
-    const showIcon = selectedDevice !== 'desktop' && item.showIcon !== false && !isSubmenu;
 
     return (
       <div key={item.id} className={`${isSubmenu ? 'ml-8 border-l border-accent/30 pl-4' : ''} mb-4`}>
-        <div className={`flex items-center p-3 ${isSubmenu ? 'bg-primary-dark/50' : 'bg-primary-dark/30'} rounded-lg`}>
-          {/* Icône (uniquement pour les éléments principaux en mode mobile/tablette) */}
-          {showIcon && (
-            <div className="mr-3 text-accent">
-              {getIconByTitle(item.title)}
-            </div>
-          )}
+        <MenuItem item={item} isSubmenu={isSubmenu} selectedDevice={selectedDevice} />
 
-          {/* Informations sur l'élément de menu */}
-          <div className="flex-grow">
-            <h3 className="font-medium text-white">{item.title}</h3>
-            <p className="text-sm text-white/60">{item.path || '#'}</p>
-          </div>
-        </div>
-
-        {/* Afficher les sous-menus s'il y en a */}
         {hasChildren && (
           <div className="mt-2">
             {item.children.map(child => renderMenuItem(child, true))}
@@ -91,10 +68,10 @@ export default function MenuPage() {
 
         {/* Sélecteur d'appareil */}
         <div className="mb-6">
-        <DeviceSelector 
-          selectedDevice={selectedDevice} 
-          onDeviceChange={setSelectedDevice} 
-        />
+          <DeviceSelector 
+            selectedDevice={selectedDevice} 
+            onDeviceChange={setSelectedDevice} 
+          />
         </div>
 
         {/* Affichage des éléments du menu */}
