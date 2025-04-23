@@ -1,40 +1,47 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UseInterceptors, ParseIntPipe, HttpCode } from '@nestjs/common';
-import { CacheInterceptor } from '@nestjs/cache-manager';
-import { MenuService } from './menu.service';
-import { CreateMenuItemDto } from './dto/create-menu-item.dto';
-import { UpdateMenuItemDto } from './dto/update-menu-item.dto';
+import { Controller, Get, Post, Put, Delete, Body, Param, HttpCode } from '@nestjs/common';
+import { MenuService } from './services/menu.service';
+import { CreateMenuDto } from './dto/create-menu.dto';
+import { UpdateMenuDto } from './dto/update-menu.dto';
+import { ApiTags, ApiOperation, ApiParam, ApiBody } from '@nestjs/swagger';
 
+@ApiTags('menus')
 @Controller('menu')
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
-  @Get('main')
-  @UseInterceptors(CacheInterceptor)
-  async getMainMenu() {
-    return this.menuService.getMainMenu();
+  @Get()
+  @ApiOperation({ summary: 'Récupérer tous les menus' })
+  findAll() {
+    return this.menuService.findAll();
   }
 
-  @Get('items/:id')
-  async getMenuItem(@Param('id', ParseIntPipe) id: number) {
-    return this.menuService.getMenuItem(id);
+  @Get(':name')
+  @ApiOperation({ summary: 'Récupérer un menu par son nom' })
+  @ApiParam({ name: 'name', description: 'Nom du menu', example: 'main_menu' })
+  findOne(@Param('name') name: string) {
+    return this.menuService.findOne(name);
   }
 
-  @Post('items')
-  async createMenuItem(@Body() createMenuItemDto: CreateMenuItemDto) {
-    return this.menuService.createMenuItem(createMenuItemDto);
+  @Post()
+  @ApiOperation({ summary: 'Créer un nouveau menu' })
+  @ApiBody({ type: CreateMenuDto })
+  create(@Body() createMenuDto: CreateMenuDto) {
+    return this.menuService.create(createMenuDto);
   }
 
-  @Put('items/:id')
-  async updateMenuItem(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateMenuItemDto: UpdateMenuItemDto,
-  ) {
-    return this.menuService.updateMenuItem(id, updateMenuItemDto);
+  @Put(':name')
+  @ApiOperation({ summary: 'Mettre à jour un menu par son nom' })
+  @ApiParam({ name: 'name', description: 'Nom du menu', example: 'main_menu' })
+  @ApiBody({ type: UpdateMenuDto })
+  update(@Param('name') name: string, @Body() updateMenuDto: UpdateMenuDto) {
+    return this.menuService.update(name, updateMenuDto);
   }
 
-  @Delete('items/:id')
-  @HttpCode(200)
-  async deleteMenuItem(@Param('id', ParseIntPipe) id: number) {
-    return this.menuService.deleteMenuItem(id);
+  @Delete(':name')
+  @HttpCode(204)
+  @ApiOperation({ summary: 'Supprimer un menu par son nom' })
+  @ApiParam({ name: 'name', description: 'Nom du menu', example: 'main_menu' })
+  remove(@Param('name') name: string) {
+    return this.menuService.remove(name);
   }
 }
