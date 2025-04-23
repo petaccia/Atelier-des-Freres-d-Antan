@@ -9,16 +9,22 @@ export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
   const { menuItems, isLoading, error } = useDeviceMenu(selectedDevice);
 
-  const renderMenuItem = (item, isSubmenu = false) => {
+  const MenuItemRecursive = ({ item, selectedDevice }) => {
     const hasChildren = item.children && item.children.length > 0;
 
     return (
-      <div key={item.id} className={`${isSubmenu ? 'ml-8 border-l border-accent/30 pl-4' : ''} mb-4`}>
-        <MenuItem item={item} isSubmenu={isSubmenu} selectedDevice={selectedDevice} />
+      <div key={item.id} className="mb-4">
+        <MenuItem item={item} isSubmenu={false} selectedDevice={selectedDevice} />
 
         {hasChildren && (
           <div className="mt-2">
-            {item.children.map(child => renderMenuItem(child, true))}
+            {item.children.map(child => (
+              <MenuItemRecursive 
+                key={child.id} 
+                item={child} 
+                selectedDevice={selectedDevice}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -81,7 +87,13 @@ export default function MenuPage() {
           {selectedDevice !== 'desktop' ? (
             <div className="space-y-4">
               {menuItems && menuItems.length > 0 ? (
-                menuItems.map(item => renderMenuItem(item))
+                menuItems.map(item => (
+                  <MenuItemRecursive 
+                    key={item.id} 
+                    item={item} 
+                    selectedDevice={selectedDevice}
+                  />
+                ))
               ) : (
                 <p className="text-white/60 p-4">Aucun élément de menu trouvé.</p>
               )}
