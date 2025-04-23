@@ -1,30 +1,28 @@
 import { useState, useEffect } from 'react';
 
-// URL de l'API
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-const menuEndpoint = '/menu/main';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 export default function useMenuManager() {
-  // États
-  const [selectedDevice, setSelectedDevice] = useState('mobile');
+  const [selectedDevice, setSelectedDevice] = useState('desktop');
   const [expandedItems, setExpandedItems] = useState({});
   const [menuData, setMenuData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Charger les données du menu
+  // Charger les données du menu en fonction du device sélectionné
   useEffect(() => {
     const fetchMenu = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(`${apiUrl}${menuEndpoint}`);
+        const endpoint = selectedDevice === 'desktop' ? '/desktop-menu' : '/mobile-menu';
+        const response = await fetch(`${apiUrl}${endpoint}`);
         
         if (!response.ok) {
           throw new Error(`Failed to fetch menu: ${response.status} ${response.statusText}`);
         }
         
         const data = await response.json();
-        console.log('Menu data from API:', data);
+        console.log(`${selectedDevice} menu data from API:`, data);
         setMenuData(data);
       } catch (err) {
         console.error('Error fetching menu:', err);
@@ -35,26 +33,28 @@ export default function useMenuManager() {
     };
 
     fetchMenu();
-  }, []);
+    console.log('Fetching menu data...');
+  }, [selectedDevice]);
 
-  // Fonction pour basculer l'expansion d'un élément
   const toggleExpand = (itemId) => {
-    setExpandedItems(prev => ({
+    setExpandedItems((prev) => ({
       ...prev,
       [itemId]: !prev[itemId]
     }));
   };
 
-  // Filtrer les éléments de menu en fonction de l'appareil sélectionné
-  const menuItems = menuData?.menuItems || [];
+  const closeAllMenus = () => {
+    setExpandedItems({});
+  };
 
   return {
     selectedDevice,
     setSelectedDevice,
     expandedItems,
     toggleExpand,
-    menuItems,
+    closeAllMenus,
+    menuData,
     isLoading,
     error
   };
-}
+};
