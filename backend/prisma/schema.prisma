@@ -22,37 +22,64 @@ model Admin {
   @@map("admins")
 }
 
-// Menu models
+// Table principale des menus
 model Menu {
   id          Int       @id @default(autoincrement())
-  name        String    @unique // e.g., "main_menu", "footer_menu"
+  name        String    @unique // ex: "main_menu", "footer_menu"
   isActive    Boolean   @default(true)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  menuItems   MenuItem[]
-
-  @@map("menus")
-}
-
-model MenuItem {
-  id          Int       @id @default(autoincrement())
-  menuId      Int       // clé étrangère vers le menu
-  title       String    // texte du menu
-  path        String?   // lien vers la page
-  order       Int       @default(0)
-  isActive    Boolean   @default(true)
-  parentId    Int?      // clé étrangère vers le parent
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   // Relations
-  menu        Menu      @relation(fields: [menuId], references: [id], onDelete: Cascade)
-  parent      MenuItem? @relation("MenuHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children    MenuItem[] @relation("MenuHierarchy")
+  desktopMenuItems DesktopMenuItem[]
+  mobileMenuItems  MobileMenuItem[]
+
+  @@map("menus")
+}
+
+// Table pour le menu desktop
+model DesktopMenuItem {
+  id          Int       @id @default(autoincrement())
+  menuId      Int       // Relation vers Menu
+  title       String    
+  path        String?   
+  order       Int       @default(0)
+  isActive    Boolean   @default(true)
+  parentId    Int?      
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  menu        Menu            @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parent      DesktopMenuItem? @relation("DesktopMenuHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    DesktopMenuItem[] @relation("DesktopMenuHierarchy")
 
   @@index([menuId])
   @@index([parentId])
-  @@map("menu_items")
+  @@map("desktop_menu_items")
+}
+
+// Table pour le menu mobile
+model MobileMenuItem {
+  id          Int       @id @default(autoincrement())
+  menuId      Int       // Relation vers Menu
+  title       String    
+  path        String?   
+  order       Int       @default(0)
+  isActive    Boolean   @default(true)
+  showIcon    Boolean   @default(true)
+  parentId    Int?      
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  menu        Menu            @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parent      MobileMenuItem? @relation("MobileMenuHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    MobileMenuItem[] @relation("MobileMenuHierarchy")
+
+  @@index([menuId])
+  @@index([parentId])
+  @@map("mobile_menu_items")
 }
 
 // Enum pour les types de menus

@@ -2,11 +2,12 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function seedMenu() {
+export async function seedDesktopMenu() {
   try {
-    // Create main menu
     const mainMenu = await prisma.menu.upsert({
-      where: { name: 'main_menu' },
+      where: {
+          name: 'main_menu',
+      },
       update: {},
       create: {
         name: 'main_menu',
@@ -15,7 +16,7 @@ export async function seedMenu() {
     });
 
     // Create Accueil
-    await prisma.menuItem.create({
+    await prisma.desktopMenuItem.create({
       data: {
         menuId: mainMenu.id,
         title: 'Accueil',
@@ -25,7 +26,7 @@ export async function seedMenu() {
     });
 
     // Create Cordonnerie with sub-items
-    const cordonnerie = await prisma.menuItem.create({
+    const cordonnerie = await prisma.desktopMenuItem.create({
       data: {
         menuId: mainMenu.id,
         title: 'La cordonnerie',
@@ -51,7 +52,7 @@ export async function seedMenu() {
     });
 
     // Create Serrurerie with sub-items
-    const serrurerie = await prisma.menuItem.create({
+    const serrurerie = await prisma.desktopMenuItem.create({
       data: {
         menuId: mainMenu.id,
         title: 'La serrurerie',
@@ -77,7 +78,7 @@ export async function seedMenu() {
     });
 
     // Create Processus
-    await prisma.menuItem.create({
+    await prisma.desktopMenuItem.create({
       data: {
         menuId: mainMenu.id,
         title: 'Notre processus',
@@ -87,7 +88,7 @@ export async function seedMenu() {
     });
 
     // Create À propos with sub-items
-    const aPropos = await prisma.menuItem.create({
+    const aPropos = await prisma.desktopMenuItem.create({
       data: {
         menuId: mainMenu.id,
         title: 'À propos',
@@ -119,7 +120,7 @@ export async function seedMenu() {
     });
 
     // Create Contact
-    await prisma.menuItem.create({
+    await prisma.desktopMenuItem.create({
       data: {
         menuId: mainMenu.id,
         title: 'Contact',
@@ -128,14 +129,10 @@ export async function seedMenu() {
       },
     });
 
-    console.log('✅ Menus created successfully');
+    console.log('✅ Desktop Menu created successfully');
     return { mainMenu };
   } catch (error) {
-    console.error('Error seeding menus:', error);
+    console.error('Error seeding desktop menu:', error);
     throw error;
-  } 
-};
-
-
-
-
+  }
+}
