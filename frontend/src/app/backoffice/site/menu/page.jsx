@@ -6,32 +6,12 @@ import DeviceSelector from '@/components/ui/selectors/DeviceSelector';
 import { MenuItem, useDeviceMenu } from '@/backoffice/components/menu';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 import ErrorState from '@/backoffice/components/ui/error/ErrorState';
+import MenuItemRecursive from '@/backoffice/components/menu/components/recursive/MenuItemRecursive';
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
   const { menuItems, isLoading, error } = useDeviceMenu(selectedDevice);
 
-  const MenuItemRecursive = ({ item, selectedDevice }) => {
-    const hasChildren = item.children && item.children.length > 0;
-
-    return (
-      <div key={item.id} className="mb-4">
-        <MenuItem item={item} isSubmenu={false} selectedDevice={selectedDevice} />
-
-        {hasChildren && (
-          <div className="mt-2">
-            {item.children.map(child => (
-              <MenuItemRecursive 
-                key={child.id} 
-                item={child} 
-                selectedDevice={selectedDevice}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  };
 
   if (isLoading) {
     return (
