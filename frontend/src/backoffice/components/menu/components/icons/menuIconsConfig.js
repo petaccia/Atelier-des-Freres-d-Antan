@@ -41,21 +41,3 @@ export const menuIconsConfig = [
   }
 ];
 
-// Fonction utilitaire pour trouver l'icône appropriée en fonction du titre
-export function getIconByTitle(title) {
-  if (!title) return null;
-  
-  const titleLower = title.toLowerCase();
-  
-  // Rechercher la première configuration d'icône qui correspond à un mot-clé dans le titre
-  const iconConfig = menuIconsConfig.find(config => 
-    config.keywords.some(keyword => titleLower.includes(keyword))
-  );
-  
-  if (iconConfig) {
-    const IconComponent = iconConfig.icon;
-    return <IconComponent size={iconConfig.size} />;
-  }
-  
-  return null;
-}
