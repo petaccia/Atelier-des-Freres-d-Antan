@@ -1,13 +1,6 @@
 import MenuItemRecursive from './components/recursive/MenuItemRecursive';
 
 const MenuDeviceDisplay = ({ selectedDevice, menuItems }) => {
-  if (selectedDevice === 'desktop') {
-    return (
-      <pre className="text-white/80 overflow-auto p-4 bg-primary-dark/50 rounded-lg">
-        {JSON.stringify(menuItems, null, 2)}
-      </pre>
-    );
-  }
 
   return (
     <div className="space-y-4">

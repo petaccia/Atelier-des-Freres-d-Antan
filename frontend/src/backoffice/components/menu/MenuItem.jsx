@@ -1,5 +1,3 @@
-
-import MenuItemChildren from './components/children/MenuItemChildren';
 import MenuIcon from './components/icons/MenuIcon';
 
 export default function MenuItem({ item, isSubmenu = false, selectedDevice }) {
@@ -24,14 +22,11 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice }) {
           </div>
         </div>
       </div>
-
-      <MenuItemChildren 
-        children={item.children} 
-        selectedDevice={selectedDevice} 
-      />
     </div>
   );
 }
+
+
 
 
 

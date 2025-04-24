@@ -16,11 +16,16 @@ export class MobileMenuService {
       },
       include: {
         mobileMenuItems: {
-          where: { parentId: null },
+          where: { parentId: null }, // Seulement les éléments racine
           orderBy: { order: 'asc' },
           include: {
             children: {
               orderBy: { order: 'asc' },
+              include: {  // Ajout récursif pour les sous-niveaux
+                children: {
+                  orderBy: { order: 'asc' },
+                }
+              }
             },
           },
         },
