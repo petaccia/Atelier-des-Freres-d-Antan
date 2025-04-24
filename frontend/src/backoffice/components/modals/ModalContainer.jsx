@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
+import AddMenuItemForm from '../menu/components/forms/AddMenuItemForm';
 
 const ModalContainer = ({
   isOpen,
@@ -51,6 +52,10 @@ const ModalContainer = ({
         <div className="p-4 text-whiteGray">
           {children}
         </div>
+        <AddMenuItemForm 
+        onSubmit={() => {}}
+        onCancel={onClose}
+        />
       </div>
     </div>
   );

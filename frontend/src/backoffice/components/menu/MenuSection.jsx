@@ -3,9 +3,23 @@ import { useState } from "react";
 import MenuDeviceDisplay from "./MenuDeviceDisplay";
 import { FiPlus } from 'react-icons/fi';
 import ModalContainer from "./components/forms/ModalContainer";
+import AddMenuItemForm from "./components/forms/AddMenuItemForm";
 
 const MenuSection = ({ selectedDevice, menuItems }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Filtrer uniquement les éléments de premier niveau pour le sélecteur de parent
+  const rootMenuItems = menuItems?.filter(item => !item.parentId) || [];
+
+  const handleSubmit = async (formData) => {
+    try {
+      // TODO: Implémenter l'appel API pour ajouter l'item au menu
+      console.log('Données du formulaire:', formData);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout:', error);
+    }
+  };
 
   return (
     <div className="bg-primary-dark/30 p-4 rounded-lg">
@@ -26,8 +40,14 @@ const MenuSection = ({ selectedDevice, menuItems }) => {
       <ModalContainer
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Ajouter une page au menu"
-      />
+        title="Ajouter une nouvelle page"
+      >
+        <AddMenuItemForm 
+          onSubmit={handleSubmit}
+          onCancel={() => setIsModalOpen(false)}
+          menuItems={rootMenuItems}
+        />
+      </ModalContainer>
     </div>
   );
 };
