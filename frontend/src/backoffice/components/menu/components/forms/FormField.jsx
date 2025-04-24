@@ -12,10 +12,10 @@ const FormField = ({
   className = ''
 }) => {
   return (
-    <div className={`mb-4 ${className}`}>
+    <div className={`mb-6 ${className}`}>
       <label 
         htmlFor={id}
-        className="block text-sm font-medium text-white mb-2"
+        className="block text-sm font-medium text-whiteAmber mb-2"
       >
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
@@ -31,15 +31,21 @@ const FormField = ({
         required={required}
         placeholder={placeholder}
         className={`
-          w-full px-3 py-2 bg-primary-light 
-          border rounded-lg focus:outline-none focus:ring-2
+          w-full px-4 py-3 
+          bg-primary-dark/50 
+          border-2 rounded-lg 
+          focus:outline-none focus:ring-2
           text-white placeholder-gray-400
-          ${error ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 focus:ring-accent'}
+          transition-all duration-200
+          ${error 
+            ? 'border-red-500 focus:ring-red-500' 
+            : 'border-accent-light/30 focus:border-accent-light focus:ring-accent-light/20 hover:border-accent-light/50'
+          }
         `}
       />
       
       {error && (
-        <p className="mt-1 text-sm text-red-500">
+        <p className="mt-2 text-sm text-red-500 font-medium">
           {error}
         </p>
       )}

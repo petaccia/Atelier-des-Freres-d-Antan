@@ -2,7 +2,6 @@
 import useFormProps from "@/backoffice/components/common/forms/useFormProps";
 
 export const useAddPageForm = (onSuccess, menuItems = []) => {
-  // Transformer les menuItems en options pour le select
   const parentOptions = [
     { value: '', label: 'Aucun parent' },
     ...menuItems.map(item => ({
@@ -10,6 +9,14 @@ export const useAddPageForm = (onSuccess, menuItems = []) => {
       label: item.title
     }))
   ];
+
+  const formatPath = (path) => {
+    // Supprime les / au début et à la fin
+    path = path.replace(/^\/+|\/+$/g, '');
+    // Remplace les multiples / par un seul
+    path = path.replace(/\/+/g, '/');
+    return path;
+  };
 
   return useFormProps({
     initialValues: {
@@ -28,10 +35,17 @@ export const useAddPageForm = (onSuccess, menuItems = []) => {
       },
       {
         name: 'path',
-        label: 'Chemin de la page',
+        label: 'Chemin de la page (sans /)',
         type: 'text',
         required: true,
-        placeholder: 'Ex: /about'
+        placeholder: 'Ex: about',
+        validate: (value) => {
+          if (value.includes('/')) {
+            return "N'utilisez pas de / dans le chemin";
+          }
+          return '';
+        },
+        transform: (value) => formatPath(value)
       }
     ],
     selects: [
@@ -52,9 +66,9 @@ export const useAddPageForm = (onSuccess, menuItems = []) => {
       }
     ],
     onSubmit: async (values) => {
-      // TODO: Implémenter la logique d'ajout de page
       const formattedValues = {
         ...values,
+        path: `/${formatPath(values.path)}`, // Ajoute le / au début
         parentId: values.parentId ? parseInt(values.parentId) : null,
         showIcon: values.showIcon === 'true'
       };
@@ -64,3 +78,4 @@ export const useAddPageForm = (onSuccess, menuItems = []) => {
     submitLabel: 'Ajouter la page'
   });
 };
+
