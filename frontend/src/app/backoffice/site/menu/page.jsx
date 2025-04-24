@@ -7,22 +7,13 @@ import { MenuItem, useDeviceMenu } from '@/backoffice/components/menu';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 import ErrorState from '@/backoffice/components/ui/error/ErrorState';
 import MenuItemRecursive from '@/backoffice/components/menu/components/recursive/MenuItemRecursive';
+import PageLoading from "@/backoffice/components/layouts/PageLoading";
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
   const { menuItems, isLoading, error } = useDeviceMenu(selectedDevice);
 
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-primary">
-        <Sidebar />
-        <div className="ml-64 p-8">
-          <LoadingState text="Chargement du menu..." />
-        </div>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -33,6 +24,10 @@ export default function MenuPage() {
         </div>
       </div>
     );
+  }
+
+  if (isLoading) {
+    return <PageLoading text="Chargement du menu..." />;
   }
 
   return (
