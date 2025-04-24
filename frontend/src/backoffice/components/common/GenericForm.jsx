@@ -1,10 +1,12 @@
 'use client';
-
-// Composants
 import FormField from '../menu/components/forms/FormField';
 import SelectField from '../menu/components/forms/SelectField';
 import FormActions from '../menu/components/forms/FormActions';
 
+/**
+ * Composant de formulaire générique
+ * @param {import('./forms/types').FormProps & { className?: string, customFields?: React.ReactNode, errorMessage?: string }} props
+ */
 export default function GenericForm({
   formFields = [],
   selectFields = [],
@@ -22,47 +24,32 @@ export default function GenericForm({
 }) {
   return (
     <form onSubmit={handleSubmit} className={className}>
-      {/* Champs du formulaire basés sur la configuration */}
       {formFields.map(field => (
         <FormField
           key={field.id}
-          id={field.id}
-          name={field.name}
-          label={field.label}
-          type={field.type}
+          {...field}
           value={values[field.name]}
           onChange={handleChange}
           error={errors[field.name]}
-          min={field.min}
-          required={field.required}
-          placeholder={field.placeholder}
         />
       ))}
 
-      {/* Champs de sélection */}
       {selectFields.map(field => (
         <SelectField
           key={field.id}
-          id={field.id}
-          name={field.name}
-          label={field.label}
+          {...field}
           value={values[field.name]}
           onChange={handleChange}
-          options={field.options}
           error={errors[field.name]}
-          required={field.required}
         />
       ))}
 
-      {/* Champs personnalisés */}
       {customFields}
 
-      {/* Message d'erreur global */}
       {errorMessage && (
         <p className="text-red-500 text-sm">{errorMessage}</p>
       )}
 
-      {/* Boutons d'action */}
       <FormActions
         onCancel={onCancel}
         isSubmitting={isSubmitting}
