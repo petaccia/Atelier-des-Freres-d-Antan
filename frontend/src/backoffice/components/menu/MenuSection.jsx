@@ -2,16 +2,10 @@
 import { useState } from "react";
 import MenuDeviceDisplay from "./MenuDeviceDisplay";
 import { FiPlus } from 'react-icons/fi';
-import ModalForm from "../common/ModalForm";
-import { useAddPageForm } from "./components/forms/useAddPageForm";
+import ModalContainer from "./components/forms/ModalContainer";
 
 const MenuSection = ({ selectedDevice, menuItems }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const formProps = useAddPageForm(
-    () => setIsModalOpen(false),
-    menuItems // Passer les menuItems au hook
-  );
 
   return (
     <div className="bg-primary-dark/30 p-4 rounded-lg">
@@ -29,15 +23,10 @@ const MenuSection = ({ selectedDevice, menuItems }) => {
         selectedDevice={selectedDevice}
         menuItems={menuItems}
       />
-
-      <ModalForm 
+      <ModalContainer
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Ajouter une nouvelle page"
-        formProps={{
-          ...formProps,
-          onCancel: () => setIsModalOpen(false)
-        }}
+        title="Ajouter une page au menu"
       />
     </div>
   );

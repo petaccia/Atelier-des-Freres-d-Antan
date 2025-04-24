@@ -1,0 +1,47 @@
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+
+export const useMenuCreate = (onSuccess) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const createMenuItem = async (menuData) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(menuData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Erreur lors de la création du menu');
+      }
+
+      toast.success('Page ajoutée avec succès');
+      onSuccess?.(data);
+      return data;
+    } catch (err) {
+      const errorMessage = err.message || 'Une erreur est survenue lors de la création';
+      setError(errorMessage);
+      toast.error(errorMessage);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    createMenuItem,
+    isLoading,
+    error
+  };
+};
