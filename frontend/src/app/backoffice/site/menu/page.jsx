@@ -4,6 +4,7 @@ import Sidebar from '@/backoffice/components/layouts/Sidebar';
 import Link from 'next/link';
 import DeviceSelector from '@/components/ui/selectors/DeviceSelector';
 import { MenuItem, useDeviceMenu } from '@/backoffice/components/menu';
+import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
@@ -36,9 +37,7 @@ export default function MenuPage() {
       <div className="min-h-screen bg-primary">
         <Sidebar />
         <div className="ml-64 p-8">
-          <div className="flex flex-col items-center justify-center p-8 bg-primary-dark/30 rounded-lg">
-            <p className="text-white">Chargement du menu...</p>
-          </div>
+          <LoadingState text="Chargement du menu..." />
         </div>
       </div>
     );
