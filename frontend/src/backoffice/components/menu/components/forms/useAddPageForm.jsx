@@ -1,13 +1,22 @@
 'use client';
 import useFormProps from "@/backoffice/components/common/forms/useFormProps";
 
+export const useAddPageForm = (onSuccess, menuItems = []) => {
+  // Transformer les menuItems en options pour le select
+  const parentOptions = [
+    { value: '', label: 'Aucun parent' },
+    ...menuItems.map(item => ({
+      value: item.id.toString(),
+      label: item.title
+    }))
+  ];
 
-export const useAddPageForm = (onSuccess) => {
   return useFormProps({
     initialValues: {
       title: '',
       path: '',
-      showIcon: true
+      showIcon: true,
+      parentId: ''
     },
     fields: [
       {
@@ -27,6 +36,12 @@ export const useAddPageForm = (onSuccess) => {
     ],
     selects: [
       {
+        name: 'parentId',
+        label: 'Page parente',
+        required: false,
+        options: parentOptions
+      },
+      {
         name: 'showIcon',
         label: 'Afficher l\'icône',
         required: true,
@@ -38,7 +53,12 @@ export const useAddPageForm = (onSuccess) => {
     ],
     onSubmit: async (values) => {
       // TODO: Implémenter la logique d'ajout de page
-      console.log('Données du formulaire:', values);
+      const formattedValues = {
+        ...values,
+        parentId: values.parentId ? parseInt(values.parentId) : null,
+        showIcon: values.showIcon === 'true'
+      };
+      console.log('Données du formulaire:', formattedValues);
       onSuccess?.();
     },
     submitLabel: 'Ajouter la page'

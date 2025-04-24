@@ -8,7 +8,10 @@ import { useAddPageForm } from "./components/forms/useAddPageForm";
 const MenuSection = ({ selectedDevice, menuItems }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const formProps = useAddPageForm(() => setIsModalOpen(false));
+  const formProps = useAddPageForm(
+    () => setIsModalOpen(false),
+    menuItems // Passer les menuItems au hook
+  );
 
   return (
     <div className="bg-primary-dark/30 p-4 rounded-lg">
