@@ -5,6 +5,7 @@ import Link from 'next/link';
 import DeviceSelector from '@/components/ui/selectors/DeviceSelector';
 import { MenuItem, useDeviceMenu } from '@/backoffice/components/menu';
 import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
+import ErrorState from '@/backoffice/components/ui/error/ErrorState';
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
@@ -48,7 +49,7 @@ export default function MenuPage() {
       <div className="min-h-screen bg-primary">
         <Sidebar />
         <div className="ml-64 p-8">
-          <div>Une erreur est survenue: {error}</div>
+          <ErrorState message={error} />
         </div>
       </div>
     );

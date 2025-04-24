@@ -1,5 +1,4 @@
 export default function ErrorState({ message }) {
-  console.log('ErrorState rendu avec message:', message);
   
   return (
     <div className="flex items-center justify-center min-h-[200px]">
