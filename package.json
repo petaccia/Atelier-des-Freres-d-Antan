@@ -1,0 +1,18 @@
+{
+  "name": "atelier-freres-dantan",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run start:dev",
+    "build": "concurrently \"cd frontend && npm run build\" \"cd backend && npm run build\"",
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\"",
+    "lint": "concurrently \"cd frontend && npm run lint\" \"cd backend && npm run lint\"",
+    "format": "concurrently \"cd frontend && npm run format\" \"cd backend && npm run format\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

@@ -1,6 +1,4 @@
 import "./globals.css";
-import Header from "@/components/layout/header/Header";
-import Footer from "@/components/layout/footer/Footer";
 import { Poppins, Petrona, Josefin_Sans } from "next/font/google";
 
 const poppins = Poppins({
@@ -31,11 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className={`${poppins.className} ${petrona.className} ${josefinSans.className}`}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );
