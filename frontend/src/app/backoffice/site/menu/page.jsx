@@ -8,6 +8,7 @@ import LoadingState from '@/backoffice/components/ui/loading/LoadingState';
 import ErrorState from '@/backoffice/components/ui/error/ErrorState';
 import MenuItemRecursive from '@/backoffice/components/menu/components/recursive/MenuItemRecursive';
 import PageLoading from "@/backoffice/components/layouts/PageLoading";
+import PageError from "@/backoffice/components/layouts/PageError";
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
@@ -16,14 +17,7 @@ export default function MenuPage() {
 
 
   if (error) {
-    return (
-      <div className="min-h-screen bg-primary">
-        <Sidebar />
-        <div className="ml-64 p-8">
-          <ErrorState message={error} />
-        </div>
-      </div>
-    );
+    return <PageError message={error} />;
   }
 
   if (isLoading) {
