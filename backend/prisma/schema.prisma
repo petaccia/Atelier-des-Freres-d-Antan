@@ -37,49 +37,52 @@ model Menu {
   @@map("menus")
 }
 
-// Table pour le menu desktop
+// Table pour les pages du menu desktop
 model DesktopMenuItem {
   id          Int       @id @default(autoincrement())
-  menuId      Int       // Relation vers Menu
-  title       String    
-  path        String?   
+  menuId      Int
+  title       String
+  path        String    
   order       Int       @default(0)
   isActive    Boolean   @default(true)
-  parentId    Int?      
+  showIcon    Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   // Relations
-  menu        Menu            @relation(fields: [menuId], references: [id], onDelete: Cascade)
-  parent      DesktopMenuItem? @relation("DesktopMenuHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children    DesktopMenuItem[] @relation("DesktopMenuHierarchy")
+  menu        Menu      @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parent      DesktopMenuItem?  @relation("ParentChild", fields: [parentId], references: [id], onDelete: SetNull)
+  children    DesktopMenuItem[] @relation("ParentChild")
+  parentId    Int?
 
+  @@unique([menuId, path])
+  @@map("desktop_menu_items")
   @@index([menuId])
   @@index([parentId])
-  @@map("desktop_menu_items")
 }
 
-// Table pour le menu mobile
+// Table pour les pages du menu mobile
 model MobileMenuItem {
   id          Int       @id @default(autoincrement())
-  menuId      Int       // Relation vers Menu
-  title       String    
-  path        String?   
+  menuId      Int
+  title       String
+  path        String    
   order       Int       @default(0)
   isActive    Boolean   @default(true)
-  showIcon    Boolean   @default(true)
-  parentId    Int?      
+  showIcon    Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   // Relations
-  menu        Menu            @relation(fields: [menuId], references: [id], onDelete: Cascade)
-  parent      MobileMenuItem? @relation("MobileMenuHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
-  children    MobileMenuItem[] @relation("MobileMenuHierarchy")
+  menu        Menu      @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parent      MobileMenuItem?  @relation("ParentChild", fields: [parentId], references: [id], onDelete: SetNull)
+  children    MobileMenuItem[] @relation("ParentChild")
+  parentId    Int?
 
+  @@unique([menuId, path])
+  @@map("mobile_menu_items")
   @@index([menuId])
   @@index([parentId])
-  @@map("mobile_menu_items")
 }
 
 // Enum pour les types de menus
