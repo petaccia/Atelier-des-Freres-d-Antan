@@ -7,6 +7,7 @@ import FormActions from '../menu/components/forms/FormActions';
 
 export default function GenericForm({
   formFields = [],
+  selectFields = [],
   values = {},
   errors = {},
   isSubmitting = false,
@@ -16,7 +17,6 @@ export default function GenericForm({
   submitLabel = 'Enregistrer',
   cancelLabel = 'Annuler',
   className = 'space-y-4',
-  selectFields = [],
   customFields = null,
   errorMessage = null
 }) {
@@ -46,9 +46,10 @@ export default function GenericForm({
           id={field.id}
           name={field.name}
           label={field.label}
-          value={field.value}
-          onChange={field.onChange}
+          value={values[field.name]}
+          onChange={handleChange}
           options={field.options}
+          error={errors[field.name]}
           required={field.required}
         />
       ))}

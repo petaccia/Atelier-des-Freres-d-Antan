@@ -2,8 +2,6 @@ import MenuItem from "../../MenuItem";
 
 const MenuItemRecursive = ({ item, isSubmenu = false, selectedDevice }) => {
 
-  console.log('MenuItemRecursive item:', item); // Ajout du console.log
-
   const hasChildren = item.children && item.children.length > 0;
 
   return (
