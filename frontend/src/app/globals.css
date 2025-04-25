@@ -96,85 +96,70 @@
 
 /* Styles personnalisés pour react-toastify */
 .Toastify__toast-container {
-  padding: 0;
+  @apply p-0 w-auto min-w-[400px];
 }
 
 .Toastify__toast {
-  font-family: var(--font-primary);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  min-height: 80px;
-  margin-bottom: 1rem;
+  @apply font-sans p-6 rounded-lg min-h-[80px] mb-4 w-auto whitespace-nowrap;
 }
 
 .Toastify__toast-body {
-  font-family: var(--font-poppins);
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.05em;
-  padding: 0.5rem;
+  @apply font-[var(--font-poppins)] text-base leading-normal tracking-wider p-2;
 }
 
 .Toastify__close-button {
-  align-self: center;
-  padding: 0.5rem;
+  @apply self-center p-2;
 }
 
 .Toastify__close-button > svg {
-  width: 20px;
-  height: 20px;
+  @apply w-5 h-5;
 }
 
 /* Types de toasts personnalisés */
 .Toastify__toast--success {
-  background-color: #3c9a66 !important; /* Votre vert personnalisé */
-  color: #f8fafc !important;
+  @apply bg-tertiary text-whiteStone;
 }
 
 .Toastify__toast--error {
-  background-color: #b91c1c !important; /* Rouge plus profond */
-  color: #f8fafc !important;
+  @apply bg-red-500 text-whiteStone;
 }
 
 .Toastify__toast--warning {
-  background-color: #9b7956 !important; /* Votre couleur accent */
-  color: #f8fafc !important;
+  @apply bg-accent text-whiteStone;
 }
 
 .Toastify__toast--info {
-  background-color: #185871 !important; /* Votre couleur primary */
-  color: #f8fafc !important;
+  @apply bg-primary text-whiteStone;
 }
 
 /* Barre de progression */
 .Toastify__progress-bar {
-  height: 4px;
+  @apply h-1;
 }
 
 .Toastify__progress-bar--success {
-  background-color: #4ade80 !important;
+  @apply bg-green-400;
 }
 
 .Toastify__progress-bar--error {
-  background-color: #fca5a5 !important;
+  @apply bg-red-300;
 }
 
 .Toastify__progress-bar--warning {
-  background-color: #c8ac87 !important; /* Votre couleur accent-light */
+  @apply bg-accent-light;
 }
 
 .Toastify__progress-bar--info {
-  background-color: #e0f2f7 !important; /* Votre couleur primary-light */
+  @apply bg-primary-light;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .Toastify__toast-container {
-    width: 100% !important;
-    padding: 1rem;
+    @apply w-full p-4;
   }
   
   .Toastify__toast {
-    margin-bottom: 0.5rem;
+    @apply mb-2;
   }
 }
