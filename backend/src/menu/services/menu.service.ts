@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateMenuItemDto, MenuType } from '../dto/create-menu-item.dto';
 import { DesktopMenuItem, MobileMenuItem } from '@prisma/client';
@@ -13,17 +13,38 @@ export class MenuService {
     });
 
     if (!mainMenu) {
-      throw new Error('Menu principal non trouvé');
+      throw new NotFoundException('Menu principal non trouvé');
+    }
+
+    // Vérifier si le chemin existe déjà
+    const existingDesktopPath = await this.prisma.desktopMenuItem.findFirst({
+      where: { path: createMenuItemDto.path }
+    });
+
+    const existingMobilePath = await this.prisma.mobileMenuItem.findFirst({
+      where: { path: createMenuItemDto.path }
+    });
+
+    if (existingDesktopPath || existingMobilePath) {
+      throw new ConflictException(
+        `Une page avec le chemin "${createMenuItemDto.path}" existe déjà dans le menu`
+      );
+    }
+
+    // Vérifier le parent si spécifié
+    if (createMenuItemDto.parentId) {
+      const parentExists = await this.validateParentExists(createMenuItemDto.parentId, createMenuItemDto.menuType);
+      if (!parentExists) {
+        throw new NotFoundException(`Parent menu item avec l'ID ${createMenuItemDto.parentId} non trouvé`);
+      }
     }
 
     const menuId = mainMenu.id;
+    const parentId = createMenuItemDto.parentId ? Number(createMenuItemDto.parentId) : null;
 
     try {
       let desktopItem: DesktopMenuItem | undefined;
       let mobileItem: MobileMenuItem | undefined;
-
-      // Convertir parentId en null si c'est une chaîne vide ou undefined
-      const parentId = createMenuItemDto.parentId ? Number(createMenuItemDto.parentId) : null;
 
       if (createMenuItemDto.menuType === MenuType.DESKTOP || createMenuItemDto.menuType === MenuType.BOTH) {
         desktopItem = await this.prisma.desktopMenuItem.create({
@@ -33,7 +54,7 @@ export class MenuService {
             path: createMenuItemDto.path,
             parentId,
             isActive: createMenuItemDto.isActive ?? true,
-            order: createMenuItemDto.order ?? 0,
+            order: createMenuItemDto.order ?? await this.calculateOrder('desktop', menuId, parentId),
           },
         });
       }
@@ -46,8 +67,8 @@ export class MenuService {
             path: createMenuItemDto.path,
             parentId,
             isActive: createMenuItemDto.isActive ?? true,
-            order: createMenuItemDto.order ?? 0,
-            showIcon: false,
+            order: createMenuItemDto.order ?? await this.calculateOrder('mobile', menuId, parentId),
+            showIcon: createMenuItemDto.showIcon ?? false,
           },
         });
       }
@@ -58,12 +79,40 @@ export class MenuService {
       };
 
     } catch (error) {
-      if (error.code === 'P2002') {
-        throw new ConflictException(
-          `Une page avec le chemin "${createMenuItemDto.path}" existe déjà dans le menu`
-        );
-      }
       throw error;
     }
+  }
+
+  private async validateParentExists(parentId: number, menuType: MenuType): Promise<boolean> {
+    if (menuType === MenuType.DESKTOP || menuType === MenuType.BOTH) {
+      const desktopParent = await this.prisma.desktopMenuItem.findUnique({
+        where: { id: parentId },
+      });
+      if (!desktopParent) return false;
+    }
+
+    if (menuType === MenuType.MOBILE || menuType === MenuType.BOTH) {
+      const mobileParent = await this.prisma.mobileMenuItem.findUnique({
+        where: { id: parentId },
+      });
+      if (!mobileParent) return false;
+    }
+
+    return true;
+  }
+
+  private async calculateOrder(type: 'desktop' | 'mobile', menuId: number, parentId: number | null): Promise<number> {
+    const model = type === 'desktop' ? this.prisma.desktopMenuItem : this.prisma.mobileMenuItem;
+    const lastItem = await model.findFirst({
+      where: {
+        menuId,
+        parentId: parentId || null,
+      },
+      orderBy: {
+        order: 'desc',
+      },
+    });
+
+    return lastItem ? lastItem.order + 1 : 0;
   }
 }
