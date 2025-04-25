@@ -22,15 +22,18 @@ export class MenuService {
       let desktopItem: DesktopMenuItem | undefined;
       let mobileItem: MobileMenuItem | undefined;
 
+      // Convertir parentId en null si c'est une chaîne vide ou undefined
+      const parentId = createMenuItemDto.parentId ? Number(createMenuItemDto.parentId) : null;
+
       if (createMenuItemDto.menuType === MenuType.DESKTOP || createMenuItemDto.menuType === MenuType.BOTH) {
         desktopItem = await this.prisma.desktopMenuItem.create({
           data: {
             menuId,
             title: createMenuItemDto.title,
             path: createMenuItemDto.path,
-            parentId: createMenuItemDto.parentId,
-            isActive: createMenuItemDto.isActive,
-            order: createMenuItemDto.order,
+            parentId,
+            isActive: createMenuItemDto.isActive ?? true,
+            order: createMenuItemDto.order ?? 0,
           },
         });
       }
@@ -41,9 +44,9 @@ export class MenuService {
             menuId,
             title: createMenuItemDto.title,
             path: createMenuItemDto.path,
-            parentId: createMenuItemDto.parentId,
-            isActive: createMenuItemDto.isActive,
-            order: createMenuItemDto.order,
+            parentId,
+            isActive: createMenuItemDto.isActive ?? true,
+            order: createMenuItemDto.order ?? 0,
             showIcon: false,
           },
         });

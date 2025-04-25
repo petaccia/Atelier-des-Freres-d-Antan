@@ -2,8 +2,9 @@
 
 import { useMenuCreate } from '@/backoffice/hooks/menu/useMenuCreate';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
-const AddMenuItemForm = ({ onSubmit, onCancel, menuItems, onSuccess }) => {
+const AddMenuItemForm = ({ onCancel, menuItems }) => {
   const [formData, setFormData] = useState({
     title: '',
     path: '',
@@ -13,8 +14,11 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems, onSuccess }) => {
     parentId: ''
   });
 
-  // Hook pour la creation d'un menu
-  const { createMenuItem , isLoading, error } = useMenuCreate();
+  const { createMenuItem, isLoading, error } = useMenuCreate();
+
+  const isPathExists = (path) => {
+    return menuItems.some(item => item.path === path);
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,14 +30,52 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems, onSuccess }) => {
     }));
   };
 
+  const submitForm = async () => {
+    const result = await createMenuItem(formData);
+    
+    if (!result.error) {
+      onCancel(); // Ferme le formulaire uniquement en cas de succès
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await createMenuItem(formData);
-      onSuccess?.();
-    } catch (err) {
-      console.error('Erreur lors de la soumission du formulaire:', err);
+
+    // Vérification locale du chemin
+    if (isPathExists(formData.path)) {
+      toast.error(`Le chemin "${formData.path}" existe déjà. Veuillez en choisir un autre.`);
+      return;
     }
+
+    // Toast de confirmation avec boutons
+    toast.info(
+      <div>
+        <p>Voulez-vous créer cette page ?</p>
+        <div className="mt-2 flex justify-end gap-2">
+          <button
+            onClick={() => {
+              toast.dismiss();
+              submitForm();
+            }}
+            className="px-3 py-1 bg-accent text-white rounded-md hover:bg-accent-light"
+          >
+            Confirmer
+          </button>
+          <button
+            onClick={() => toast.dismiss()}
+            className="px-3 py-1 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+          >
+            Annuler
+          </button>
+        </div>
+      </div>,
+      {
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+        closeButton: false
+      }
+    );
   };
 
   return (
@@ -149,11 +191,13 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems, onSuccess }) => {
         </button>
         <button
           type="submit"
+          disabled={isLoading}
           className="px-4 py-2 bg-accent hover:bg-accent-light text-white rounded-lg transition-colors"
         >
-          Ajouter
+          {isLoading ? 'Chargement...' : 'Ajouter'}
         </button>
       </div>
+       {error && <p className="font-bold text-red-500">{error}</p>}
     </form>
   );
 };
