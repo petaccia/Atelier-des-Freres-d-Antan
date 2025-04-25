@@ -96,19 +96,41 @@
 
 /* Styles personnalisés pour react-toastify */
 .Toastify__toast-container {
-  @apply p-0 w-auto min-w-[400px];
+  @apply p-0;
+  width: fit-content !important; /* Force la largeur à s'adapter au contenu */
+  max-width: 600px;
+  min-width: 300px;
 }
 
 .Toastify__toast {
-  @apply font-sans p-6 rounded-lg min-h-[80px] mb-4 w-auto whitespace-nowrap;
+  @apply font-sans p-4 rounded-lg min-h-[64px] mb-4;
+  width: fit-content !important; /* Force la largeur à s'adapter au contenu */
+  white-space: normal !important;
 }
 
 .Toastify__toast-body {
   @apply font-[var(--font-poppins)] text-base leading-normal tracking-wider p-2;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: fit-content;
+}
+
+/* Style pour le toast avec boutons */
+.Toastify__toast-body > div:last-child {
+  @apply flex flex-col gap-2;
+}
+
+.Toastify__toast-body > div:last-child > div {
+  @apply flex justify-end gap-2 mt-2;
+}
+
+.Toastify__toast-body button {
+  @apply px-3 py-1 rounded-md transition-colors;
+  min-width: 80px;
 }
 
 .Toastify__close-button {
-  @apply self-center p-2;
+  @apply self-start p-2;
 }
 
 .Toastify__close-button > svg {
@@ -156,7 +178,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .Toastify__toast-container {
-    @apply w-full p-4;
+    @apply w-[calc(100%-2rem)] mx-4;
   }
   
   .Toastify__toast {
