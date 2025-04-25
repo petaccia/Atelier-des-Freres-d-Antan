@@ -1,15 +1,24 @@
 'use client';
 
+import { useMenuCreate } from '@/backoffice/hooks/menu/useMenuCreate';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
-const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
+const AddMenuItemForm = ({ onCancel, menuItems }) => {
   const [formData, setFormData] = useState({
     title: '',
     path: '',
+    menuType: 'BOTH',
     isActive: true,
     showIcon: true,
     parentId: ''
   });
+
+  const { createMenuItem, isLoading, error } = useMenuCreate();
+
+  const isPathExists = (path) => {
+    return menuItems.some(item => item.path === path);
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -21,13 +30,76 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
     }));
   };
 
+  const submitForm = async () => {
+    const result = await createMenuItem(formData);
+    
+    if (!result.error) {
+      onCancel(); // Ferme le formulaire uniquement en cas de succès
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await onSubmit(formData);
+
+    // Vérification locale du chemin
+    if (isPathExists(formData.path)) {
+      toast.error(`Le chemin "${formData.path}" existe déjà. Veuillez en choisir un autre.`);
+      return;
+    }
+
+    // Toast de confirmation avec boutons
+    toast.info(
+      <div>
+        <p>Voulez-vous créer cette page ?</p>
+        <div className="mt-2 flex justify-end gap-2">
+          <button
+            onClick={() => {
+              toast.dismiss();
+              submitForm();
+            }}
+            className="px-3 py-1 bg-accent text-white rounded-md hover:bg-accent-light"
+          >
+            Confirmer
+          </button>
+          <button
+            onClick={() => toast.dismiss()}
+            className="px-3 py-1 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+          >
+            Annuler
+          </button>
+        </div>
+      </div>,
+      {
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+        closeButton: false
+      }
+    );
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+
+      {/* Choix du type de menu pour lequel ajouter la page */}
+      <div>
+        <label htmlFor="menuType" className="block text-sm font-medium text-whiteGray mb-1">
+          Type de menu
+        </label>
+        <select
+          id="menuType"
+          name="menuType"
+          value={formData.menuType}
+          onChange={handleChange}
+          className="w-full px-3 py-2 bg-primary border border-accent/20 rounded-lg text-whiteGray focus:outline-none focus:border-accent-light"
+        >
+          <option value="BOTH">Desktop et Mobile</option>
+          <option value="DESKTOP">Desktop</option>
+          <option value="MOBILE">Mobile</option>
+        </select>
+</div>
+
+      {/* Titre */}
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-whiteGray mb-1">
           Titre de la page
@@ -43,6 +115,7 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         />
       </div>
 
+      {/* Chemin URL */}
       <div>
         <label htmlFor="path" className="block text-sm font-medium text-whiteGray mb-1">
           Chemin URL
@@ -58,6 +131,7 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         />
       </div>
 
+      {/* Page parente */}
       <div>
         <label htmlFor="parentId" className="block text-sm font-medium text-whiteGray mb-1">
           Page parente
@@ -78,6 +152,7 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         </select>
       </div>
 
+          {/* Options */}
       <div className="flex items-center gap-6">
         <label className="relative flex items-center cursor-pointer">
           <input
@@ -116,11 +191,13 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         </button>
         <button
           type="submit"
+          disabled={isLoading}
           className="px-4 py-2 bg-accent hover:bg-accent-light text-white rounded-lg transition-colors"
         >
-          Ajouter
+          {isLoading ? 'Chargement...' : 'Ajouter'}
         </button>
       </div>
+       {error && <p className="font-bold text-red-500">{error}</p>}
     </form>
   );
 };
