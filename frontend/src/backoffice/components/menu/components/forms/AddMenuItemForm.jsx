@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import SelectInput from './inputs/SelectInput';
 import TextInput from './inputs/TextInput';
 import ToggleInput from './inputs/ToggleInput';
+import { validateMenu } from '../../validation/menuSchema';
 
 const AddMenuItemForm = ({ onCancel, menuItems }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
     parentId: ''
   });
 
+  const [errors, setErrors] = useState({});
   const { createMenuItem, isLoading, error } = useMenuCreate();
 
   const isPathExists = (path) => {
@@ -25,12 +27,18 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    const newValue = type === 'checkbox' ? checked : name === 'parentId' ? (value === '' ? null : Number(value)) : value; 
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked :
-        name === 'parentId' ? (value === '' ? null : Number(value)) :
-          value
+      [name]: newValue
     }));
+
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: null
+      }));
+    }
   };
 
   const submitForm = async () => {
@@ -44,8 +52,19 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isPathExists(formData.path)) {
-      toast.error(`Le chemin "${formData.path}" existe déjà. Veuillez en choisir un autre.`);
+    const validationErrors = validateMenu(formData);
+    if (validationErrors) {
+      setErrors(validationErrors);
+      toast.error('Veuillez corriger les erreurs avant de soumettre le formulaire.');
+      return;
+    }
+
+    if (menuItems.some(item => item.path === formData.path)) {
+      setErrors(prev => ({
+        ...prev,
+        path: 'Une page avec ce chemin existe déjà.'
+      }));
+      toast.error('Une page avec ce chemin existe déjà.');
       return;
     }
 

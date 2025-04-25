@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ConflictException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateMenuItemDto, MenuType } from '../dto/create-menu-item.dto';
 import { DesktopMenuItem, MobileMenuItem } from '@prisma/client';
@@ -31,11 +31,14 @@ export class MenuService {
       );
     }
 
-    // Vérifier le parent si spécifié
+    // S'assurer que menuType n'est pas undefined
+    const menuType = createMenuItemDto.menuType || MenuType.BOTH;
+
+    // Validation du parent si nécessaire
     if (createMenuItemDto.parentId) {
-      const parentExists = await this.validateParentExists(createMenuItemDto.parentId, createMenuItemDto.menuType);
+      const parentExists = await this.validateParentExists(createMenuItemDto.parentId, menuType);
       if (!parentExists) {
-        throw new NotFoundException(`Parent menu item avec l'ID ${createMenuItemDto.parentId} non trouvé`);
+        throw new NotFoundException(`Parent menu item with ID ${createMenuItemDto.parentId} not found`);
       }
     }
 
@@ -46,7 +49,7 @@ export class MenuService {
       let desktopItem: DesktopMenuItem | undefined;
       let mobileItem: MobileMenuItem | undefined;
 
-      if (createMenuItemDto.menuType === MenuType.DESKTOP || createMenuItemDto.menuType === MenuType.BOTH) {
+      if (menuType === MenuType.DESKTOP || menuType === MenuType.BOTH) {
         desktopItem = await this.prisma.desktopMenuItem.create({
           data: {
             menuId,
@@ -59,7 +62,7 @@ export class MenuService {
         });
       }
 
-      if (createMenuItemDto.menuType === MenuType.MOBILE || createMenuItemDto.menuType === MenuType.BOTH) {
+      if (menuType === MenuType.MOBILE || menuType === MenuType.BOTH) {
         mobileItem = await this.prisma.mobileMenuItem.create({
           data: {
             menuId,
@@ -68,7 +71,7 @@ export class MenuService {
             parentId,
             isActive: createMenuItemDto.isActive ?? true,
             order: createMenuItemDto.order ?? await this.calculateOrder('mobile', menuId, parentId),
-            showIcon: createMenuItemDto.showIcon ?? false,
+            showIcon: (createMenuItemDto as any).showIcon ?? false, // Type assertion temporaire
           },
         });
       }
@@ -81,6 +84,33 @@ export class MenuService {
     } catch (error) {
       throw error;
     }
+  }
+
+  private async calculateOrder(type: 'desktop' | 'mobile', menuId: number, parentId: number | null): Promise<number> {
+    const model = type === 'desktop' ? this.prisma.desktopMenuItem : this.prisma.mobileMenuItem;
+    
+    const lastItem = await (type === 'desktop' ? 
+      this.prisma.desktopMenuItem.findFirst({
+        where: {
+          menuId,
+          parentId: parentId || null,
+        },
+        orderBy: {
+          order: 'desc',
+        },
+      }) :
+      this.prisma.mobileMenuItem.findFirst({
+        where: {
+          menuId,
+          parentId: parentId || null,
+        },
+        orderBy: {
+          order: 'desc',
+        },
+      })
+    );
+
+    return lastItem ? lastItem.order + 1 : 0;
   }
 
   private async validateParentExists(parentId: number, menuType: MenuType): Promise<boolean> {
@@ -99,20 +129,5 @@ export class MenuService {
     }
 
     return true;
-  }
-
-  private async calculateOrder(type: 'desktop' | 'mobile', menuId: number, parentId: number | null): Promise<number> {
-    const model = type === 'desktop' ? this.prisma.desktopMenuItem : this.prisma.mobileMenuItem;
-    const lastItem = await model.findFirst({
-      where: {
-        menuId,
-        parentId: parentId || null,
-      },
-      orderBy: {
-        order: 'desc',
-      },
-    });
-
-    return lastItem ? lastItem.order + 1 : 0;
   }
 }
