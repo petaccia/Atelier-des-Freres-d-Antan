@@ -35,7 +35,7 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
   };
 
   const handleIconChange = (icon) => {
-    setFormData(prev => ({ ...prev, icon: iconkey}));
+    setFormData(prev => ({ ...prev, icon: icon}));
   };
 
   const submitForm = async () => {
@@ -155,7 +155,10 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
       </div>
 
       {formData.showIcon && (
-        <IconSelect value={formData.icon} onChange={handleIconChange} />
+        <IconSelect 
+          value={formData.icon} 
+          onChange={handleIconChange} 
+        />
       )}
 
       <div className="flex justify-end space-x-3 pt-4">
