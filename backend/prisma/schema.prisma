@@ -43,6 +43,7 @@ model DesktopMenuItem {
   menuId      Int
   title       String
   path        String    
+  icon        String?
   order       Int       @default(0)
   isActive    Boolean   @default(true)
   showIcon    Boolean   @default(false)
@@ -67,6 +68,7 @@ model MobileMenuItem {
   menuId      Int
   title       String
   path        String    
+  icon        String?
   order       Int       @default(0)
   isActive    Boolean   @default(true)
   showIcon    Boolean   @default(false)

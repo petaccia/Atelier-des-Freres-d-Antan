@@ -1,42 +1,51 @@
-import { IsString, IsBoolean, IsOptional, IsInt, IsEnum } from 'class-validator';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsOptional, IsBoolean, IsNumber, IsEnum } from 'class-validator';
 
 export enum MenuType {
-  DESKTOP = "DESKTOP",
-  MOBILE = "MOBILE",
-  BOTH = "BOTH"
+  DESKTOP = 'DESKTOP',
+  MOBILE = 'MOBILE',
+  BOTH = 'BOTH',
 }
 
 export class CreateMenuItemDto {
-  @ApiProperty({ description: "Titre de l'élément de menu" })
+  @ApiProperty()
   @IsString()
   title: string;
 
-  @ApiProperty({ description: "Chemin de l'élément de menu" })
+  @ApiProperty()
   @IsString()
   path: string;
 
-  @ApiProperty({ description: "Ordre d'affichage", required: false })
-  @IsInt()
+  @ApiProperty({ required: false })
   @IsOptional()
+  @IsNumber()
   order?: number;
 
-  @ApiProperty({ description: "ID du parent", required: false })
-  @IsInt()
+  @ApiProperty({ required: false })
   @IsOptional()
+  @IsNumber()
   parentId?: number;
 
-  @ApiProperty({ description: "État actif/inactif", default: true })
+  @ApiProperty({ required: false, default: true })
+  @IsOptional()
   @IsBoolean()
-  @IsOptional()
-  isActive?: boolean = true;
+  isActive?: boolean;
 
-  @ApiProperty({
-    description: "Type de menu (DESKTOP, MOBILE, ou BOTH)",
-    enum: MenuType,
-    default: MenuType.BOTH
+  @ApiProperty({ 
+    required: false,
+    description: 'Icon name from React Icons library (e.g., "FaHome", "MdSettings")'
   })
-  @IsEnum(MenuType)
   @IsOptional()
+  @IsString()
+  icon?: string;
+
+  @ApiProperty({ required: false, default: false })
+  @IsOptional()
+  @IsBoolean()
+  showIcon?: boolean;
+
+  @ApiProperty({ enum: MenuType, default: MenuType.BOTH })
+  @IsOptional()
+  @IsEnum(MenuType)
   menuType?: MenuType = MenuType.BOTH;
 }
