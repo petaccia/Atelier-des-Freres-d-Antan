@@ -58,6 +58,8 @@ export class MenuService {
             parentId,
             isActive: createMenuItemDto.isActive ?? true,
             order: createMenuItemDto.order ?? await this.calculateOrder('desktop', menuId, parentId),
+            icon: createMenuItemDto.icon || null,
+            showIcon: createMenuItemDto.showIcon ?? false,
           },
         });
       }
@@ -71,7 +73,8 @@ export class MenuService {
             parentId,
             isActive: createMenuItemDto.isActive ?? true,
             order: createMenuItemDto.order ?? await this.calculateOrder('mobile', menuId, parentId),
-            showIcon: (createMenuItemDto as any).showIcon ?? false, // Type assertion temporaire
+            icon: createMenuItemDto.icon || null,
+            showIcon: createMenuItemDto.showIcon ?? false,
           },
         });
       }

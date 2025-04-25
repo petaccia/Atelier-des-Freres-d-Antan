@@ -15,8 +15,8 @@ export const useMenuCreate = (onSuccess) => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(menuData),
       });
