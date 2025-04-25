@@ -16,7 +16,8 @@ export default function Providers() {
       draggable
       pauseOnHover
       theme="colored"
-      className="w-full md:w-[500px]"
+      limit={3}
+      style={{ width: 'fit-content' }}
     />
   );
 }
