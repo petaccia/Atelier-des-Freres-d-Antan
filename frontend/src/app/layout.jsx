@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Poppins, Petrona, Josefin_Sans } from "next/font/google";
+import Providers from "@/components/Providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <body className={`${poppins.className} ${petrona.className} ${josefinSans.className}`}>
         {children}
+        <Providers />
       </body>
     </html>
   );
