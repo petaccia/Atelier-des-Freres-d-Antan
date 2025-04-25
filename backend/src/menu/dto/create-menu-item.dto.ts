@@ -1,27 +1,42 @@
-import { IsString, IsBoolean, IsOptional, IsInt } from 'class-validator';
+import { IsString, IsBoolean, IsOptional, IsInt, IsEnum } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
+export enum MenuType {
+  DESKTOP = "DESKTOP",
+  MOBILE = "MOBILE",
+  BOTH = "BOTH"
+}
+
 export class CreateMenuItemDto {
-  @ApiProperty({ description: 'Titre de la page' })
+  @ApiProperty({ description: "Titre de l'élément de menu" })
   @IsString()
   title: string;
 
-  @ApiProperty({ description: 'Chemin de la page' })
+  @ApiProperty({ description: "Chemin de l'élément de menu" })
   @IsString()
   path: string;
 
-  @ApiPropertyOptional({ description: 'ID du parent (si sous-menu)' })
-  @IsOptional()
+  @ApiProperty({ description: "Ordre d'affichage", required: false })
   @IsInt()
+  @IsOptional()
+  order?: number;
+
+  @ApiProperty({ description: "ID du parent", required: false })
+  @IsInt()
+  @IsOptional()
   parentId?: number;
 
-  @ApiPropertyOptional({ description: 'Afficher une icône' })
-  @IsOptional()
+  @ApiProperty({ description: "État actif/inactif", default: true })
   @IsBoolean()
-  showIcon?: boolean;
-
-  @ApiPropertyOptional({ description: 'Page active' })
   @IsOptional()
-  @IsBoolean()
   isActive?: boolean = true;
+
+  @ApiProperty({
+    description: "Type de menu (DESKTOP, MOBILE, ou BOTH)",
+    enum: MenuType,
+    default: MenuType.BOTH
+  })
+  @IsEnum(MenuType)
+  @IsOptional()
+  menuType?: MenuType = MenuType.BOTH;
 }
