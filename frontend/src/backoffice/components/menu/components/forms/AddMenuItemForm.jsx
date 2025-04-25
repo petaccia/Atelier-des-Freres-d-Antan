@@ -1,15 +1,20 @@
 'use client';
 
+import { useMenuCreate } from '@/backoffice/hooks/menu/useMenuCreate';
 import { useState } from 'react';
 
-const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
+const AddMenuItemForm = ({ onSubmit, onCancel, menuItems, onSuccess }) => {
   const [formData, setFormData] = useState({
     title: '',
     path: '',
+    menuType: 'BOTH',
     isActive: true,
     showIcon: true,
     parentId: ''
   });
+
+  // Hook pour la creation d'un menu
+  const { createMenuItem , isLoading, error } = useMenuCreate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -23,11 +28,36 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await onSubmit(formData);
+    try {
+      await createMenuItem(formData);
+      onSuccess?.();
+    } catch (err) {
+      console.error('Erreur lors de la soumission du formulaire:', err);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+
+      {/* Choix du type de menu pour lequel ajouter la page */}
+      <div>
+        <label htmlFor="menuType" className="block text-sm font-medium text-whiteGray mb-1">
+          Type de menu
+        </label>
+        <select
+          id="menuType"
+          name="menuType"
+          value={formData.menuType}
+          onChange={handleChange}
+          className="w-full px-3 py-2 bg-primary border border-accent/20 rounded-lg text-whiteGray focus:outline-none focus:border-accent-light"
+        >
+          <option value="BOTH">Desktop et Mobile</option>
+          <option value="DESKTOP">Desktop</option>
+          <option value="MOBILE">Mobile</option>
+        </select>
+</div>
+
+      {/* Titre */}
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-whiteGray mb-1">
           Titre de la page
@@ -43,6 +73,7 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         />
       </div>
 
+      {/* Chemin URL */}
       <div>
         <label htmlFor="path" className="block text-sm font-medium text-whiteGray mb-1">
           Chemin URL
@@ -58,6 +89,7 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         />
       </div>
 
+      {/* Page parente */}
       <div>
         <label htmlFor="parentId" className="block text-sm font-medium text-whiteGray mb-1">
           Page parente
@@ -78,6 +110,7 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         </select>
       </div>
 
+          {/* Options */}
       <div className="flex items-center gap-6">
         <label className="relative flex items-center cursor-pointer">
           <input
