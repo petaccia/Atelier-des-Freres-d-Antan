@@ -8,16 +8,16 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
     path: '',
     isActive: true,
     showIcon: true,
-    parentId: ''  
+    parentId: ''
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : 
-              name === 'parentId' ? (value === '' ? null : Number(value)) : 
-              value
+      [name]: type === 'checkbox' ? checked :
+        name === 'parentId' ? (value === '' ? null : Number(value)) :
+          value
     }));
   };
 
@@ -78,34 +78,32 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
         </select>
       </div>
 
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center">
+      <div className="flex items-center gap-6">
+        <label className="relative flex items-center cursor-pointer">
           <input
             type="checkbox"
             id="isActive"
             name="isActive"
             checked={formData.isActive}
             onChange={handleChange}
-            className="w-4 h-4 text-accent bg-primary border-accent/20 rounded focus:ring-accent-light"
+            className="sr-only peer"
           />
-          <label htmlFor="isActive" className="ml-2 text-sm text-whiteGray">
-            Page active
-          </label>
-        </div>
+          <div className="w-11 h-6 bg-primary/50 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-accent after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+          <span className="ml-3 text-sm font-medium text-whiteGray">Page active</span>
+        </label>
 
-        <div className="flex items-center">
+        <label className="relative flex items-center cursor-pointer">
           <input
             type="checkbox"
             id="showIcon"
             name="showIcon"
             checked={formData.showIcon}
             onChange={handleChange}
-            className="w-4 h-4 text-accent bg-primary border-accent/20 rounded focus:ring-accent-light"
+            className="sr-only peer"
           />
-          <label htmlFor="showIcon" className="ml-2 text-sm text-whiteGray">
-            Afficher l'icône
-          </label>
-        </div>
+          <div className="w-11 h-6 bg-primary/50 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-accent after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+          <span className="ml-3 text-sm font-medium text-whiteGray">Afficher l'icône</span>
+        </label>
       </div>
 
       <div className="flex justify-end space-x-3 pt-4">
@@ -128,3 +126,4 @@ const AddMenuItemForm = ({ onSubmit, onCancel, menuItems }) => {
 };
 
 export default AddMenuItemForm;
+
