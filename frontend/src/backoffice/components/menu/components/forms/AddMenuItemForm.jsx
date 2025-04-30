@@ -7,6 +7,7 @@ import SelectInput from './inputs/SelectInput';
 import TextInput from './inputs/TextInput';
 import ToggleInput from './inputs/ToggleInput';
 import IconSelect from './inputs/IconSelect';
+import { useAdminMenu } from '@/backoffice/hooks';
 
 const AddMenuItemForm = ({ onCancel, menuItems }) => {
   const [formData, setFormData] = useState({
@@ -39,10 +40,13 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
   };
 
   const submitForm = async () => {
-    const result = await createMenuItem(formData);
-    
-    if (!result.error) {
-      onCancel();
+    try {
+      const result = await createMenuItem(formData);
+      if (!result.error) {
+        window.location.reload();
+      }
+    } catch (err) {
+      console.error('Erreur lors de la création du menu:', err);
     }
   };
 
