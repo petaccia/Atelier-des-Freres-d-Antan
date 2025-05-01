@@ -11,7 +11,7 @@ export const useMenuCreate = (onSuccess) => {
 
     try {
       const token = localStorage.getItem('adminToken');
-      
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
         method: 'POST',
         headers: {
@@ -27,19 +27,19 @@ export const useMenuCreate = (onSuccess) => {
         throw new Error(data.message);
       }
 
-      toast.success('Page ajoutée avec succès');
+      toast.success('Menu ajouté avec succès');
       if (onSuccess) onSuccess();
       return data;
-      
+
     } catch (err) {
       const errorMessage = err.message || 'Une erreur est survenue lors de la création';
       setError(errorMessage);
       toast.error(errorMessage);
-      
+
       if (err.response?.status === 401) {
         window.location.href = '/backoffice/login';
       }
-      
+
       return { error: err };
     } finally {
       setIsLoading(false);

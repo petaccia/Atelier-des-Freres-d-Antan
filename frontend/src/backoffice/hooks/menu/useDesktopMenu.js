@@ -8,19 +8,38 @@ export function useDesktopMenu() {
   const [rotatedArrows, setRotatedArrows] = useState({});
 
   const fetchDesktopMenu = async () => {
+    console.log('Fetching desktop menu...');
     try {
       setIsLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/desktop-menu`);
-      
+
+      // Vérifier si l'URL de l'API est définie
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (!apiUrl) {
+        console.error('NEXT_PUBLIC_API_URL is not defined');
+        throw new Error('API URL is not configured. Please check your environment variables.');
+      }
+
+      // Ajouter un paramètre timestamp pour éviter la mise en cache
+      const timestamp = new Date().getTime();
+      const url = `${apiUrl}/desktop-menu?_=${timestamp}`;
+
+      console.log('Fetching from URL:', url);
+
+      const response = await fetch(url);
+
       if (!response.ok) {
-        throw new Error('Failed to fetch desktop menu');
+        throw new Error(`Failed to fetch desktop menu: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
+      console.log('Desktop menu fetched successfully:', data.desktopMenuItems?.length || 0, 'items');
       setMenuItems(data.desktopMenuItems || []);
       setError(null);
     } catch (err) {
+      console.error('Error fetching desktop menu:', err);
       setError(err.message);
+      // Utiliser des données fictives en cas d'erreur pour le développement
+      setMenuItems([]);
     } finally {
       setIsLoading(false);
     }

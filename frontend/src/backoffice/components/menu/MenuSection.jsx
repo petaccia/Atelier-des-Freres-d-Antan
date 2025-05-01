@@ -1,16 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import MenuDeviceDisplay from "./MenuDeviceDisplay";
 import { FiPlus } from 'react-icons/fi';
 import ModalContainer from "./components/forms/ModalContainer";
 import AddMenuItemForm from "./components/forms/AddMenuItemForm";
 
-const MenuSection = ({ selectedDevice, menuItems }) => {
+const MenuSection = ({ selectedDevice, menuItems, onRefresh }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filtrer uniquement les éléments de premier niveau pour le sélecteur de parent
   const rootMenuItems = menuItems?.filter(item => !item.parentId) || [];
 
+  // Callback pour rafraîchir la liste des menus après une modification
+  const handleMenuUpdated = useCallback(() => {
+    console.log('handleMenuUpdated appelé dans MenuSection');
+    if (onRefresh) {
+      console.log('Appel de onRefresh depuis MenuSection');
+      onRefresh();
+    } else {
+      console.warn('onRefresh n\'est pas défini dans MenuSection');
+    }
+  }, [onRefresh]);
 
   return (
     <div className="bg-primary-dark/30 p-4 rounded-lg">
@@ -27,15 +37,17 @@ const MenuSection = ({ selectedDevice, menuItems }) => {
       <MenuDeviceDisplay
         selectedDevice={selectedDevice}
         menuItems={menuItems}
+        onMenuUpdated={handleMenuUpdated}
       />
       <ModalContainer
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Ajouter une nouvelle page"
       >
-        <AddMenuItemForm 
+        <AddMenuItemForm
           onCancel={() => setIsModalOpen(false)}
           menuItems={rootMenuItems}
+          onSuccess={handleMenuUpdated}
         />
       </ModalContainer>
     </div>

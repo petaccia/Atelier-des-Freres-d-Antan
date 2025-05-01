@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import ConfirmationToast from "./ConfirmationToast";
 
 // Fonction utilitaire pour afficher le toast de confirmation
