@@ -7,7 +7,7 @@ import SelectInput from './inputs/SelectInput';
 import TextInput from './inputs/TextInput';
 import ToggleInput from './inputs/ToggleInput';
 import IconSelect from './inputs/IconSelect';
-import { useAdminMenu } from '@/backoffice/hooks';
+import { showConfirmationToast } from '@/backoffice/components/ui/confirmation/ConfirmationToast';
 
 const AddMenuItemForm = ({ onCancel, menuItems }) => {
   const [formData, setFormData] = useState({
@@ -58,34 +58,13 @@ const AddMenuItemForm = ({ onCancel, menuItems }) => {
       return;
     }
 
-    toast.info(
-      <div>
-        <p>Voulez-vous créer cette page ?</p>
-        <div className="mt-2 flex justify-end gap-2">
-          <button
-            onClick={() => {
-              toast.dismiss();
-              submitForm();
-            }}
-            className="px-3 py-1 bg-accent text-white rounded-md hover:bg-accent-light"
-          >
-            Confirmer
-          </button>
-          <button
-            onClick={() => toast.dismiss()}
-            className="px-3 py-1 bg-gray-600 text-white rounded-md hover:bg-gray-700"
-          >
-            Annuler
-          </button>
-        </div>
-      </div>,
-      {
-        autoClose: false,
-        closeOnClick: false,
-        draggable: false,
-        closeButton: false
-      }
-    );
+    showConfirmationToast({
+      message: 'Êtes-vous sûr de vouloir ajouter cette page ?',
+      onConfirm: submitForm,
+      confirmText: 'Confirmer',
+      cancelText: 'Annuler'
+    })
+
   };
 
   const menuTypeOptions = [
