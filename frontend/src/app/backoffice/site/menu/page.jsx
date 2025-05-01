@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useDeviceMenu } from '@/backoffice/components/menu';
 import BackofficeLayout from '@/backoffice/components/layouts/BackofficeLayout';
 import PageLoading from "@/backoffice/components/layouts/PageLoading";
@@ -11,7 +11,22 @@ import MenuSection from '@/backoffice/components/menu/MenuSection';
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState('mobile');
-  const { menuItems, isLoading, error } = useDeviceMenu(selectedDevice);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const { menuItems, isLoading, error, refreshMenu } = useDeviceMenu(selectedDevice);
+
+  // Fonction pour rafraîchir les données du menu
+  const handleRefresh = useCallback(() => {
+    console.log('handleRefresh appelé dans MenuPage');
+
+    // Toujours incrémenter la clé pour forcer un re-rendu complet
+    setRefreshKey(prev => prev + 1);
+
+    // Et aussi appeler refreshMenu si disponible
+    if (refreshMenu) {
+      console.log('Appel de refreshMenu');
+      refreshMenu();
+    }
+  }, [refreshMenu]);
 
   if (error) return <PageError message={error} />;
   if (isLoading) return <PageLoading text="Chargement du menu..." />;
@@ -26,7 +41,7 @@ export default function MenuPage() {
         currentPage="Menu"
       />
       <BackofficeHeaderTitle title="Gestion du Menu" />
-      
+
       <div className="mb-6">
         <DeviceSelector
           selectedDevice={selectedDevice}
@@ -34,9 +49,11 @@ export default function MenuPage() {
         />
       </div>
 
-      <MenuSection 
+      <MenuSection
+        key={refreshKey}
         selectedDevice={selectedDevice}
         menuItems={menuItems}
+        onRefresh={handleRefresh}
       />
     </BackofficeLayout>
   );

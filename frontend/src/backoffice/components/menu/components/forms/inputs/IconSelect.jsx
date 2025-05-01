@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { iconLibraries } from '../../../icons/iconLibraries';
 import { MdSearch, MdClose } from 'react-icons/md';
 
-export default function IconSelect({ value, onChange }) {
+export default function IconSelect({ value, onChange, disabled = false }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLibrary, setSelectedLibrary] = useState('Font Awesome');
   const [showIconPicker, setShowIconPicker] = useState(false);
@@ -12,9 +12,9 @@ export default function IconSelect({ value, onChange }) {
 
   const filterIcons = () => {
     if (!currentLibrary?.icons) return [];
-    
+
     return Object.keys(currentLibrary.icons)
-      .filter(iconName => 
+      .filter(iconName =>
         iconName.toLowerCase().includes(searchTerm.toLowerCase())
       )
       .slice(0, 100);
@@ -28,8 +28,13 @@ export default function IconSelect({ value, onChange }) {
 
       <button
         type="button"
-        onClick={() => setShowIconPicker(!showIconPicker)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-primary hover:bg-accent text-white rounded-lg transition-colors"
+        onClick={() => !disabled && setShowIconPicker(!showIconPicker)}
+        disabled={disabled}
+        className={`w-full flex items-center justify-between px-4 py-3 ${
+          disabled
+            ? 'bg-primary-dark/50 text-white/70 cursor-not-allowed'
+            : 'bg-primary hover:bg-accent text-white cursor-pointer'
+        } rounded-lg transition-colors`}
       >
         <div className="flex items-center gap-3">
           {IconPreview ? (
@@ -41,9 +46,9 @@ export default function IconSelect({ value, onChange }) {
             <span>Sélectionner une icône</span>
           )}
         </div>
-        {value && (
-          <MdClose 
-            className="w-5 h-5" 
+        {value && !disabled && (
+          <MdClose
+            className="w-5 h-5"
             onClick={(e) => {
               e.stopPropagation();
               onChange(null);
