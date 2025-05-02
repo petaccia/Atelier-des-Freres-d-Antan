@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { apiService } from '@/backoffice/services/apiService';
 
 export function useDesktopMenu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -19,25 +20,22 @@ export function useDesktopMenu() {
         throw new Error('API URL is not configured. Please check your environment variables.');
       }
 
-      // Ajouter un paramètre timestamp pour éviter la mise en cache
-      const timestamp = new Date().getTime();
-      const url = `${apiUrl}/desktop-menu?_=${timestamp}`;
-
+      const url = `${apiUrl}/desktop-menu`;
       console.log('Fetching from URL:', url);
 
-      const response = await fetch(url);
+      // Utiliser le service API pour effectuer la requête GET
+      // Désactiver la redirection automatique car ce n'est pas une action utilisateur
+      const data = await apiService.get(url, {}, false);
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch desktop menu: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
       console.log('Desktop menu fetched successfully:', data.desktopMenuItems?.length || 0, 'items');
       setMenuItems(data.desktopMenuItems || []);
       setError(null);
     } catch (err) {
-      console.error('Error fetching desktop menu:', err);
-      setError(err.message);
+      // Ne pas afficher d'erreur si c'est une erreur d'authentification (déjà gérée par apiService)
+      if (err.message !== 'Session expirée') {
+        console.error('Error fetching desktop menu:', err);
+        setError(err.message);
+      }
       // Utiliser des données fictives en cas d'erreur pour le développement
       setMenuItems([]);
     } finally {
