@@ -10,7 +10,7 @@ import { JwtStrategy } from './auth/jwt.strategy';
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '8h' }, // Augmenté à 8 heures pour une meilleure expérience utilisateur
     }),
   ],
   controllers: [AdminAuthController],
