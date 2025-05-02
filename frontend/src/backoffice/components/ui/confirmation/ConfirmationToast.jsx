@@ -1,13 +1,13 @@
-import { toast } from 'react-toastify';
-import React from 'react';
+import { toast } from "react-toastify";
+import React from "react";
 
 export default function ConfirmationToast({
   message,
   onConfirm,
-  confirmText = 'Confirmer',
-  cancelText = 'Annuler',
-  confirmClass = 'bg-accent hover:bg-accent-light',
-  cancelClass = 'bg-gray-600 hover:bg-gray-700'
+  confirmText = "Confirmer",
+  cancelText = "Annuler",
+  confirmClass = "bg-accent hover:bg-accent-light",
+  cancelClass = "bg-gray-600 hover:bg-gray-700",
 }) {
   // Render message differently based on its type
   const renderMessage = () => {
@@ -42,4 +42,3 @@ export default function ConfirmationToast({
     </div>
   );
 }
-

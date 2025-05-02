@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 const NumberInput = ({
   label,
@@ -11,9 +11,9 @@ const NumberInput = ({
   step = 1,
   required = false,
   disabled = false,
-  className = '',
-  placeholder = '',
-  helpText = ''
+  className = "",
+  placeholder = "",
+  helpText = "",
 }) => {
   return (
     <div className={`mb-4 ${className}`}>
@@ -33,12 +33,10 @@ const NumberInput = ({
         disabled={disabled}
         placeholder={placeholder}
         className={`w-full px-3 py-2 bg-primary-dark/50 border border-accent/20 rounded-lg focus:outline-none focus:ring-1 focus:ring-accent text-whiteGray ${
-          disabled ? 'opacity-50 cursor-not-allowed' : ''
+          disabled ? "opacity-50 cursor-not-allowed" : ""
         }`}
       />
-      {helpText && (
-        <p className="mt-1 text-xs text-whiteGray/70">{helpText}</p>
-      )}
+      {helpText && <p className="mt-1 text-xs text-whiteGray/70">{helpText}</p>}
     </div>
   );
 };

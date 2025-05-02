@@ -1,5 +1,5 @@
-import { adminAuth } from './adminAuth';
-import { toast } from 'react-toastify';
+import { adminAuth } from "./adminAuth";
+import { toast } from "react-toastify";
 
 /**
  * Service pour gérer les requêtes API avec gestion automatique des erreurs d'authentification
@@ -17,11 +17,11 @@ export const apiService = {
     // Vérifier si le token est sur le point d'expirer et le rafraîchir si nécessaire
     if (!attemptedRefresh && adminAuth.isAuthenticated() && adminAuth.isTokenExpiringSoon()) {
       try {
-        console.log('Token sur le point d\'expirer, tentative de rafraîchissement...');
+        console.log("Token sur le point d'expirer, tentative de rafraîchissement...");
         await adminAuth.refreshToken();
-        console.log('Token rafraîchi avec succès');
+        console.log("Token rafraîchi avec succès");
       } catch (refreshError) {
-        console.error('Échec du rafraîchissement du token:', refreshError);
+        console.error("Échec du rafraîchissement du token:", refreshError);
         // Continuer avec le token actuel même s'il est sur le point d'expirer
       }
     }
@@ -31,49 +31,49 @@ export const apiService = {
     if (token) {
       options.headers = {
         ...options.headers,
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       };
     }
 
     try {
       // Ajouter un paramètre timestamp pour éviter la mise en cache
       const timestamp = new Date().getTime();
-      const separator = url.includes('?') ? '&' : '?';
+      const separator = url.includes("?") ? "&" : "?";
       const urlWithTimestamp = `${url}${separator}_=${timestamp}`;
 
       const response = await fetch(urlWithTimestamp, options);
 
       // Gérer les erreurs d'authentification
       if (response.status === 401) {
-        console.error('Erreur d\'authentification: Token expiré ou invalide');
+        console.error("Erreur d'authentification: Token expiré ou invalide");
 
         // Si nous n'avons pas encore tenté de rafraîchir le token, essayer de le rafraîchir
         if (!attemptedRefresh && adminAuth.isAuthenticated()) {
           try {
-            console.log('Tentative de rafraîchissement du token après erreur 401...');
+            console.log("Tentative de rafraîchissement du token après erreur 401...");
             await adminAuth.refreshToken();
-            console.log('Token rafraîchi avec succès, nouvelle tentative de requête');
+            console.log("Token rafraîchi avec succès, nouvelle tentative de requête");
 
             // Réessayer la requête avec le nouveau token
             return this.fetch(url, options, redirectOnAuthError, true);
           } catch (refreshError) {
-            console.error('Échec du rafraîchissement du token après erreur 401:', refreshError);
+            console.error("Échec du rafraîchissement du token après erreur 401:", refreshError);
           }
         }
 
         // Si le rafraîchissement a échoué ou n'a pas été tenté, afficher un message et rediriger
-        toast.error('Votre session a expiré. Veuillez vous reconnecter.', {
+        toast.error("Votre session a expiré. Veuillez vous reconnecter.", {
           autoClose: 5000,
           onClose: () => {
             if (redirectOnAuthError) {
               // Supprimer le token et rediriger vers la page de connexion
               adminAuth.logout();
-              window.location.href = '/backoffice/login';
+              window.location.href = "/backoffice/login";
             }
-          }
+          },
         });
 
-        throw new Error('Session expirée');
+        throw new Error("Session expirée");
       }
 
       // Gérer les autres erreurs
@@ -90,7 +90,7 @@ export const apiService = {
 
       return await response.json();
     } catch (error) {
-      console.error('Erreur API:', error);
+      console.error("Erreur API:", error);
       throw error;
     }
   },
@@ -103,8 +103,8 @@ export const apiService = {
    */
   async get(url, options = {}) {
     return this.fetch(url, {
-      method: 'GET',
-      ...options
+      method: "GET",
+      ...options,
     });
   },
 
@@ -117,13 +117,13 @@ export const apiService = {
    */
   async post(url, data, options = {}) {
     return this.fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+        "Content-Type": "application/json",
+        ...options.headers,
       },
       body: JSON.stringify(data),
-      ...options
+      ...options,
     });
   },
 
@@ -136,13 +136,13 @@ export const apiService = {
    */
   async put(url, data, options = {}) {
     return this.fetch(url, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
+        "Content-Type": "application/json",
+        ...options.headers,
       },
       body: JSON.stringify(data),
-      ...options
+      ...options,
     });
   },
 
@@ -154,8 +154,8 @@ export const apiService = {
    */
   async delete(url, options = {}) {
     return this.fetch(url, {
-      method: 'DELETE',
-      ...options
+      method: "DELETE",
+      ...options,
     });
-  }
+  },
 };

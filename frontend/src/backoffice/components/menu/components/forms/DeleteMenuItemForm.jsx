@@ -1,35 +1,35 @@
-'use client';
+"use client";
 
-import { useDeleteMenu } from '@/backoffice/hooks/menu/useDeleteMenu';
-import { useState, useEffect } from 'react';
-import SelectInput from './inputs/SelectInput';
-import TextInput from './inputs/TextInput';
-import ToggleInput from './inputs/ToggleInput';
-import IconSelect from './inputs/IconSelect';
-import { showConfirmationToast } from '@/backoffice/components/ui/confirmation/ShowConfirmationToast';
+import { useDeleteMenu } from "@/backoffice/hooks/menu/useDeleteMenu";
+import { useState, useEffect } from "react";
+import SelectInput from "./inputs/SelectInput";
+import TextInput from "./inputs/TextInput";
+import ToggleInput from "./inputs/ToggleInput";
+import IconSelect from "./inputs/IconSelect";
+import { showConfirmationToast } from "@/backoffice/components/ui/confirmation/ShowConfirmationToast";
 
 const DeleteMenuItemForm = ({ item, onCancel, onSuccess, menuItems }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    path: '',
-    menuType: 'BOTH',
+    title: "",
+    path: "",
+    menuType: "BOTH",
     isActive: true,
     showIcon: true,
-    parentId: '',
-    icon: ''
+    parentId: "",
+    icon: "",
   });
 
   // Initialiser le formulaire avec les données de l'élément à supprimer
   useEffect(() => {
     if (item) {
       setFormData({
-        title: item.title || '',
-        path: item.path || '',
-        menuType: 'BOTH', // Par défaut
+        title: item.title || "",
+        path: item.path || "",
+        menuType: "BOTH", // Par défaut
         isActive: item.isActive !== undefined ? item.isActive : true,
         showIcon: item.showIcon !== undefined ? item.showIcon : true,
-        parentId: item.parentId || '',
-        icon: item.icon || ''
+        parentId: item.parentId || "",
+        icon: item.icon || "",
       });
     }
   }, [item]);
@@ -40,7 +40,7 @@ const DeleteMenuItemForm = ({ item, onCancel, onSuccess, menuItems }) => {
         onSuccess();
       }
       onCancel(); // Fermer la modale après suppression
-    }
+    },
   });
 
   const handleSubmit = (e) => {
@@ -52,31 +52,33 @@ const DeleteMenuItemForm = ({ item, onCancel, onSuccess, menuItems }) => {
           <div className="mb-2">Êtes-vous sûr de vouloir supprimer cette page ?</div>
           {item.children && item.children.length > 0 && (
             <div className="text-sm text-amber-300">
-              Attention : La suppression de "{item.title}" entraînera également la suppression de tous ses sous-menus ({item.children.length} élément{item.children.length > 1 ? 's' : ''}).
+              Attention : La suppression de "{item.title}" entraînera également la suppression de
+              tous ses sous-menus ({item.children.length} élément
+              {item.children.length > 1 ? "s" : ""}).
             </div>
           )}
           <div className="text-sm text-amber-300 mt-2">Cette action est irréversible.</div>
         </div>
       ),
       onConfirm: () => deleteMenuItem(item),
-      confirmText: 'Supprimer',
-      confirmClass: 'bg-red-600 hover:bg-red-700',
-      cancelText: 'Annuler'
+      confirmText: "Supprimer",
+      confirmClass: "bg-red-600 hover:bg-red-700",
+      cancelText: "Annuler",
     });
   };
 
   const menuTypeOptions = [
-    { value: 'BOTH', label: 'Desktop et Mobile' },
-    { value: 'DESKTOP', label: 'Desktop' },
-    { value: 'MOBILE', label: 'Mobile' }
+    { value: "BOTH", label: "Desktop et Mobile" },
+    { value: "DESKTOP", label: "Desktop" },
+    { value: "MOBILE", label: "Mobile" },
   ];
 
   const parentOptions = [
-    { value: '', label: 'Aucun parent (niveau racine)' },
-    ...(menuItems || []).map(menuItem => ({
+    { value: "", label: "Aucun parent (niveau racine)" },
+    ...(menuItems || []).map((menuItem) => ({
       value: menuItem.id,
-      label: menuItem.title
-    }))
+      label: menuItem.title,
+    })),
   ];
 
   return (
@@ -154,11 +156,7 @@ const DeleteMenuItemForm = ({ item, onCancel, onSuccess, menuItems }) => {
         <div className="border border-accent/20 rounded-lg p-4">
           <div className="text-white/70 mb-2">Icône sélectionnée :</div>
           <div className="flex items-center justify-center p-2">
-            <IconSelect
-              value={formData.icon}
-              onChange={() => {}}
-              disabled={true}
-            />
+            <IconSelect value={formData.icon} onChange={() => {}} disabled={true} />
           </div>
         </div>
       )}
@@ -176,7 +174,7 @@ const DeleteMenuItemForm = ({ item, onCancel, onSuccess, menuItems }) => {
           disabled={isLoading}
           className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
         >
-          {isLoading ? 'Chargement...' : 'Supprimer'}
+          {isLoading ? "Chargement..." : "Supprimer"}
         </button>
       </div>
       {error && <p className="font-bold text-red-500">{error}</p>}

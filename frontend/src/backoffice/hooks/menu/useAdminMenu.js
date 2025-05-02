@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 export function useAdminMenu() {
-  const [activeDevice, setActiveDevice] = useState('desktop');
+  const [activeDevice, setActiveDevice] = useState("desktop");
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,13 +11,13 @@ export function useAdminMenu() {
   const fetchMenu = useCallback(async (deviceType) => {
     try {
       setIsLoading(true);
-      const token = localStorage.getItem('adminToken');
-      const endpoint = deviceType === 'desktop' ? '/desktop-menu' : '/mobile-menu';
-      
+      const token = localStorage.getItem("adminToken");
+      const endpoint = deviceType === "desktop" ? "/desktop-menu" : "/mobile-menu";
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
         headers: {
-          'Authorization': `Bearer ${token}`,
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (!response.ok) {
@@ -44,9 +44,9 @@ export function useAdminMenu() {
       const draftData = {
         menuItems,
         deviceType: activeDevice,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
-      localStorage.setItem('menuDraft', JSON.stringify(draftData));
+      localStorage.setItem("menuDraft", JSON.stringify(draftData));
       setHasDraft(true);
       return { success: true };
     } catch (err) {
@@ -58,23 +58,23 @@ export function useAdminMenu() {
   const publishChanges = async () => {
     try {
       setIsLoading(true);
-      const token = localStorage.getItem('adminToken');
-      const endpoint = activeDevice === 'desktop' ? '/desktop-menu' : '/mobile-menu';
-      
+      const token = localStorage.getItem("adminToken");
+      const endpoint = activeDevice === "desktop" ? "/desktop-menu" : "/mobile-menu";
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ menuItems })
+        body: JSON.stringify({ menuItems }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to publish changes');
+        throw new Error("Failed to publish changes");
       }
 
-      localStorage.removeItem('menuDraft');
+      localStorage.removeItem("menuDraft");
       setHasDraft(false);
       return { success: true };
     } catch (err) {
@@ -87,7 +87,7 @@ export function useAdminMenu() {
 
   const discardChanges = async () => {
     try {
-      localStorage.removeItem('menuDraft');
+      localStorage.removeItem("menuDraft");
       setHasDraft(false);
       await refreshMenu();
       return { success: true };
@@ -99,7 +99,7 @@ export function useAdminMenu() {
 
   const loadDraft = useCallback(() => {
     try {
-      const savedDraft = localStorage.getItem('menuDraft');
+      const savedDraft = localStorage.getItem("menuDraft");
       if (savedDraft) {
         const draft = JSON.parse(savedDraft);
         if (draft.deviceType === activeDevice) {
@@ -108,7 +108,7 @@ export function useAdminMenu() {
         }
       }
     } catch (err) {
-      console.error('Error loading draft:', err);
+      console.error("Error loading draft:", err);
     }
   }, [activeDevice]);
 
@@ -128,6 +128,6 @@ export function useAdminMenu() {
     refreshMenu,
     saveDraft,
     publishChanges,
-    discardChanges
+    discardChanges,
   };
 }

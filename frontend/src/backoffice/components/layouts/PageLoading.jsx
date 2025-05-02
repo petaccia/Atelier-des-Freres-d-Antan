@@ -1,7 +1,6 @@
 import LoadingState from "../ui/loading/LoadingState";
 import Sidebar from "./Sidebar";
 
-
 const PageLoading = ({ text }) => {
   return (
     <div className="min-h-screen bg-primary">

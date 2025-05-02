@@ -180,7 +180,7 @@
   .Toastify__toast-container {
     @apply w-[calc(100%-2rem)] mx-4;
   }
-  
+
   .Toastify__toast {
     @apply mb-2;
   }

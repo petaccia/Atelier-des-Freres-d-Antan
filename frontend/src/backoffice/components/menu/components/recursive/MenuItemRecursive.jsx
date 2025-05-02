@@ -1,6 +1,12 @@
 import MenuItem from "../../MenuItem";
 
-const MenuItemRecursive = ({ item, isSubmenu = false, selectedDevice, onMenuUpdated, menuItems }) => {
+const MenuItemRecursive = ({
+  item,
+  isSubmenu = false,
+  selectedDevice,
+  onMenuUpdated,
+  menuItems,
+}) => {
   const hasChildren = item.children && item.children.length > 0;
 
   return (
@@ -15,7 +21,7 @@ const MenuItemRecursive = ({ item, isSubmenu = false, selectedDevice, onMenuUpda
 
       {hasChildren && (
         <div className="mt-2">
-          {item.children.map(child => (
+          {item.children.map((child) => (
             <MenuItemRecursive
               key={child.id}
               item={child}

@@ -1,7 +1,6 @@
 import ErrorState from "../ui/error/ErrorState";
 import Sidebar from "./Sidebar";
 
-
 const PageError = ({ message }) => {
   return (
     <div className="min-h-screen bg-primary">

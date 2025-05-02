@@ -1,11 +1,9 @@
-'use client';
-import Sidebar from '@/backoffice/components/layouts/Sidebar';
-import ManagementCard from '@/backoffice/components/cards/CardSite';
-import { managementCards } from '@/backoffice/backofficeData/maganementCards';
+"use client";
+import Sidebar from "@/backoffice/components/layouts/Sidebar";
+import ManagementCard from "@/backoffice/components/cards/CardSite";
+import { managementCards } from "@/backoffice/backofficeData/maganementCards";
 
 export default function SitePage() {
-
-
   return (
     <div className="min-h-screen bg-primary p-8">
       <Sidebar />

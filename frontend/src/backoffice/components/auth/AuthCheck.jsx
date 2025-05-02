@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { adminAuth } from '@/backoffice/services/adminAuth';
-import PageLoading from '@/backoffice/components/layouts/PageLoading';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { adminAuth } from "@/backoffice/services/adminAuth";
+import PageLoading from "@/backoffice/components/layouts/PageLoading";
 
 /**
  * Composant qui vérifie si l'utilisateur est authentifié
@@ -20,18 +20,18 @@ export default function AuthCheck({ children }) {
 
       if (!isAuthenticated) {
         // Rediriger vers la page de connexion
-        router.push('/backoffice/login');
+        router.push("/backoffice/login");
       } else {
         // Vérifier si le token est sur le point d'expirer et le rafraîchir si nécessaire
         if (adminAuth.isTokenExpiringSoon()) {
           try {
-            console.log('Token sur le point d\'expirer, tentative de rafraîchissement...');
+            console.log("Token sur le point d'expirer, tentative de rafraîchissement...");
             await adminAuth.refreshToken();
-            console.log('Token rafraîchi avec succès');
+            console.log("Token rafraîchi avec succès");
           } catch (error) {
-            console.error('Échec du rafraîchissement du token:', error);
+            console.error("Échec du rafraîchissement du token:", error);
             // Si le rafraîchissement échoue, rediriger vers la page de connexion
-            router.push('/backoffice/login');
+            router.push("/backoffice/login");
             return;
           }
         }
@@ -43,23 +43,26 @@ export default function AuthCheck({ children }) {
     checkAuth();
 
     // Vérifier périodiquement si le token est toujours valide et le rafraîchir si nécessaire
-    const interval = setInterval(async () => {
-      if (!adminAuth.isAuthenticated()) {
-        // Si le token a été supprimé (par exemple par apiService), rediriger vers la page de connexion
-        router.push('/backoffice/login');
-      } else if (adminAuth.isTokenExpiringSoon()) {
-        // Si le token est sur le point d'expirer, essayer de le rafraîchir
-        try {
-          console.log('Token sur le point d\'expirer, tentative de rafraîchissement...');
-          await adminAuth.refreshToken();
-          console.log('Token rafraîchi avec succès');
-        } catch (error) {
-          console.error('Échec du rafraîchissement du token:', error);
-          // Si le rafraîchissement échoue, rediriger vers la page de connexion
-          router.push('/backoffice/login');
+    const interval = setInterval(
+      async () => {
+        if (!adminAuth.isAuthenticated()) {
+          // Si le token a été supprimé (par exemple par apiService), rediriger vers la page de connexion
+          router.push("/backoffice/login");
+        } else if (adminAuth.isTokenExpiringSoon()) {
+          // Si le token est sur le point d'expirer, essayer de le rafraîchir
+          try {
+            console.log("Token sur le point d'expirer, tentative de rafraîchissement...");
+            await adminAuth.refreshToken();
+            console.log("Token rafraîchi avec succès");
+          } catch (error) {
+            console.error("Échec du rafraîchissement du token:", error);
+            // Si le rafraîchissement échoue, rediriger vers la page de connexion
+            router.push("/backoffice/login");
+          }
         }
-      }
-    }, 5 * 60 * 1000); // Vérifier toutes les 5 minutes
+      },
+      5 * 60 * 1000
+    ); // Vérifier toutes les 5 minutes
 
     return () => clearInterval(interval);
   }, [router]);

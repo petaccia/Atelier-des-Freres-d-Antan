@@ -1,13 +1,19 @@
-import { useState } from 'react';
-import { FiTrash2, FiEdit } from 'react-icons/fi';
-import MenuIcon from './components/icons/MenuIcon';
-import ModalContainer from './components/forms/ModalContainer';
-import MenuItemForm from './components/forms/MenuItemForm';
+import { useState } from "react";
+import { FiTrash2, FiEdit } from "react-icons/fi";
+import MenuIcon from "./components/icons/MenuIcon";
+import ModalContainer from "./components/forms/ModalContainer";
+import MenuItemForm from "./components/forms/MenuItemForm";
 
-export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMenuUpdated, menuItems }) {
+export default function MenuItem({
+  item,
+  isSubmenu = false,
+  selectedDevice,
+  onMenuUpdated,
+  menuItems,
+}) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const showIcon = selectedDevice !== 'desktop' && item.showIcon !== false && !isSubmenu;
+  const showIcon = selectedDevice !== "desktop" && item.showIcon !== false && !isSubmenu;
 
   const handleOpenDeleteModal = () => {
     setIsDeleteModalOpen(true);
@@ -27,9 +33,9 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
 
   return (
     <>
-      <div className={`${isSubmenu ? 'ml-8 border-l border-accent/30 pl-4' : ''} mb-4`}>
+      <div className={`${isSubmenu ? "ml-8 border-l border-accent/30 pl-4" : ""} mb-4`}>
         <div className="flex flex-col bg-primary-dark/30 rounded-lg overflow-hidden hover:bg-primary-dark/40 transition-colors">
-          <div className={`p-4 ${isSubmenu ? 'bg-primary-dark/50' : ''}`}>
+          <div className={`p-4 ${isSubmenu ? "bg-primary-dark/50" : ""}`}>
             {/* Titre principal et actions */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
@@ -78,7 +84,7 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
       >
         <MenuItemForm
           mode="delete"
-          itemToEdit={{...item, selectedDevice}}
+          itemToEdit={{ ...item, selectedDevice }}
           onCancel={handleCloseDeleteModal}
           onSuccess={onMenuUpdated}
           menuItems={menuItems}
@@ -93,7 +99,7 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
       >
         <MenuItemForm
           mode="edit"
-          itemToEdit={{...item, selectedDevice}}
+          itemToEdit={{ ...item, selectedDevice }}
           onCancel={handleCloseEditModal}
           onSuccess={onMenuUpdated}
           menuItems={menuItems}
@@ -102,4 +108,3 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
     </>
   );
 }
-

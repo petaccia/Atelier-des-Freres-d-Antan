@@ -1,6 +1,8 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const ADMIN_AUTH_LOGIN_ENDPOINT = process.env.NEXT_PUBLIC_ADMIN_AUTH_LOGIN_ENDPOINT || '/api/admin/auth/login';
-const ADMIN_AUTH_REFRESH_ENDPOINT = process.env.NEXT_PUBLIC_ADMIN_AUTH_REFRESH_ENDPOINT || '/api/admin/auth/refresh';
+const ADMIN_AUTH_LOGIN_ENDPOINT =
+  process.env.NEXT_PUBLIC_ADMIN_AUTH_LOGIN_ENDPOINT || "/api/admin/auth/login";
+const ADMIN_AUTH_REFRESH_ENDPOINT =
+  process.env.NEXT_PUBLIC_ADMIN_AUTH_REFRESH_ENDPOINT || "/api/admin/auth/refresh";
 
 export const adminAuth = {
   async login(credentials) {

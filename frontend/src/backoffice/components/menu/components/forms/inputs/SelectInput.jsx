@@ -1,12 +1,4 @@
-const SelectInput = ({ 
-  label, 
-  id, 
-  name, 
-  value, 
-  onChange, 
-  options,
-  className = "" 
-}) => {
+const SelectInput = ({ label, id, name, value, onChange, options, className = "" }) => {
   return (
     <div className={className}>
       <label htmlFor={id} className="block text-sm font-medium text-whiteGray mb-1">

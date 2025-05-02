@@ -1,32 +1,32 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { FaGlobe } from 'react-icons/fa';
-import { MdMenu, MdHome, MdSettings } from 'react-icons/md';
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaGlobe } from "react-icons/fa";
+import { MdMenu, MdHome, MdSettings } from "react-icons/md";
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   const menuItems = [
     {
-      label: 'Dashboard',
-      path: '/backoffice/dashboard',
+      label: "Dashboard",
+      path: "/backoffice/dashboard",
       icon: <MdHome size={20} />,
     },
     {
-      label: 'Menu',
-      path: '/backoffice/menu',
+      label: "Menu",
+      path: "/backoffice/menu",
       icon: <MdMenu size={20} />,
     },
     {
       label: "Site Internet",
-      path: '/backoffice/site',
-      icon: <FaGlobe  size={20} />,
+      path: "/backoffice/site",
+      icon: <FaGlobe size={20} />,
     },
 
     {
-      label: 'Paramètres',
-      path: '/backoffice/settings',
+      label: "Paramètres",
+      path: "/backoffice/settings",
       icon: <MdSettings size={20} />,
     },
   ];
@@ -42,8 +42,8 @@ export default function Sidebar() {
               href={item.path}
               className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors ${
                 pathname === item.path
-                  ? 'bg-accent text-primary'
-                  : 'text-white/80 hover:bg-accent/20'
+                  ? "bg-accent text-primary"
+                  : "text-white/80 hover:bg-accent/20"
               }`}
             >
               {item.icon}

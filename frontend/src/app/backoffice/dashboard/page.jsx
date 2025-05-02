@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import Sidebar from '@/backoffice/components/layouts/Sidebar';
-import { adminAuth } from '@/backoffice/services/adminAuth';
+import { useRouter } from "next/navigation";
+import Sidebar from "@/backoffice/components/layouts/Sidebar";
+import { adminAuth } from "@/backoffice/services/adminAuth";
 
 export default function DashboardPage() {
   const router = useRouter();
 
   const handleLogout = () => {
     adminAuth.logout();
-    router.push('/backoffice/login');
+    router.push("/backoffice/login");
   };
 
   return (

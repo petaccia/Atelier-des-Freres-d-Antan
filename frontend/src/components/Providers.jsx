@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Providers() {
   return (
@@ -17,7 +17,7 @@ export default function Providers() {
       pauseOnHover
       theme="colored"
       limit={3}
-      style={{ width: 'fit-content' }}
+      style={{ width: "fit-content" }}
     />
   );
 }
