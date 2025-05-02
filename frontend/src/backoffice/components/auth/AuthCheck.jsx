@@ -15,26 +15,51 @@ export default function AuthCheck({ children }) {
 
   useEffect(() => {
     // Vérifier si l'utilisateur est authentifié
-    const checkAuth = () => {
+    const checkAuth = async () => {
       const isAuthenticated = adminAuth.isAuthenticated();
-      
+
       if (!isAuthenticated) {
         // Rediriger vers la page de connexion
         router.push('/backoffice/login');
       } else {
+        // Vérifier si le token est sur le point d'expirer et le rafraîchir si nécessaire
+        if (adminAuth.isTokenExpiringSoon()) {
+          try {
+            console.log('Token sur le point d\'expirer, tentative de rafraîchissement...');
+            await adminAuth.refreshToken();
+            console.log('Token rafraîchi avec succès');
+          } catch (error) {
+            console.error('Échec du rafraîchissement du token:', error);
+            // Si le rafraîchissement échoue, rediriger vers la page de connexion
+            router.push('/backoffice/login');
+            return;
+          }
+        }
+
         setIsChecking(false);
       }
     };
 
     checkAuth();
 
-    // Vérifier périodiquement si le token est toujours valide
-    const interval = setInterval(() => {
+    // Vérifier périodiquement si le token est toujours valide et le rafraîchir si nécessaire
+    const interval = setInterval(async () => {
       if (!adminAuth.isAuthenticated()) {
         // Si le token a été supprimé (par exemple par apiService), rediriger vers la page de connexion
         router.push('/backoffice/login');
+      } else if (adminAuth.isTokenExpiringSoon()) {
+        // Si le token est sur le point d'expirer, essayer de le rafraîchir
+        try {
+          console.log('Token sur le point d\'expirer, tentative de rafraîchissement...');
+          await adminAuth.refreshToken();
+          console.log('Token rafraîchi avec succès');
+        } catch (error) {
+          console.error('Échec du rafraîchissement du token:', error);
+          // Si le rafraîchissement échoue, rediriger vers la page de connexion
+          router.push('/backoffice/login');
+        }
       }
-    }, 60000); // Vérifier toutes les minutes
+    }, 5 * 60 * 1000); // Vérifier toutes les 5 minutes
 
     return () => clearInterval(interval);
   }, [router]);
