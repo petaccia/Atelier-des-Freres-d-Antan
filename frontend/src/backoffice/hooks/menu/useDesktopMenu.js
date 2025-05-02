@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import { apiService } from "@/backoffice/services/apiService";
 
 export function useDesktopMenu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -8,19 +9,39 @@ export function useDesktopMenu() {
   const [rotatedArrows, setRotatedArrows] = useState({});
 
   const fetchDesktopMenu = async () => {
+    console.log("Fetching desktop menu...");
     try {
       setIsLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/desktop-menu`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch desktop menu');
+
+      // Vérifier si l'URL de l'API est définie
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (!apiUrl) {
+        console.error("NEXT_PUBLIC_API_URL is not defined");
+        throw new Error("API URL is not configured. Please check your environment variables.");
       }
 
-      const data = await response.json();
+      const url = `${apiUrl}/desktop-menu`;
+      console.log("Fetching from URL:", url);
+
+      // Utiliser le service API pour effectuer la requête GET
+      // Désactiver la redirection automatique car ce n'est pas une action utilisateur
+      const data = await apiService.get(url, {}, false);
+
+      console.log(
+        "Desktop menu fetched successfully:",
+        data.desktopMenuItems?.length || 0,
+        "items"
+      );
       setMenuItems(data.desktopMenuItems || []);
       setError(null);
     } catch (err) {
-      setError(err.message);
+      // Ne pas afficher d'erreur si c'est une erreur d'authentification (déjà gérée par apiService)
+      if (err.message !== "Session expirée") {
+        console.error("Error fetching desktop menu:", err);
+        setError(err.message);
+      }
+      // Utiliser des données fictives en cas d'erreur pour le développement
+      setMenuItems([]);
     } finally {
       setIsLoading(false);
     }
@@ -48,6 +69,6 @@ export function useDesktopMenu() {
     rotatedArrows,
     handleMouseEnter,
     handleMouseLeave,
-    refreshMenu: fetchDesktopMenu
+    refreshMenu: fetchDesktopMenu,
   };
 }

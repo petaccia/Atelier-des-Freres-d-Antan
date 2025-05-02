@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: atelier-freres-backend
+    env: node
+    nodeVersion: 22.14.0
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm run start:render
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /api/health

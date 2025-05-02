@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { iconLibraries } from '../../../icons/iconLibraries';
-import { MdSearch, MdClose } from 'react-icons/md';
+import { useState } from "react";
+import { iconLibraries } from "../../../icons/iconLibraries";
+import { MdSearch, MdClose } from "react-icons/md";
 
-export default function IconSelect({ value, onChange }) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLibrary, setSelectedLibrary] = useState('Font Awesome');
+export default function IconSelect({ value, onChange, disabled = false }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLibrary, setSelectedLibrary] = useState("Font Awesome");
   const [showIconPicker, setShowIconPicker] = useState(false);
 
   const currentLibrary = iconLibraries[selectedLibrary];
@@ -12,38 +12,39 @@ export default function IconSelect({ value, onChange }) {
 
   const filterIcons = () => {
     if (!currentLibrary?.icons) return [];
-    
+
     return Object.keys(currentLibrary.icons)
-      .filter(iconName => 
-        iconName.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      .filter((iconName) => iconName.toLowerCase().includes(searchTerm.toLowerCase()))
       .slice(0, 100);
   };
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-whiteGray">
-        Icône
-      </label>
+      <label className="block text-sm font-medium text-whiteGray">Icône</label>
 
       <button
         type="button"
-        onClick={() => setShowIconPicker(!showIconPicker)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-primary hover:bg-accent text-white rounded-lg transition-colors"
+        onClick={() => !disabled && setShowIconPicker(!showIconPicker)}
+        disabled={disabled}
+        className={`w-full flex items-center justify-between px-4 py-3 ${
+          disabled
+            ? "bg-primary-dark/50 text-white/70 cursor-not-allowed"
+            : "bg-primary hover:bg-accent text-white cursor-pointer"
+        } rounded-lg transition-colors`}
       >
         <div className="flex items-center gap-3">
           {IconPreview ? (
             <>
               <IconPreview size={20} />
-              <span>{value.replace(currentLibrary.prefix, '')}</span>
+              <span>{value.replace(currentLibrary.prefix, "")}</span>
             </>
           ) : (
             <span>Sélectionner une icône</span>
           )}
         </div>
-        {value && (
-          <MdClose 
-            className="w-5 h-5" 
+        {value && !disabled && (
+          <MdClose
+            className="w-5 h-5"
             onClick={(e) => {
               e.stopPropagation();
               onChange(null);
@@ -84,8 +85,8 @@ export default function IconSelect({ value, onChange }) {
                     onClick={() => setSelectedLibrary(name)}
                     className={`px-4 py-2 rounded-lg transition-colors ${
                       selectedLibrary === name
-                        ? 'bg-accent text-white'
-                        : 'bg-primary-dark hover:bg-accent text-white'
+                        ? "bg-accent text-white"
+                        : "bg-primary-dark hover:bg-accent text-white"
                     }`}
                   >
                     {name}
@@ -94,7 +95,7 @@ export default function IconSelect({ value, onChange }) {
               </div>
 
               <div className="grid grid-cols-8 gap-2 overflow-y-auto max-h-[400px] p-1">
-                {filterIcons().map(iconName => {
+                {filterIcons().map((iconName) => {
                   const Icon = currentLibrary.icons[iconName];
                   return (
                     <button
@@ -105,10 +106,10 @@ export default function IconSelect({ value, onChange }) {
                       }}
                       className={`p-3 rounded-lg transition-colors ${
                         value === iconName
-                          ? 'bg-accent text-white'
-                          : 'bg-primary-dark hover:bg-accent text-white'
+                          ? "bg-accent text-white"
+                          : "bg-primary-dark hover:bg-accent text-white"
                       }`}
-                      title={iconName.replace(currentLibrary.prefix, '')}
+                      title={iconName.replace(currentLibrary.prefix, "")}
                     >
                       <Icon size={24} />
                     </button>
@@ -122,5 +123,3 @@ export default function IconSelect({ value, onChange }) {
     </div>
   );
 }
-
-

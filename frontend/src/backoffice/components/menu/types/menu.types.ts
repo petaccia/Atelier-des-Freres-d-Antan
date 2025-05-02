@@ -9,5 +9,5 @@ export interface MenuItem {
 export interface MenuProps {
   item: MenuItem;
   isSubmenu?: boolean;
-  selectedDevice: 'mobile' | 'tablet' | 'desktop';
+  selectedDevice: "mobile" | "tablet" | "desktop";
 }

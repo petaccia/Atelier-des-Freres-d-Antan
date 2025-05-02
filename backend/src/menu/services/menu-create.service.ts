@@ -4,7 +4,7 @@ import { CreateMenuItemDto, MenuType } from '../dto/create-menu-item.dto';
 import { DesktopMenuItem, MobileMenuItem } from '@prisma/client';
 
 @Injectable()
-export class MenuService {
+export class MenuCreateService {
   constructor(private prisma: PrismaService) {}
 
   async createMenuItemInBothMenus(createMenuItemDto: CreateMenuItemDto) {

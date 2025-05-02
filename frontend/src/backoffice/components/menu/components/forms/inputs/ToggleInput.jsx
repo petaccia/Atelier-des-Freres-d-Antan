@@ -1,11 +1,4 @@
-const ToggleInput = ({ 
-  label, 
-  id, 
-  name, 
-  checked, 
-  onChange,
-  className = "" 
-}) => {
+const ToggleInput = ({ label, id, name, checked, onChange, className = "" }) => {
   return (
     <label className={`relative flex items-center cursor-pointer ${className}`}>
       <input

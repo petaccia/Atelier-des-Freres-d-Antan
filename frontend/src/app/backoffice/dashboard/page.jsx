@@ -1,23 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Sidebar from '@/backoffice/components/layouts/Sidebar';
+import { useRouter } from "next/navigation";
+import Sidebar from "@/backoffice/components/layouts/Sidebar";
+import { adminAuth } from "@/backoffice/services/adminAuth";
 
 export default function DashboardPage() {
   const router = useRouter();
 
-  useEffect(() => {
-    // Vérifier si l'utilisateur est connecté
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/backoffice/login');
-    }
-  }, [router]);
-
   const handleLogout = () => {
-    localStorage.removeItem('adminToken');
-    router.push('/backoffice/login');
+    adminAuth.logout();
+    router.push("/backoffice/login");
   };
 
   return (
