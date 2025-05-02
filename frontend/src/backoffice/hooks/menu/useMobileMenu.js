@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { apiService } from '@/backoffice/services/apiService';
 
 export function useMobileMenu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -18,25 +19,22 @@ export function useMobileMenu() {
         throw new Error('API URL is not configured. Please check your environment variables.');
       }
 
-      // Ajouter un paramètre timestamp pour éviter la mise en cache
-      const timestamp = new Date().getTime();
-      const url = `${apiUrl}/mobile-menu?_=${timestamp}`;
-
+      const url = `${apiUrl}/mobile-menu`;
       console.log('Fetching from URL:', url);
 
-      const response = await fetch(url);
+      // Utiliser le service API pour effectuer la requête GET
+      // Désactiver la redirection automatique car ce n'est pas une action utilisateur
+      const data = await apiService.get(url, {}, false);
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch mobile menu: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
       console.log('Mobile menu fetched successfully:', data.mobileMenuItems?.length || 0, 'items');
       setMenuItems(data.mobileMenuItems || []);
       setError(null);
     } catch (err) {
-      console.error('Error fetching mobile menu:', err);
-      setError(err.message);
+      // Ne pas afficher d'erreur si c'est une erreur d'authentification (déjà gérée par apiService)
+      if (err.message !== 'Session expirée') {
+        console.error('Error fetching mobile menu:', err);
+        setError(err.message);
+      }
       // Utiliser des données fictives en cas d'erreur pour le développement
       setMenuItems([]);
     } finally {

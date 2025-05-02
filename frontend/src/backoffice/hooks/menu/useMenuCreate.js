@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { apiService } from '@/backoffice/services/apiService';
 
 export const useMenuCreate = (onSuccess) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,34 +11,19 @@ export const useMenuCreate = (onSuccess) => {
     setError(null);
 
     try {
-      const token = localStorage.getItem('adminToken');
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/menu`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(menuData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
+      // Utiliser le service API pour effectuer la requête POST
+      const data = await apiService.post(`${process.env.NEXT_PUBLIC_API_URL}/menu`, menuData);
 
       toast.success('Menu ajouté avec succès');
       if (onSuccess) onSuccess();
       return data;
 
     } catch (err) {
-      const errorMessage = err.message || 'Une erreur est survenue lors de la création';
-      setError(errorMessage);
-      toast.error(errorMessage);
-
-      if (err.response?.status === 401) {
-        window.location.href = '/backoffice/login';
+      // Ne pas afficher d'erreur si c'est une erreur d'authentification (déjà gérée par apiService)
+      if (err.message !== 'Session expirée') {
+        const errorMessage = err.message || 'Une erreur est survenue lors de la création';
+        setError(errorMessage);
+        toast.error(errorMessage);
       }
 
       return { error: err };
