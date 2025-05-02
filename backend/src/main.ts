@@ -18,6 +18,7 @@ async function bootstrap() {
   const allowedOrigins = [
     'http://localhost:3000',
     'https://atelier-des-freres-dantan-frontend-6ufxqxo8e.vercel.app',
+    'https://atelier-des-freres-dantan.vercel.app',
     // Ajoutez d'autres origines si nécessaire
   ];
 
