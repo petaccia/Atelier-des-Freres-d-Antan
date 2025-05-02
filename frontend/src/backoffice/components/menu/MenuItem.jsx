@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { FiTrash2 } from 'react-icons/fi';
+import { FiTrash2, FiEdit } from 'react-icons/fi';
 import MenuIcon from './components/icons/MenuIcon';
 import ModalContainer from './components/forms/ModalContainer';
-import AddMenuItemForm from './components/forms/AddMenuItemForm';
+import MenuItemForm from './components/forms/MenuItemForm';
 
 export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMenuUpdated, menuItems }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const showIcon = selectedDevice !== 'desktop' && item.showIcon !== false && !isSubmenu;
 
   const handleOpenDeleteModal = () => {
@@ -14,6 +15,14 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
 
   const handleCloseDeleteModal = () => {
     setIsDeleteModalOpen(false);
+  };
+
+  const handleOpenEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
   };
 
   return (
@@ -28,14 +37,26 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
                 <span className="text-white font-medium">{item.title}</span>
               </div>
 
-              {/* Bouton de suppression */}
-              <button
-                onClick={handleOpenDeleteModal}
-                className="p-2 text-white/60 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors"
-                title="Supprimer cet élément"
-              >
-                <FiTrash2 size={18} />
-              </button>
+              {/* Boutons d'action */}
+              <div className="flex items-center">
+                {/* Bouton d'édition */}
+                <button
+                  onClick={handleOpenEditModal}
+                  className="p-2 text-white/60 hover:text-blue-500 hover:bg-blue-500/10 rounded-full transition-colors mr-1"
+                  title="Modifier cet élément"
+                >
+                  <FiEdit size={18} />
+                </button>
+
+                {/* Bouton de suppression */}
+                <button
+                  onClick={handleOpenDeleteModal}
+                  className="p-2 text-white/60 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-colors"
+                  title="Supprimer cet élément"
+                >
+                  <FiTrash2 size={18} />
+                </button>
+              </div>
             </div>
 
             {/* Informations secondaires */}
@@ -55,10 +76,25 @@ export default function MenuItem({ item, isSubmenu = false, selectedDevice, onMe
         onClose={handleCloseDeleteModal}
         title={`Supprimer "${item.title}"`}
       >
-        <AddMenuItemForm
+        <MenuItemForm
           mode="delete"
-          itemToDelete={item}
+          itemToEdit={{...item, selectedDevice}}
           onCancel={handleCloseDeleteModal}
+          onSuccess={onMenuUpdated}
+          menuItems={menuItems}
+        />
+      </ModalContainer>
+
+      {/* Modale d'édition */}
+      <ModalContainer
+        isOpen={isEditModalOpen}
+        onClose={handleCloseEditModal}
+        title={`Modifier "${item.title}"`}
+      >
+        <MenuItemForm
+          mode="edit"
+          itemToEdit={{...item, selectedDevice}}
+          onCancel={handleCloseEditModal}
           onSuccess={onMenuUpdated}
           menuItems={menuItems}
         />

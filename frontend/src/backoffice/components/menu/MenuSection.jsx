@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 import MenuDeviceDisplay from "./MenuDeviceDisplay";
 import { FiPlus } from 'react-icons/fi';
 import ModalContainer from "./components/forms/ModalContainer";
-import AddMenuItemForm from "./components/forms/AddMenuItemForm";
+import MenuItemForm from "./components/forms/MenuItemForm";
 
 const MenuSection = ({ selectedDevice, menuItems, onRefresh }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +44,8 @@ const MenuSection = ({ selectedDevice, menuItems, onRefresh }) => {
         onClose={() => setIsModalOpen(false)}
         title="Ajouter une nouvelle page"
       >
-        <AddMenuItemForm
+        <MenuItemForm
+          mode="add"
           onCancel={() => setIsModalOpen(false)}
           menuItems={rootMenuItems}
           onSuccess={handleMenuUpdated}
