@@ -8,27 +8,31 @@ import { DesktopMenuService } from './desktop/services/desktop-menu.service';
 import { MobileMenuService } from './mobile/services/mobile-menu.service';
 import { MenuDeleteService } from './services/menu-delete.service';
 import { MenuDeleteController } from './menu-delete.controller';
+import { MenuUpdateService } from './services/menu-update.service';
+import { MenuUpdateController } from './menu-update.controller';
 
 @Module({
   controllers: [
-    MenuCreateController, 
-    MenuDeleteController , 
-    DesktopMenuController, 
-    MobileMenuController 
+    MenuCreateController,
+    MenuDeleteController,
+    MenuUpdateController,
+    DesktopMenuController,
+    MobileMenuController
   ],
   providers: [
-    MenuCreateService, 
-    MenuDeleteService, 
-    PrismaService, 
-    DesktopMenuService, 
+    MenuCreateService,
+    MenuDeleteService,
+    MenuUpdateService,
+    PrismaService,
+    DesktopMenuService,
     MobileMenuService
   ],
   exports: [
-    MenuCreateService, 
-    MenuDeleteService, 
-    DesktopMenuService, 
+    MenuCreateService,
+    MenuDeleteService,
+    MenuUpdateService,
+    DesktopMenuService,
     MobileMenuService
-
   ],
 })
 export class MenuModule {}

@@ -1,7 +1,8 @@
 import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AdminAuthService } from './admin-auth-service';
-import { AdminAuthDto, RefreshTokenDto } from './dto';
+import { AdminAuthDto } from './dto';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @ApiTags('Authentication')
 @Controller('admin/auth')
