@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import SelectInput from './inputs/SelectInput';
 import TextInput from './inputs/TextInput';
+import NumberInput from './inputs/NumberInput';
 import ToggleInput from './inputs/ToggleInput';
 import IconSelect from './inputs/IconSelect';
 import { showConfirmationToast } from '@/backoffice/components/ui/confirmation/ShowConfirmationToast';
@@ -18,7 +19,8 @@ const AddMenuItemForm = ({ onCancel, menuItems, onSuccess, mode = 'add', itemToD
     isActive: true,
     showIcon: true,
     parentId: '',
-    icon: ''
+    icon: '',
+    order: 0
   });
 
   // Si on est en mode suppression, initialiser le formulaire avec les données de l'élément à supprimer
@@ -31,7 +33,8 @@ const AddMenuItemForm = ({ onCancel, menuItems, onSuccess, mode = 'add', itemToD
         isActive: itemToDelete.isActive !== undefined ? itemToDelete.isActive : true,
         showIcon: itemToDelete.showIcon !== undefined ? itemToDelete.showIcon : true,
         parentId: itemToDelete.parentId || '',
-        icon: itemToDelete.icon || ''
+        icon: itemToDelete.icon || '',
+        order: itemToDelete.order !== undefined ? itemToDelete.order : 0
       });
     }
   }, [mode, itemToDelete]);
@@ -64,6 +67,7 @@ const AddMenuItemForm = ({ onCancel, menuItems, onSuccess, mode = 'add', itemToD
       ...prev,
       [name]: type === 'checkbox' ? checked :
         name === 'parentId' ? (value === '' ? null : Number(value)) :
+        name === 'order' ? Number(value) :
           value
     }));
   };
@@ -183,6 +187,18 @@ const AddMenuItemForm = ({ onCancel, menuItems, onSuccess, mode = 'add', itemToD
         onChange={handleChange}
         options={parentOptions}
         disabled={mode === 'delete'}
+      />
+
+      <NumberInput
+        label="Ordre d'affichage"
+        id="order"
+        name="order"
+        value={formData.order}
+        onChange={handleChange}
+        min={0}
+        step={1}
+        disabled={mode === 'delete'}
+        helpText="Détermine la position de l'élément dans le menu (0 = premier)"
       />
 
       <div className="flex items-center gap-6">
