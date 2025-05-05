@@ -3,41 +3,79 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-
-const execAsync = promisify(exec);
 
 async function initDatabase() {
   const prisma = new PrismaClient();
   try {
     // Vérifier si la table Admin existe
-    await prisma.$queryRaw`SELECT 1 FROM "Admin" LIMIT 1`;
-    console.log('Database tables already exist');
-  } catch (error) {
-    console.log('Initializing database...');
     try {
-      // Exécuter les migrations
-      console.log('Running migrations...');
-      await execAsync('npx prisma migrate deploy');
-      console.log('Migrations completed');
+      await prisma.$queryRaw`SELECT 1 FROM "Admin" LIMIT 1`;
+      console.log('Database tables already exist');
+    } catch (error) {
+      console.log('Initializing database...');
 
-      // Créer un utilisateur admin par défaut
       try {
-        console.log('Creating default admin user...');
-        const hashedPassword = await bcrypt.hash('admin123', 10);
+        // Créer le schéma directement à partir du modèle Prisma
+        console.log('Creating database schema from Prisma model...');
+
+        // Créer la table Admin
+        await prisma.$executeRaw`
+          CREATE TABLE IF NOT EXISTS "Admin" (
+            "id" TEXT NOT NULL DEFAULT gen_random_uuid()::text,
+            "username" TEXT NOT NULL,
+            "password" TEXT NOT NULL,
+            "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+            CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
+          );
+
+          CREATE UNIQUE INDEX IF NOT EXISTS "Admin_username_key" ON "Admin"("username");
+        `;
+
+        // Créer la table Menu
+        await prisma.$executeRaw`
+          CREATE TABLE IF NOT EXISTS "Menu" (
+            "id" TEXT NOT NULL DEFAULT gen_random_uuid()::text,
+            "title" TEXT NOT NULL,
+            "path" TEXT NOT NULL,
+            "icon" TEXT,
+            "parentId" TEXT,
+            "deviceType" TEXT NOT NULL,
+            "order" INTEGER NOT NULL DEFAULT 0,
+            "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+            CONSTRAINT "Menu_pkey" PRIMARY KEY ("id")
+          );
+
+          CREATE UNIQUE INDEX IF NOT EXISTS "Menu_path_deviceType_key" ON "Menu"("path", "deviceType");
+        `;
+
+        // Ajouter la contrainte de clé étrangère après la création des tables
+        await prisma.$executeRaw`
+          ALTER TABLE "Menu"
+          ADD CONSTRAINT IF NOT EXISTS "Menu_parentId_fkey"
+          FOREIGN KEY ("parentId")
+          REFERENCES "Menu"("id")
+          ON DELETE SET NULL
+          ON UPDATE CASCADE;
+        `;
+
+        console.log('Database schema created successfully');
+
+        // Créer l'utilisateur admin directement
+        console.log('Creating admin user directly...');
+        const hashedPassword = await bcrypt.hash('admin123456', 10);
         const admin = await prisma.admin.create({
           data: {
-            username: 'admin',
+            username: 'sebastien',
             password: hashedPassword
           }
         });
-        console.log('Default admin user created:', admin.username);
-      } catch (adminError) {
-        console.error('Error creating admin user:', adminError);
+        console.log('Admin user created successfully:', admin.username);
+      } catch (error) {
+        console.error('Error initializing database:', error);
       }
-    } catch (migrationError) {
-      console.error('Error running migrations:', migrationError);
     }
   } finally {
     await prisma.$disconnect();
