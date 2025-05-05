@@ -7,13 +7,19 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
   constructor() {
     super({
       log: ['error'],
+      // Ajouter des options de connexion pour améliorer les performances
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
     });
   }
 
   async onModuleInit() {
     await this.$connect();
     console.log('PrismaService connected to database');
-    
+
     // Réinitialiser la base de données (supprimer et recréer les tables)
     const resetDatabase = process.env.RESET_DATABASE === 'true';
     if (resetDatabase) {
@@ -29,11 +35,11 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     await this.$disconnect();
     console.log('PrismaService disconnected from database');
   }
-  
+
   async resetDatabase() {
     try {
       console.log('Dropping tables...');
-      
+
       // Supprimer d'abord les contraintes de clé étrangère
       try {
         await this.$executeRaw`
@@ -43,7 +49,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       } catch (error) {
         console.error('Error dropping foreign key constraints:', error);
       }
-      
+
       // Supprimer les tables
       try {
         await this.$executeRaw`DROP TABLE IF EXISTS "Menu" CASCADE`;
@@ -51,16 +57,16 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       } catch (error) {
         console.error('Error dropping Menu table:', error);
       }
-      
+
       try {
         await this.$executeRaw`DROP TABLE IF EXISTS "Admin" CASCADE`;
         console.log('Admin table dropped');
       } catch (error) {
         console.error('Error dropping Admin table:', error);
       }
-      
+
       console.log('All tables dropped successfully');
-      
+
       // Recréer les tables
       await this.initDatabase();
     } catch (error) {
@@ -80,17 +86,17 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
             AND table_name = 'Admin'
           )
         `;
-        
+
         const exists = tableExists[0].exists;
-        
+
         if (exists) {
           console.log('Database tables already exist');
-          
+
           // Vérifier si l'utilisateur admin existe
           const adminExists = await this.admin.findUnique({
             where: { username: 'sebastien' }
           });
-          
+
           if (!adminExists) {
             console.log('Admin user does not exist, creating...');
             const hashedPassword = await bcrypt.hash('admin123456', 10);
@@ -104,7 +110,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
           } else {
             console.log('Admin user already exists');
           }
-          
+
           return; // Sortir de la fonction si les tables existent déjà
         } else {
           console.log('Tables do not exist, initializing database...');
@@ -114,11 +120,11 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
         // Continuer avec l'initialisation même en cas d'erreur
         console.log('Initializing database...');
       }
-      
+
       // Créer les tables à partir du schéma Prisma
       try {
         console.log('Creating database schema...');
-        
+
         // Créer la table Admin
         await this.$executeRaw`
           CREATE TABLE IF NOT EXISTS "Admin" (
@@ -126,15 +132,15 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
             "username" TEXT NOT NULL,
             "password" TEXT NOT NULL,
             "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            
+
             CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
           )
         `;
-        
+
         await this.$executeRaw`
           CREATE UNIQUE INDEX IF NOT EXISTS "Admin_username_key" ON "Admin"("username")
         `;
-        
+
         // Créer la table Menu
         await this.$executeRaw`
           CREATE TABLE IF NOT EXISTS "Menu" (
@@ -147,26 +153,26 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
             "order" INTEGER NOT NULL DEFAULT 0,
             "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
             "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            
+
             CONSTRAINT "Menu_pkey" PRIMARY KEY ("id")
           )
         `;
-        
+
         await this.$executeRaw`
           CREATE UNIQUE INDEX IF NOT EXISTS "Menu_path_deviceType_key" ON "Menu"("path", "deviceType")
         `;
-        
+
         await this.$executeRaw`
-          ALTER TABLE IF EXISTS "Menu" 
-          ADD CONSTRAINT IF NOT EXISTS "Menu_parentId_fkey" 
-          FOREIGN KEY ("parentId") 
-          REFERENCES "Menu"("id") 
-          ON DELETE SET NULL 
+          ALTER TABLE IF EXISTS "Menu"
+          ADD CONSTRAINT IF NOT EXISTS "Menu_parentId_fkey"
+          FOREIGN KEY ("parentId")
+          REFERENCES "Menu"("id")
+          ON DELETE SET NULL
           ON UPDATE CASCADE
         `;
-        
+
         console.log('Database schema created successfully');
-        
+
         // Créer l'utilisateur admin
         console.log('Creating admin user...');
         const hashedPassword = await bcrypt.hash('admin123456', 10);
@@ -179,7 +185,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
         console.log('Admin user created successfully:', admin.username);
       } catch (error) {
         console.error('Error creating database schema:', error);
-        
+
         // Si l'erreur est que la table existe déjà, essayons de créer l'utilisateur admin
         try {
           console.log('Trying to create admin user anyway...');

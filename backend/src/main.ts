@@ -96,31 +96,21 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  // Configuration CORS
-  if (process.env.CORS_ALLOW_ALL === 'true') {
-    // Configuration CORS permissive pour le débogage
-    console.log('Using permissive CORS configuration');
-    app.enableCors({
-      origin: true, // Permet toutes les origines
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      credentials: true,
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    });
-  } else {
-    // Configuration CORS normale
-    console.log('Using normal CORS configuration');
-    app.enableCors({
-      origin: [
-        'http://localhost:3000',
-        'https://atelier-des-freres-dantan-frontend-6ufxqxo8e.vercel.app',
-        'https://atelier-des-freres-dantan.vercel.app',
-        process.env.FRONTEND_URL || '',
-      ].filter(Boolean), // Filtrer les valeurs vides
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      credentials: true,
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    });
-  }
+  // Configuration CORS simplifiée et optimisée
+  console.log('Configuring CORS...');
+  app.enableCors({
+    origin: process.env.CORS_ALLOW_ALL === 'true'
+      ? true // Permet toutes les origines si CORS_ALLOW_ALL est true
+      : [
+          'http://localhost:3000',
+          'https://atelier-des-freres-dantan-frontend-6ufxqxo8e.vercel.app',
+          'https://atelier-des-freres-dantan.vercel.app',
+          process.env.FRONTEND_URL || '',
+        ].filter(Boolean), // Filtrer les valeurs vides
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
 
   app.setGlobalPrefix('api');
   await app.listen(process.env.PORT || 5000);
