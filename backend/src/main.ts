@@ -58,37 +58,31 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  // Définir les origines autorisées
-  const allowedOrigins = [
-    'http://localhost:3000',
-    'https://atelier-des-freres-dantan-frontend-6ufxqxo8e.vercel.app',
-    'https://atelier-des-freres-dantan.vercel.app',
-    // Ajoutez d'autres origines si nécessaire
-  ];
-
-  // Ajouter l'origine depuis la variable d'environnement si elle existe
-  if (process.env.FRONTEND_URL) {
-    allowedOrigins.push(process.env.FRONTEND_URL);
+  // Configuration CORS
+  if (process.env.CORS_ALLOW_ALL === 'true') {
+    // Configuration CORS permissive pour le débogage
+    console.log('Using permissive CORS configuration');
+    app.enableCors({
+      origin: true, // Permet toutes les origines
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      credentials: true,
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    });
+  } else {
+    // Configuration CORS normale
+    console.log('Using normal CORS configuration');
+    app.enableCors({
+      origin: [
+        'http://localhost:3000',
+        'https://atelier-des-freres-dantan-frontend-6ufxqxo8e.vercel.app',
+        'https://atelier-des-freres-dantan.vercel.app',
+        process.env.FRONTEND_URL || '',
+      ].filter(Boolean), // Filtrer les valeurs vides
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      credentials: true,
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    });
   }
-
-  app.enableCors({
-    origin: (origin, callback) => {
-      // Permettre les requêtes sans origine (comme les appels API mobiles ou Postman)
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        console.warn(`Origine bloquée par CORS: ${origin}`);
-        callback(new Error('Non autorisé par CORS'));
-      }
-    },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  });
 
   app.setGlobalPrefix('api');
   await app.listen(process.env.PORT || 5000);
