@@ -3,6 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { loadSqlFile } from './utils/sql-loader';
 
 async function initDatabase() {
   const prisma = new PrismaClient();
@@ -18,48 +19,25 @@ async function initDatabase() {
         // Créer le schéma directement à partir du modèle Prisma
         console.log('Creating database schema from Prisma model...');
 
-        // Créer la table Admin
-        await prisma.$executeRaw`
-          CREATE TABLE IF NOT EXISTS "Admin" (
-            "id" TEXT NOT NULL DEFAULT gen_random_uuid()::text,
-            "username" TEXT NOT NULL,
-            "password" TEXT NOT NULL,
-            "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        // Créer la table Admin en utilisant le fichier SQL
+        const createAdminTableSql = loadSqlFile('admin', 'create-table');
+        await prisma.$executeRaw`${createAdminTableSql}`;
 
-            CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
-          );
-
-          CREATE UNIQUE INDEX IF NOT EXISTS "Admin_username_key" ON "Admin"("username");
-        `;
+        // Créer l'index pour la table Admin
+        const createAdminIndexSql = loadSqlFile('admin', 'create-index');
+        await prisma.$executeRaw`${createAdminIndexSql}`;
 
         // Créer la table Menu
-        await prisma.$executeRaw`
-          CREATE TABLE IF NOT EXISTS "Menu" (
-            "id" TEXT NOT NULL DEFAULT gen_random_uuid()::text,
-            "title" TEXT NOT NULL,
-            "path" TEXT NOT NULL,
-            "icon" TEXT,
-            "parentId" TEXT,
-            "deviceType" TEXT NOT NULL,
-            "order" INTEGER NOT NULL DEFAULT 0,
-            "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        const createMenuTableSql = loadSqlFile('menu', 'create-table');
+        await prisma.$executeRaw`${createMenuTableSql}`;
 
-            CONSTRAINT "Menu_pkey" PRIMARY KEY ("id")
-          );
-
-          CREATE UNIQUE INDEX IF NOT EXISTS "Menu_path_deviceType_key" ON "Menu"("path", "deviceType");
-        `;
+        // Créer l'index pour la table Menu
+        const createMenuIndexSql = loadSqlFile('menu', 'create-index');
+        await prisma.$executeRaw`${createMenuIndexSql}`;
 
         // Ajouter la contrainte de clé étrangère après la création des tables
-        await prisma.$executeRaw`
-          ALTER TABLE "Menu"
-          ADD CONSTRAINT IF NOT EXISTS "Menu_parentId_fkey"
-          FOREIGN KEY ("parentId")
-          REFERENCES "Menu"("id")
-          ON DELETE SET NULL
-          ON UPDATE CASCADE;
-        `;
+        const addMenuForeignKeySql = loadSqlFile('menu', 'add-foreign-key');
+        await prisma.$executeRaw`${addMenuForeignKeySql}`;
 
         console.log('Database schema created successfully');
 

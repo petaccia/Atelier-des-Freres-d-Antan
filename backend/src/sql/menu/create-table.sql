@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS "Menu" (
+  "id" TEXT NOT NULL DEFAULT gen_random_uuid()::text,
+  "title" TEXT NOT NULL,
+  "path" TEXT NOT NULL,
+  "icon" TEXT,
+  "parentId" TEXT,
+  "deviceType" TEXT NOT NULL,
+  "order" INTEGER NOT NULL DEFAULT 0,
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT "Menu_pkey" PRIMARY KEY ("id")
+)
