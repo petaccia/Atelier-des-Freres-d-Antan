@@ -1,0 +1,3 @@
+DELETE FROM "Menu"
+WHERE "id" = $1
+RETURNING *
