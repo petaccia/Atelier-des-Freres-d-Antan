@@ -1,7 +1,7 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { GoogleReviewsService } from './google-reviews.service';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../admin/auth/jwt-auth.guard';
 
 @ApiTags('google-reviews')
 @Controller('google-reviews')

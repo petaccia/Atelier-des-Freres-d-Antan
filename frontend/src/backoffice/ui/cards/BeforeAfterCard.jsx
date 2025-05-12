@@ -59,15 +59,14 @@ export default function BeforeAfterCard({
                 y="7"
                 dominantBaseline="middle"
                 textAnchor="middle"
-                markerHeight={20}
                 fill="white"
                 fontFamily="var(--font-josefin-sans)"
-                fontSize="0.15rem"
+                fontSize="3"
                 fontWeight="var(--font-weight-light)"
                 letterSpacing="1"
-                textTransform="uppercase"
+                textDecoration={"uppercase"}
               >
-                {title}
+                {title.toUpperCase()}
               </text>
             </svg>
           </div>
