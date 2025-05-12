@@ -8,6 +8,7 @@ import BackofficeHeaderLocationPage from "@/backoffice/components/navigation/Bac
 import BackofficeHeaderTitle from "@/backoffice/components/navigation/BackofficeHeaderTitle";
 import DeviceSelector from "@/components/ui/selectors/DeviceSelector";
 import MenuSection from "@/backoffice/components/menu/MenuSection";
+import PreviewButton from "@/backoffice/ui/buttons/PreviewButton";
 
 export default function MenuPage() {
   const [selectedDevice, setSelectedDevice] = useState("mobile");
@@ -42,8 +43,9 @@ export default function MenuPage() {
       />
       <BackofficeHeaderTitle title="Gestion du Menu" />
 
-      <div className="mb-6">
+      <div className="flex justify-between items-center mb-6">
         <DeviceSelector selectedDevice={selectedDevice} onDeviceChange={setSelectedDevice} />
+        <PreviewButton />
       </div>
 
       <MenuSection
