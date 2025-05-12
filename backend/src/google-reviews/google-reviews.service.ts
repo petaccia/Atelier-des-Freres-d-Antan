@@ -1,13 +1,38 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
-// @ts-ignore
-import NodeCache from 'node-cache';
+
+// Implémentation simple d'un cache en mémoire
+class SimpleCache {
+  private cache: Map<string, { data: any; expiry: number }> = new Map();
+  private defaultTTL: number;
+
+  constructor(options: { stdTTL: number }) {
+    this.defaultTTL = options.stdTTL;
+  }
+
+  get(key: string): any {
+    const item = this.cache.get(key);
+    if (!item) return null;
+
+    if (Date.now() > item.expiry) {
+      this.cache.delete(key);
+      return null;
+    }
+
+    return item.data;
+  }
+
+  set(key: string, value: any, ttl?: number): void {
+    const expiry = Date.now() + (ttl || this.defaultTTL) * 1000;
+    this.cache.set(key, { data: value, expiry });
+  }
+}
 
 @Injectable()
 export class GoogleReviewsService implements OnModuleInit {
   private readonly logger = new Logger(GoogleReviewsService.name);
-  private readonly cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
+  private readonly cache = new SimpleCache({ stdTTL: 3600 }); // Cache for 1 hour
   private readonly CACHE_KEY = 'google_reviews';
   private readonly placeId?: string;
   private readonly apiKey?: string;
@@ -28,7 +53,7 @@ export class GoogleReviewsService implements OnModuleInit {
   }
 
   async getGoogleReviews(limit?: number): Promise<any[]> {
-    let reviews = this.cache.get<any[]>(this.CACHE_KEY);
+    let reviews = this.cache.get(this.CACHE_KEY) as any[];
 
     if (!reviews) {
       reviews = await this.fetchAndCacheReviews();
